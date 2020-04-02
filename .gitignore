@@ -48,3 +48,10 @@ gradle-app.setting
 # End of https://www.gitignore.io/api/java,gradle
 
 .idea
+*.png
+*.csv
+bin/main/com/avatarduel/card/image/land/.DS_Store
+.classpath
+.project
+.settings/org.eclipse.buildship.core.prefs
+.settings/org.eclipse.jdt.core.prefs
