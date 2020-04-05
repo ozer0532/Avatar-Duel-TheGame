@@ -1,4 +1,5 @@
 // PlayerStats.java
+package com.avatarduel.player;
 
 public class PlayerStats {
     private int health;

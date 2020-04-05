@@ -1,4 +1,6 @@
 // Player.java
+package com.avatarduel.player;
+
 import java.util.List;
 import java.util.Stack;
 

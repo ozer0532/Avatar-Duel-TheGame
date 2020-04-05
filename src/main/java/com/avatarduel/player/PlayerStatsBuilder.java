@@ -1,4 +1,5 @@
 // PlayerStatsBuilder.java
+package com.avatarduel.player;
 
 public class PlayerStatsBuilder {
     private PlayerStats PS;
