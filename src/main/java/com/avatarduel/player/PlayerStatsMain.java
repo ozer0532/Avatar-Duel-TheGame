@@ -1,4 +1,5 @@
 // PlayerStatsMain.java
+package com.avatarduel.player;
 
 public class PlayerStatsMain {
     public static void main(String[] args){

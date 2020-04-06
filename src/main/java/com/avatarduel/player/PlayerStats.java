@@ -47,7 +47,6 @@ public class PlayerStats {
         }
         return ret;
     }
-
     
     public void incrementPower(Element element){
         switch (element){
