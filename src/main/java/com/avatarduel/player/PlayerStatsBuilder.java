@@ -1,64 +1,74 @@
-// PlayerStatsBuilder.java
 package com.avatarduel.player;
 
+import com.avatarduel.model.Element;
+
 public class PlayerStatsBuilder {
-    private PlayerStats PS;
+    private PlayerStats playerStats;
 
     public PlayerStatsBuilder(){
-        PS = new PlayerStats();
+        this.playerStats = new PlayerStats();
     }
 
     public PlayerStatsBuilder health(int val){
-        PS.setHealth(val);
+        this.playerStats.setHealth(val);
         return this;
     }
 
-    public PlayerStatsBuilder airPower(int val){
-        PS.setAirPower(val);
+    public PlayerStatsBuilder power(Element element, int val){
+        switch (element){
+            case AIR:
+                this.playerStats.setPower(element, val);
+                break;
+            case EARTH:
+                this.playerStats.setPower(element, val);
+                break;
+            case FIRE:
+                this.playerStats.setPower(element, val);
+                break;
+            case WATER:
+                this.playerStats.setPower(element, val);
+                break;
+            default:
+                System.out.println("Invalid element");
+        }
         return this;
     }
 
-    public PlayerStatsBuilder earthPower(int val){
-        PS.setEarthPower(val);
-        return this;
-    }
-
-    public PlayerStatsBuilder firePower(int val){
-        PS.setFirePower(val);
-        return this;
-    }
-
-    public PlayerStatsBuilder waterPower(int val){
-        PS.setWaterPower(val);
+    public PlayerStatsBuilder remainingPower(Element element, int val){
+        switch (element){
+            case AIR:
+                this.playerStats.setRemainingPower(element, val);
+                break;
+            case EARTH:
+                this.playerStats.setRemainingPower(element, val);
+                break;
+            case FIRE:
+                this.playerStats.setRemainingPower(element, val);
+                break;
+            case WATER:
+                this.playerStats.setRemainingPower(element, val);
+                break;
+            default:
+                System.out.println("Invalid element");
+        }
         return this;
     }
 
     public PlayerStatsBuilder playedLandThisRound(boolean val){
-        PS.setPlayedLandThisRound(val);
-        return this;
-    }
-
-    public PlayerStatsBuilder remainingAir(int val){
-        PS.setRemainingAir(val);
-        return this;
-    }
-
-    public PlayerStatsBuilder remainingEarth(int val){
-        PS.setRemainingEarth(val);
-        return this;
-    }
-
-    public PlayerStatsBuilder remainingFire(int val){
-        PS.setRemainingFire(val);
-        return this;
-    }
-
-    public PlayerStatsBuilder remainingWater(int val){
-        PS.setRemainingWater(val);
+        this.playerStats.setPlayedLandThisRound(val);
         return this;
     }
 
     public PlayerStats build(){
-        return PS;
+        return this.playerStats;
+    }
+
+    /* DEBUG */
+    public static void main(String args[]){
+        PlayerStats player = new PlayerStatsBuilder().health(100).power(Element.AIR, 10).power(Element.EARTH, 20).power(Element.FIRE, 30)
+        .power(Element.WATER, 40).remainingPower(Element.AIR, 40).remainingPower(Element.EARTH, 30).remainingPower(Element.FIRE, 20)
+        .remainingPower(Element.WATER, 10).playedLandThisRound(true).build();
+
+        player.printPlayerStats();
     }
 }

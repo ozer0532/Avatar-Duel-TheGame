@@ -14,6 +14,7 @@ public class PlayerStats {
     private int remainingWater;
     private boolean playedLandThisRound;
 
+    /* CTOR */
     public PlayerStats(){
         this.health = 0;
         this.airPower = 0;
@@ -26,6 +27,11 @@ public class PlayerStats {
         this.remainingWater = 0;
         this.playedLandThisRound = false; 
     }
+
+    /* GETTER */
+    public int getHealth(){
+        return this.health;
+    }
     
     public int getPower(Element element){
         int ret = 0;
@@ -36,79 +42,16 @@ public class PlayerStats {
             case EARTH:
                 ret = this.earthPower;
                 break;
-                case FIRE:
+            case FIRE:
                 ret = this.firePower;
                 break;
-                case WATER:
+            case WATER:
                 ret = this.waterPower;
                 break;
-                default:
+            default:
                 System.out.println("Invalid element");
         }
         return ret;
-    }
-    
-    public void incrementPower(Element element){
-        switch (element){
-            case AIR:
-                this.airPower += 1;
-                this.remainingAir += 1;
-                break;
-                case EARTH:
-                this.earthPower += 1;
-                this.remainingEarth += 1;
-                break;
-                case FIRE:
-            this.firePower += 1;
-            this.remainingFire += 1;
-                break;
-                case WATER:
-                this.waterPower += 1;
-                this.remainingWater += 1;
-                break;
-            }
-        }
-
-    public void usePower(Element element, int amount){
-        if (this.remainingAir-amount>=0 || this.remainingEarth-amount>=0 || this.remainingFire-amount>=0 || this.remainingWater-amount>=0){
-            switch (element){
-                case AIR:
-                this.remainingAir -= amount;
-                break;
-                case EARTH:
-                this.remainingEarth -= amount;
-                break;
-                case FIRE:
-                this.remainingFire -= amount;
-                break;
-                case WATER:
-                this.remainingWater -= amount;
-                    break;
-                }
-            } else {
-                System.out.println("Need more power");
-        }   
-    }
-    
-    public void resetStats(){
-        this.remainingAir = 0;
-        this.remainingEarth = 0;
-        this.remainingFire = 0;
-        this.remainingWater = 0;
-        this.playedLandThisRound = false; 
-    }
-    
-    public void takeDamage(int amount){
-        this.health -= amount;
-    }
-    
-    // debug
-    public int getHealth(){
-        return this.health;
-    }
-
-    public String getPlayedLandThisRound(){
-        return this.playedLandThisRound ? "True" : "False";
     }
 
     public int getRemainingPower(Element element){
@@ -118,18 +61,128 @@ public class PlayerStats {
                 ret = this.remainingAir;
                 break;
             case EARTH:
-            ret = this.remainingEarth;
-            break;
+                ret = this.remainingEarth;
+                break;
             case FIRE:
-            ret = this.remainingFire;
-            break;
+                ret = this.remainingFire;
+                break;
             case WATER:
-            ret = this.remainingWater;
-            break;
+                ret = this.remainingWater;
+                break;
             default:
                 System.out.println("Invalid element");
         }
         return ret;
+    }
+    
+    public boolean getPlayedLandThisRound(){
+        return this.playedLandThisRound;
+    }
+    
+    /* SETTER */
+    public void setHealth(int val){
+        this.health = val;
+    }
+
+    public void setPower(Element element, int val){
+        switch (element){
+            case AIR:
+                this.airPower = val;
+                break;
+            case EARTH:
+                this.earthPower = val;
+                break;
+            case FIRE:
+                this.firePower = val;
+                break;
+            case WATER:
+                this.waterPower = val;
+                break;
+            default:
+                System.out.println("Invalid element");
+        }
+    }
+
+    public void setRemainingPower(Element element, int val){
+        switch (element){
+            case AIR:
+                this.remainingAir = val;
+                break;
+            case EARTH:
+                this.remainingEarth = val;
+                break;
+            case FIRE:
+                this.remainingFire = val;
+                break;
+            case WATER:
+                this.remainingWater = val;
+                break;
+            default:
+                System.out.println("Invalid element");
+        }
+    }
+
+    public void setPlayedLandThisRound(boolean val){
+        this.playedLandThisRound = val;
+    }
+
+    /* UTIL */
+    public void incrementPower(Element element){
+        switch (element){
+            case AIR:
+                this.airPower += 1;
+                this.remainingAir += 1;
+                break;
+            case EARTH:
+                this.earthPower += 1;
+                this.remainingEarth += 1;
+                break;
+            case FIRE:
+                this.firePower += 1;
+                this.remainingFire += 1;
+                break;
+            case WATER:
+                this.waterPower += 1;
+                this.remainingWater += 1;
+                break;
+            default:
+                System.out.println("Invalid element");
+        }
+    }
+
+    public void usePower(Element element, int amount){
+        if (this.remainingAir-amount>=0 || this.remainingEarth-amount>=0 || this.remainingFire-amount>=0 || this.remainingWater-amount>=0){
+            switch (element){
+                case AIR:
+                    this.remainingAir -= amount;
+                    break;
+                case EARTH:
+                    this.remainingEarth -= amount;
+                    break;
+                case FIRE:
+                    this.remainingFire -= amount;
+                    break;
+                case WATER:
+                    this.remainingWater -= amount;
+                    break;
+                default:
+                    System.out.println("Invalid element");
+            }
+        } else {
+            System.out.println("Power insufficient");
+        }   
+    }
+    
+    public void resetStats(){
+        this.remainingAir = this.airPower;
+        this.remainingEarth = this.earthPower;
+        this.remainingFire = this.firePower;
+        this.remainingWater = this.waterPower;
+        this.playedLandThisRound = false; 
+    }
+    
+    public void takeDamage(int amount){
+        this.health -= amount;
     }
 
     public void printPlayerStats(){
@@ -142,10 +195,6 @@ public class PlayerStats {
         System.out.format("remainingEarth      : %d", this.getRemainingPower(Element.EARTH));
         System.out.format("remainingFire       : %d", this.getRemainingPower(Element.FIRE));
         System.out.format("remainingWater      : %d", this.getRemainingPower(Element.WATER));
-        System.out.format("playedLandThisRound : %s", this.getPlayedLandThisRound());
-    }
-
-    public static void main(String args[]){
-        
+        System.out.format("playedLandThisRound : %s", this.getPlayedLandThisRound() ? "true" : "false");
     }
 }
