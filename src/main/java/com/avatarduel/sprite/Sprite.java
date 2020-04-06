@@ -1,92 +1,137 @@
+package com.avatarduel.sprite;
+
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.geometry.Rectangle2D;
 
 public class Sprite {
     private Image image;
-    private double X, Y;
-    private double W, H; // Width, Height
-    private double PivotX, PivotY; // Posisi Scaling
-    private double AnchorX, AnchorY; // Posisi relatif dari layar
-    private double TargetX, TargetY; // Target posisi animasi
-    private double TargetW, TargetH;
-    private double TargetAnchorX, TargetAnchorY;
+    private double x, y;
+    private double w, h; // Width, Height
+    private double pivotX, pivotY; // Posisi Scaling
+    private double anchorX, anchorY; // Posisi relatif dari layar
 
-    public Sprite() {
-        this.X=0;
-        this.Y=0;
-        this.W=0;
-        this.H=0;
-        this.PivotX=0;
-        this.PivotY=0;
-        this.AchorX=0;
-        this.AchorY=0;
-        this.TargetX=0;
-        this.TargetY=0;
-        this.TargetW=0;
-        this.TargetH=0;
-        this.TargetAnchorX=0;
-        this.TargetAnchorY=0;
+    // Untuk animasi
+    private double targetX, targetY; // Target posisi animasi
+    private double targetW, targetH;
+    private double targetAnchorX, targetAnchorY;
+
+    private double absoluteX, absoluteY; // Posisi dari pojok atas kiri
+
+    public Sprite(Image image) {
+        this.image = image;
+        x = y = 0;
+        w = image.getWidth(); 
+        h = image.getHeight();
+        pivotX = pivotY = 0.5;
+        anchorX = anchorY = 0.5;
+
+        targetX = targetY = 0;
+        targetW = w;
+        targetH = h;
+        anchorX = anchorY = 0.5;
     }
 
-    public Sprite(double x,double y, double w, double h, double pivX, double pivY, double achX, double achY, double tarX, double tarY, double tarW, double tarH, double taX, double taY) {
-        this.X=x;
-        this.Y=y;
-        this.W=w;
-        this.H=h;
-        this.PivotX=pivX;
-        this.PivotY=pivY;
-        this.AchorX=achX;
-        this.AchorY=achY;
-        this.TargetX=tarX;
-        this.TargetY=tarY;
-        this.TargetW=tarW;
-        this.TargetH=tarH;
-        this.TargetAnchorX=taX;
-        this.TargetAnchorY=taY;
+    public Sprite(Image image, double x, double y) {
+        this.image = image;
+        this.x = x;
+        this.y = y;
+        w = image.getWidth(); 
+        h = image.getHeight();
+        pivotX = pivotY = 0.5;
+        anchorX = anchorY = 0.5;
+
+        targetX = x;
+        targetY = y;
+        targetW = w;
+        targetH = h;
+        anchorX = anchorY = 0.5;
     }
 
-    public void setImage(String filename) {
-        Image i = new Image(filename);
-        this.image = i;
-        this.W=i.getWidth();
-        this.H=i.getHeight();
+    public Sprite(Image image, double x, double y, double w, double h) {
+        this.image = image;
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        pivotX = pivotY = 0.5;
+        anchorX = anchorY = 0.5;
+
+        targetX = x;
+        targetY = y;
+        targetW = w;
+        targetH = h;
+        anchorX = anchorY = 0.5;
     }
 
-    public void setPos(double X, double Y) {
-        this.TargetX=X;
-        this.TargetY=Y;
+    public void MoveToPos (double x, double y) {
+        targetX = x;
+        targetY = y;
     }
 
-    public void setSize(double W, double H) {
-        this.TargetW=W;
-        this.TargetH=H; 
+    public void JumpToPos (double x, double y) {
+        this.x = x;
+        this.y = y;
+
+        targetX = x;
+        targetY = y;
     }
 
-    public void setAchor(double X, double Y) {
-        this.TargetAnchorX=X;
-        this.TargetAnchorY=Y;
+    public void ChangeSize (double w, double h) {
+        ChangeSize(w, h, false);
     }
 
-    public void update() {
-        //Update attributes closer to target
-        //masi bingung
+    public void ChangeSize (double w, double h, boolean instant) {
+        targetW = w;
+        targetH = h;
+
+        if (instant) {
+            this.w = w;
+            this.h = h;
+        }
+    }
+
+    public void ChangeAnchor (double x, double y, boolean instant) {
+        targetAnchorX = x;
+        targetAnchorY = y;
+
+        if (instant) {
+            anchorX = x;
+            anchorY = y;
+        }
+    }
+
+    private void UpdateAbsolutePosition (GraphicsContext gc) {
+        double screenWidth = gc.getCanvas().getWidth();
+        double screenHeight = gc.getCanvas().getHeight();
+        double xStartPos = screenWidth * anchorX;
+        double yStartPos = screenHeight * anchorY;
+        
+        absoluteX = xStartPos + x - w * pivotX;
+        absoluteY = yStartPos + y - h * pivotY;
+    }
+
+    // Melakukan smoothing terhadap atribut-atribut sprite
+    // agar mendekati atribut target
+    // Terima delta time ((currentFrameTime - previousFrameTime)/1000000000)
+    public void update(GraphicsContext gc, double deltaTime) {
+        final double smoothing = 5;
+
+        // Melakukan smoothing dengan "linear interpolation" (a*t + b*(1-t))
+        x = (x * smoothing * deltaTime) + (targetX * (1 - smoothing * deltaTime));
+        y = (y * smoothing * deltaTime) + (targetY * (1 - smoothing * deltaTime));
+        w = (w * smoothing * deltaTime) + (targetW * (1 - smoothing * deltaTime));
+        h = (h * smoothing * deltaTime) + (targetH * (1 - smoothing * deltaTime));
+        anchorX = (anchorX * smoothing * deltaTime) + (targetAnchorX * (1 - smoothing * deltaTime));
+        anchorY = (anchorY * smoothing * deltaTime) + (targetAnchorY * (1 - smoothing * deltaTime));
+
+        UpdateAbsolutePosition(gc);
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(image, X, Y);
+        gc.drawImage(image, absoluteX, absoluteY, w, h);
     }
 
     public boolean isPointOverlap(float x, float y){
-        //Return true kalo titik X,Y menyentuh kartu
-        if (((x>=this.X) && (x<=this.X+this.W)) && ((y>=this.Y)&&(y<=this.Y+this.Height))) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (x > absoluteX) && (x < absoluteX + w) && (y > absoluteY) && (y < absoluteY + h);
     }
-
-
-    
 }
