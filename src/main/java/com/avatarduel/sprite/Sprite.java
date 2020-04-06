@@ -4,18 +4,18 @@ import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Sprite {
-    protected Image image;
-    protected double x, y;
-    protected double w, h; // Width, Height
-    protected double pivotX, pivotY; // Posisi Scaling
-    protected double anchorX, anchorY; // Posisi relatif dari layar
+    private Image image;
+    private double x, y;
+    private double w, h; // Width, Height
+    private double pivotX, pivotY; // Posisi Scaling
+    private double anchorX, anchorY; // Posisi relatif dari layar
 
     // Untuk animasi
-    protected double targetX, targetY; // Target posisi animasi
-    protected double targetW, targetH;
-    protected double targetAnchorX, targetAnchorY;
+    private double targetX, targetY; // Target posisi animasi
+    private double targetW, targetH;
+    private double targetAnchorX, targetAnchorY;
 
-    protected double absoluteX, absoluteY; // Posisi dari pojok atas kiri
+    private double absoluteX, absoluteY; // Posisi dari pojok atas kiri
 
     public Sprite(String image) {
         this.image = new Image(image);
@@ -63,51 +63,98 @@ public class Sprite {
         anchorX = anchorY = 0.5;
     }
 
-    public void MoveToPos (double x, double y) {
+    // Getter
+    public Image getImage () { return image; }
+    public double getX () { return x; }
+    public double getY () { return y; }
+    public double getW () { return w; }
+    public double getH () { return h; }
+    public double getPivotX () { return pivotX; }
+    public double getPivotY () { return pivotY; }
+    public double getAnchorX () { return anchorX; }
+    public double getAnchorY () { return anchorY; }
+    public double getTargetX () { return targetX; }
+    public double getTargetY () { return targetY; }
+    public double getTargetW () { return targetW; }
+    public double getTargetH () { return targetH; }
+    public double getTargetAnchorX () { return targetAnchorX; }
+    public double getTargetAnchorY () { return targetAnchorY; }
+    public double getAbsoluteX () { return absoluteX; }
+    public double getAbsoluteY () { return absoluteY; }
+
+    // Setter
+    public void setImage (String image) { setImage(image, true); }
+    public void setImage (String image, boolean autoWidth) { setImage(new Image(image), autoWidth); }
+    public void setImage (Image image) { setImage(image, true); }
+    public void setImage (Image image, boolean autoWidth) 
+    {  
+        this.image = image;
+        if (autoWidth) {
+            w = image.getWidth(); 
+            h = image.getHeight();
+            targetW = w;
+            targetH = h;
+        }
+    }
+    
+    public void moveToPos (double x, double y) {
         targetX = x;
         targetY = y;
     }
-
-    public void JumpToPos (double x, double y) {
+    
+    public void jumpToPos (double x, double y) {
         this.x = x;
         this.y = y;
-
+        
         targetX = x;
         targetY = y;
     }
-
-    public void ChangeSize (double w, double h) {
-        ChangeSize(w, h, false);
+    
+    public void changeSize (double w, double h) {
+        changeSize(w, h, false);
     }
-
-    public void ChangeSize (double w, double h, boolean instant) {
+    
+    public void changeSize (double w, double h, boolean instant) {
         targetW = w;
         targetH = h;
-
+        
         if (instant) {
             this.w = w;
             this.h = h;
         }
     }
-
-    public void ChangeAnchor (double x, double y, boolean instant) {
+    
+    public void changeAnchor (double x, double y) {
+        changeAnchor(x, y, false);
+    }
+    
+    public void changeAnchor (double x, double y, boolean instant) {
         targetAnchorX = x;
         targetAnchorY = y;
-
+        
         if (instant) {
             anchorX = x;
             anchorY = y;
         }
     }
+    
+    public void setPivot (double x, double y) {
+        pivotX = x;
+        pivotY = y;
+    }
 
-    protected void UpdateAbsolutePosition (GraphicsContext gc) {
+    public void setAbsolutePosition (double x, double y) {
+        absoluteX = x;
+        absoluteY = y;
+    }
+    
+    protected void updateAbsolutePosition (GraphicsContext gc) {
         double screenWidth = gc.getCanvas().getWidth();
         double screenHeight = gc.getCanvas().getHeight();
         double xStartPos = screenWidth * anchorX;
         double yStartPos = screenHeight * anchorY;
         
-        absoluteX = xStartPos + x - w * pivotX;
-        absoluteY = yStartPos + y - h * pivotY;
+        setAbsolutePosition(xStartPos + x - w * pivotX, yStartPos + y - h * pivotY);
     }
 
     // Melakukan smoothing terhadap atribut-atribut sprite
@@ -124,7 +171,7 @@ public class Sprite {
         anchorX = (anchorX * smoothing * deltaTime) + (targetAnchorX * (1 - smoothing * deltaTime));
         anchorY = (anchorY * smoothing * deltaTime) + (targetAnchorY * (1 - smoothing * deltaTime));
 
-        UpdateAbsolutePosition(gc);
+        updateAbsolutePosition(gc);
     }
 
     public void render(GraphicsContext gc) {

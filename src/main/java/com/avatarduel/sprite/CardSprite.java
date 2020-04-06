@@ -23,36 +23,40 @@ public class CardSprite extends Sprite {
     }
 
     @Override
-    protected void UpdateAbsolutePosition (GraphicsContext gc) {
+    protected void updateAbsolutePosition (GraphicsContext gc) {
         double screenWidth = gc.getCanvas().getWidth();
         double screenHeight = gc.getCanvas().getHeight();
-        double xStartPos = screenWidth * anchorX;
-        double yStartPos = screenHeight * anchorY;
+        double xStartPos = screenWidth * getAnchorX();
+        double yStartPos = screenHeight * getAnchorY();
+        double absoluteX;
+        double absoluteY;
         
-        if (w > 0) {
-            absoluteX = xStartPos + x - w * pivotX;
+        if (getW() > 0) {
+            absoluteX = xStartPos + getX() - getW() * getPivotX();
         } else {
-            absoluteX = xStartPos + x - w * (pivotX - 1);
+            absoluteX = xStartPos + getX() - getW() * (getPivotX() - 1);
         }
-        absoluteY = yStartPos + y - h * pivotY;
+        absoluteY = yStartPos + getY() - getH() * getPivotY();
+
+        setAbsolutePosition(absoluteX, absoluteY);
     }
 
     @Override
     public void render(GraphicsContext gc) {
-        if (w > 0) {
-            gc.drawImage(image, absoluteX, absoluteY, w, h);
+        if (getW() > 0) {
+            gc.drawImage(getImage(), getAbsoluteX(), getAbsoluteY(), getW(), getH());
         }
         else {
-            gc.drawImage(backface, absoluteX, absoluteY, -w, h);
+            gc.drawImage(backface, getAbsoluteX(), getAbsoluteY(), -getW(), getH());
         }
     }
 
     @Override
     public boolean isPointOverlap(float x, float y){
-        if (w > 0) {
-            return (x > absoluteX) && (x < absoluteX + w) && (y > absoluteY) && (y < absoluteY + h);
+        if (getW() > 0) {
+            return (x > getAbsoluteX()) && (x < getAbsoluteX() + getW()) && (y > getAbsoluteY()) && (y < getAbsoluteY() + getH());
         } else {
-            return (x > absoluteX) && (x < absoluteX - w) && (y > absoluteY) && (y < absoluteY + h);
+            return (x > getAbsoluteX()) && (x < getAbsoluteX() - getW()) && (y > getAbsoluteY()) && (y < getAbsoluteY() + getH());
         }
     }
 }
