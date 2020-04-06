@@ -4,24 +4,24 @@ import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Sprite {
-    private Image image;
-    private double x, y;
-    private double w, h; // Width, Height
-    private double pivotX, pivotY; // Posisi Scaling
-    private double anchorX, anchorY; // Posisi relatif dari layar
+    protected Image image;
+    protected double x, y;
+    protected double w, h; // Width, Height
+    protected double pivotX, pivotY; // Posisi Scaling
+    protected double anchorX, anchorY; // Posisi relatif dari layar
 
     // Untuk animasi
-    private double targetX, targetY; // Target posisi animasi
-    private double targetW, targetH;
-    private double targetAnchorX, targetAnchorY;
+    protected double targetX, targetY; // Target posisi animasi
+    protected double targetW, targetH;
+    protected double targetAnchorX, targetAnchorY;
 
-    private double absoluteX, absoluteY; // Posisi dari pojok atas kiri
+    protected double absoluteX, absoluteY; // Posisi dari pojok atas kiri
 
-    public Sprite(Image image) {
-        this.image = image;
+    public Sprite(String image) {
+        this.image = new Image(image);
         x = y = 0;
-        w = image.getWidth(); 
-        h = image.getHeight();
+        w = this.image.getWidth(); 
+        h = this.image.getHeight();
         pivotX = pivotY = 0.5;
         anchorX = anchorY = 0.5;
 
@@ -31,12 +31,12 @@ public class Sprite {
         anchorX = anchorY = 0.5;
     }
 
-    public Sprite(Image image, double x, double y) {
-        this.image = image;
+    public Sprite(String image, double x, double y) {
+        this.image = new Image(image);;
         this.x = x;
         this.y = y;
-        w = image.getWidth(); 
-        h = image.getHeight();
+        w = this.image.getWidth(); 
+        h = this.image.getHeight();
         pivotX = pivotY = 0.5;
         anchorX = anchorY = 0.5;
 
@@ -47,8 +47,8 @@ public class Sprite {
         anchorX = anchorY = 0.5;
     }
 
-    public Sprite(Image image, double x, double y, double w, double h) {
-        this.image = image;
+    public Sprite(String image, double x, double y, double w, double h) {
+        this.image = new Image(image);;
         this.x = x;
         this.y = y;
         this.w = w;
@@ -100,7 +100,7 @@ public class Sprite {
         }
     }
 
-    private void UpdateAbsolutePosition (GraphicsContext gc) {
+    protected void UpdateAbsolutePosition (GraphicsContext gc) {
         double screenWidth = gc.getCanvas().getWidth();
         double screenHeight = gc.getCanvas().getHeight();
         double xStartPos = screenWidth * anchorX;
