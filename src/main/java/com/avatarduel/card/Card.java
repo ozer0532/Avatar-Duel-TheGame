@@ -1,48 +1,65 @@
+// Card.java
+
+package com.avatarduel.card;
+
+import com.avatarduel.sprite.CardSprite;
+import com.avatarduel.gameManager.*;
+import com.avatarduel.player.*;
+import com.avatarduel.model.*;
+
 abstract class Card {
-    protected String Name;
-    protected String Element;
-    protected String Description;
-    protected CardSprite Sprite;
+    private String name;
+    private Element element;
+    private String description;
+    private CardSprite sprite;
 
-    public Card(String name, String elmt, String desc, CardSprite spr) {
-        this.Name=name;
-        this.Element=elmt;
-        this.Description=desc;
-        this.Sprite=spr;
+    public Card(String name, Element elmt, String desc, CardSprite spr) {
+        this.name = name;
+        this.element = elmt;
+        this.description = desc;
+        this.sprite = spr;
     }
 
-    // SETTER
+    // Setter for Card
     public void setName(String name) {
-        this.Name=name;
+        this.name = name;
     }
-    public void setElmt(String elmt) {
-        this.Element=elmt;
+    public void setElmt(Element elmt) {
+        this.element = elmt;
     }
     public void setDesc(String desc) {
-        this.Description=desc;
+        this.description = desc;
     }
-    public void setSprite(String spr) {
-        this.Sprite=spr;
+    public void setSprite(CardSprite spr) {
+        this.sprite = spr;
     }
 
-    // GETTER
+    // Getter for Card
     public String getName() {
-        return this.Name;
+        return this.name;
     }
-    public String getElmt() {
-        return this.Element;
-    }
-    public String getDesc() {
-        return this.Description;
-    }
-    public String getSprite() {
-        return this.Sprite;
+    
+    public Element getElmt() {
+        return this.element;
     }
 
-    // METHODS
+    public String getDesc() {
+        return this.description;
+    }
+    public CardSprite getSprite() {
+        return this.sprite;
+    }
+
+    // Abstract Methods
     public abstract void OnCardPlayed(GameManager gm);
-    public abstract void DrawCardSimple(float x, float y, boolean isFlipped);
-    public abstract void DrawCardDetail();
-    public abstract void CanBePlayed(PlayerStats ps);
+    public abstract boolean CanBePlayed(PlayerStats ps);
+
+    // Public Methods
+    public void DrawCardSimple(float x, float y, boolean isFlipped){
+        // do nothing
+    }
+    public void DrawCardDetail(){
+        // do nothing
+    }
 
 }

@@ -12,9 +12,68 @@ public class GameManager {
     private Player oppositePlayer;
     private List<IMouseClickSub> mouseClickSubs;
     private GameDrawer gameDrawer;
+    private GraphicsContext graphicsContext;
 
-    public GameManager(){
+    // Setter
+    public void setGameState(GameState gs){
+        this.gameState = gs;
+    }
+
+    public void switchPlayer(){
+        Player temp = this.currentPlayer;
+        this.currentPlayer = this.oppositePlayer;
+        this.oppositePlayer = temp;
+    }
+
+    public void setCurrentPlayer(Player P){
+        this.currentPlayer = P;
+    }
+
+    public void setOppositePlayer(Player P){
+        this.oppositePlayer = P;
+    }
+
+    public void setGameDrawer(GameDrawer gd){
+        this.gameDrawer = gd;
+    }
+
+    public void setGraphicsContext(GraphicsContext gc){
+        this.graphicsContext = gc;
+    }
+
+    // Mendaftarkan IMouseClickSub agar dikirim event nanti
+    public void RegisterMouse(IMouseClickSub click){
+        mouseClickSubs.add(click);
+    }
+    
+    // Getter
+    public GameState getGameState(){
+        return this.gameState;
+    }
+
+    public Player getCurrentPlayer(){
+        return this.currentPlayer;
+    }
+    
+    public Player getOppositePlayer(){
+        return this.oppositePlayer;
+    }
+
+    public List<IMouseClickSub> getMouseClickSubs(){
+        return this.mouseClickSubs;
+    }
+
+    public GameDrawer getGameDrawer(){
+        return this.gameDrawer;
+    }
+
+    public GraphicsContext getGraphicsContext(){
+        return this.graphicsContext;
+    }
+
+    public GameManager(GraphicsContext gc){
         // Init gameDrawer
+        graphicsContext = gc;
         gameDrawer = new GameDrawer();
         // Init CurrentPlayer dan oppositePlayer
         currentPlayer = new Player();
@@ -31,10 +90,6 @@ public class GameManager {
 	    // Reference: (1) - Cari bagian animation (bisa dipake buat yang bukan animasi juga)
     }
 
-    public void RegisterMouse(IMouseClickSub click){
-        // Mendaftarkan IMouseClickSub agar dikirim event nanti
-        mouseClickSubs.add(click);
-    }
 
     public void SendMouseClickEvent(MouseEvent event){
         // Kirim event OnMouseClick ke subs dari MouseClickSubs saat klik
