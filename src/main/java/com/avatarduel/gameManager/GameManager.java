@@ -26,7 +26,7 @@ public class GameManager {
         // Init state dengan draw phase
     }
 
-    public void GameLoop(long durationSinceLastFrame){
+    public void GameLoop(double durationSinceLastFrame){
         // Ini dipanggil oleh Avatar Duel pada Animation Timer pada handle()
 	    // Reference: (1) - Cari bagian animation (bisa dipake buat yang bukan animasi juga)
     }
