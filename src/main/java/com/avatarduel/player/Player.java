@@ -29,6 +29,10 @@ public class Player {
     public void setDownPlayer(){
         this.isTopPlayer = false;
     }
+
+    public void setPlayerStats(PlayerStats ps){
+        this.playerStats = ps;
+    }
     
     public void addPlayerHands(Card kartu){
         this.playerHands.add(kartu);
