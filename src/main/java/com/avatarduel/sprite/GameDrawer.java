@@ -39,6 +39,16 @@ public class GameDrawer {
     }
 
     private void drawHandsBottom (Player p) {
-        //final 
+        //final double
+    }
+
+    private void drawStats (Player p) {
+        final double yPos;
+        // final double xPos;
+        // if (p.isTopPlayer) {
+        //     yPos = ...;
+        // } else {
+        //     yPos = ...;
+        // }
     }
 }

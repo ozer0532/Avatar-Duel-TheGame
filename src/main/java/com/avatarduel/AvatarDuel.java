@@ -5,15 +5,21 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import com.avatarduel.gameManager.GameManager;
 import com.avatarduel.model.Element;
 import com.avatarduel.model.Land;
 import com.avatarduel.util.CSVReader;
+import com.avatarduel.util.LongValue;
 
 public class AvatarDuel extends Application {
   private static final String LAND_CSV_FILE_PATH = "card/data/land.csv";
@@ -30,25 +36,42 @@ public class AvatarDuel extends Application {
 
   @Override
   public void start(Stage stage) {
-    Text text = new Text();
-    text.setText("Loading...");
-    text.setX(50);
-    text.setY(50);
 
     Group root = new Group();
-    root.getChildren().add(text);
-
     Scene scene = new Scene(root, 1280, 720);
+
+    Canvas canvas = new Canvas(1280, 720);
+    root.getChildren().add(canvas);
+    Image background = new Image("src/res/image/Eastern Air Temple.png"); // TODO: Change to white square later...
+
+    GraphicsContext gc = canvas.getGraphicsContext2D();
+    GameManager gm = new GameManager();
+
+    LongValue previousFrame = new LongValue(System.nanoTime());
+
+    new AnimationTimer()
+    {
+      public void handle(long currentNanoTime) {
+        double deltaTime = (double)(currentNanoTime - previousFrame.value) / 1000000000;
+
+        gc.drawImage(background, 0, 0);
+        gm.GameLoop(deltaTime);
+
+        previousFrame.value = currentNanoTime;
+      }
+    }.start();
 
     stage.setTitle("Avatar Duel");
     stage.setScene(scene);
     stage.show();
 
+
+
     try {
       this.loadCards();
-      text.setText("Avatar Duel!");
+      //text.setText("Avatar Duel!");
     } catch (Exception e) {
-      text.setText("Failed to load cards: " + e);
+      //text.setText("Failed to load cards: " + e);
     }
   }
 

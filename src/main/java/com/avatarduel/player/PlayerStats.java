@@ -16,7 +16,7 @@ public class PlayerStats {
 
     /* CTOR */
     public PlayerStats(){
-        this.health = 0;
+        this.health = 80;
         this.airPower = 0;
         this.earthPower = 0;
         this.firePower = 0;
