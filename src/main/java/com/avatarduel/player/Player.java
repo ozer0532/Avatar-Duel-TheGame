@@ -38,6 +38,10 @@ public class Player {
         this.playerHands.add(kartu);
     }
     
+    public void setPlayerArena(PlayerArena pa) {
+        this.playerArena=pa;
+    }
+
     // Getter for Player
     public boolean getIsTopPlayer(){
         return this.isTopPlayer;

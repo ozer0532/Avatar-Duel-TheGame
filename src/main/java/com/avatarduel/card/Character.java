@@ -13,14 +13,15 @@ public class Character extends Card {
     private boolean isPoweredUp;
 
     public Character(String name, Element elmt, String desc, 
-    CardSprite spr ,int atk, int def){
-        super(name, elmt, desc, spr);
+    CardSprite spr , int pow, int atk, int def){
+        super(name, elmt, desc, spr, pow);
         this.atk = atk;
         this.def = def;
         this.isDefense = false;
         this.isPoweredUp = false;
     }
 
+    // GETTER
     public int getAttack(){
         return this.atk;
     }
@@ -34,16 +35,51 @@ public class Character extends Card {
     }   
 
     public int getDefense(Aura ar){
-        return this.def + ar.getDefense();
+        if (this.isDefense) {
+            return this.def + ar.getDefense();
+        }
+        else {
+            return this.getAttack(ar);
+        }
     }
 
-    public void OnCardPlayed(GameManager gm){
-        // do nothing
+    public boolean getIsDefense() {
+        return this.isDefense;
+    }
+
+    public boolean getIsPoweredUp() {
+        return this.isPoweredUp;
+    }
+
+
+    // SETTER
+    public void setAttack(int atk) {
+        this.atk=atk;
+    }
+
+    public void setDefense(int def) {
+        this.def=def;
+    }
+
+    public void setIsDefense(boolean isdef) {
+        this.isDefense=isdef;
+    }
+
+    public void setIsPoweredUp(boolean b) {
+        this.isPoweredUp=b;
+    }
+
+
+    // METHODS
+    public void OnCardPlayed(GameManager gm, int idx){
+        PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
+        temp.addCharacterCard(idx,this);
+        gm.getCurrentPlayer().setPlayerArena(temp);
     }
 
     public boolean CanBePlayed(PlayerStats ps){
-        if (ps.getRemainingPower(super.getElmt()) > 0){
-            ps.usePower(super.getElmt(), 1);
+        if (ps.getRemainingPower(this.Element) >= this.PowerNeeded){
+            //ps.usePower(super.getElmt(), 1);
             return true;
         }
         else {

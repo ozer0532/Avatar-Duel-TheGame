@@ -9,21 +9,24 @@ import com.avatarduel.model.*;
 public class Land extends Card {
     // Constructor
     public Land(String name, Element elmt, String desc, CardSprite sprite){
-        super(name, elmt, desc, sprite);
+        super(name, elmt, desc, sprite, 1);
     }
 
+    public boolean isElementValid() {
+        return ((this.element == Element.AIR) || (this.element == Element.WATER) || (this.element == Element.FIRE) || (this.element == Element.EARTH))
+    }
     // Hapus diri dari arena, tambahin stats power dari player
-    public void OnCardPlayed(GameManager gm){
-        if ((super.getElmt() == Element.AIR) || (super.getElmt() == Element.WATER) || (super.getElmt() == Element.FIRE) || (super.getElmt() == Element.EARTH)){
+    public void OnCardPlayed(GameManager gm, int idx) {
+        if (this.isElementValid()) {
             PlayerStats temp = gm.getCurrentPlayer().getPlayerStats();
-            temp.incrementPower(super.getElmt());
+            temp.incrementPower(this.element);
             gm.getCurrentPlayer().setPlayerStats(temp);
         }
     }
 
     // Return true kalo land belom dimainin saat itu
     public boolean CanBePlayed(PlayerStats ps){
-        if (!(ps.getPlayedLandThisRound())){
+        if (!(ps.getPlayedLandThisRound()) && (ps.getRemainingPower(this.Element) > 0)){
             return true;
         }
         else {

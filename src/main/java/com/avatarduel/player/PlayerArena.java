@@ -16,8 +16,16 @@ public class PlayerArena {
         this.character.add(kartu);
     }
 
+    public void addCharacterCard(int idx, Card kartu){
+        this.character.add(idx-1, kartu);
+    }
+
     public void addSkillCard(Card kartu){
         this.skills.add(kartu);
+    }
+
+    public void addSkillCard(int idx, Card kartu){
+        this.skills.add(idx-1, kartu);
     }
 
     public void useCharacterCard(int idx){
