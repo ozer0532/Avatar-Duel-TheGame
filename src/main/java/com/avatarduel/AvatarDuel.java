@@ -45,7 +45,7 @@ public class AvatarDuel extends Application {
     Image background = new Image("src/res/image/Eastern Air Temple.png"); // TODO: Change to white square later...
 
     GraphicsContext gc = canvas.getGraphicsContext2D();
-    GameManager gm = new GameManager();
+    GameManager gm = new GameManager(gc);
 
     LongValue previousFrame = new LongValue(System.nanoTime());
 
