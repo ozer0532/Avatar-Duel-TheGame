@@ -1,8 +1,8 @@
 abstract class Card {
-    private String Name;
-    private String Element;
-    private String Description;
-    private CardSprite Sprite;
+    protected String Name;
+    protected String Element;
+    protected String Description;
+    protected CardSprite Sprite;
 
     public Card(String name, String elmt, String desc, CardSprite spr) {
         this.Name=name;
