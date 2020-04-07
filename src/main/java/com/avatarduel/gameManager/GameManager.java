@@ -1,10 +1,13 @@
 // GameManager.java
 package com.avatarduel.gameManager;
 
+import com.avatarduel.player.*;
+import com.avatarduel.sprite.*;
 import com.avatarduel.gameState.*;
+import java.util.List;
 
 public class GameManager {
-    private State gameState;
+    private GameState gameState;
     private Player currentPlayer;
     private Player oppositePlayer;
     private List<IMouseClickSub> mouseClickSubs;
@@ -12,7 +15,11 @@ public class GameManager {
 
     public GameManager(){
         // Init gameDrawer
+        gameDrawer = new GameDrawer();
         // Init CurrentPlayer dan oppositePlayer
+        currentPlayer = new Player();
+        oppositePlayer = new Player();
+
         // Generate kartu dan masukin ke player yang bersangkutan, dan simpan ke drawListnya GameDrawer
         // Init exit button dan masukin spritenya ke drawlistnya gamedrawer
         // Masukin 7 kartu ke tangan kedua player
@@ -26,6 +33,7 @@ public class GameManager {
 
     public void RegisterMouse(IMouseClickSub click){
         // Mendaftarkan IMouseClickSub agar dikirim event nanti
+        mouseClickSubs.add(click);
     }
 
     public void SendMouseClickEvent(MouseEvent event){
@@ -40,7 +48,7 @@ public class GameManager {
 		// Caranya loop untuk setiap kartu di hand kalo Sprite.OverlapPoint
     }
 
-    public ArenaClickInfo GetArenaClickInfo(X, Y){
+    public ArenaClickInfo GetArenaClickInfo(int X, int Y){
         // Cek posisi klik dari mouse, apakah ada di belah atas atau bawah, dan ada di kolom ke berapa
         // Cek apakah ada kartu di posisi tersebut
         // Return ArenaClickInfo

@@ -1,6 +1,10 @@
+// BattlePhase.java
+
 package com.avatarduel.gameState;
 
-public class BattlePhase {
+import com.avatarduel.gameManager;
+
+public class BattlePhase extends GameState implements IMouseClickSub{
     private Card selectedCard;
     private RoundInfo roundInfo;
 
