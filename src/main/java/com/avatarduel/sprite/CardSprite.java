@@ -105,7 +105,7 @@ public class CardSprite extends Sprite {
     }
 
     @Override
-    public boolean isPointOverlap(float x, float y){
+    public boolean isPointOverlap(double x, double y){
         if (getW() > 0) {
             return (x > absoluteX) && (x < absoluteX + w * scaleX) && (y > absoluteY) && (y < absoluteY + h * scaleY);
         } else {
