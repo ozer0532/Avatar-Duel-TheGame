@@ -39,6 +39,14 @@ public class GameManager {
         this.gameDrawer = gd;
     }
 
+    public void setMouseClickSubs(List<IMouseClickSub> mcSubs){
+        this.mouseClickSubs = mcSubs;
+    }
+
+    public void setMouseMoveSubs(List<IMouseMoveSub> mmSubs){
+        this.mouseMoveSubs = mmSubs;
+    }
+
     public void setGraphicsContext(GraphicsContext gc){
         this.graphicsContext = gc;
     }
@@ -68,6 +76,10 @@ public class GameManager {
 
     public List<IMouseClickSub> getMouseClickSubs(){
         return this.mouseClickSubs;
+    }
+
+    public List<IMouseMoveSub> getMouseMoveSubs(){
+        return this.mouseMoveSubs;
     }
 
     public GameDrawer getGameDrawer(){
