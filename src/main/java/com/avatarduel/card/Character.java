@@ -78,7 +78,7 @@ public class Character extends Card {
     }
 
     public boolean CanBePlayed(PlayerStats ps){
-        if (ps.getRemainingPower(this.Element) >= this.PowerNeeded){
+        if (ps.getRemainingPower(super.getElmt()) >= this.powerNeeded){
             //ps.usePower(super.getElmt(), 1);
             return true;
         }

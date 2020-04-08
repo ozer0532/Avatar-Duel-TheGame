@@ -7,7 +7,7 @@ import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
-abstract class Card {
+public abstract class Card {
     protected String name;
     protected Element element;
     protected String description;

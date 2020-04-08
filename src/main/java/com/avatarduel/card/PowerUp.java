@@ -6,7 +6,7 @@ import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
-public class PowerUp extends Card {
+public class PowerUp extends Skill {
     // CONSTRUCTOR
     public PowerUp(String name, Element elmt, String desc, CardSprite sprite, int pn){
         super(name, elmt, desc, sprite, pn);
@@ -20,8 +20,7 @@ public class PowerUp extends Card {
 
     public boolean CanBePlayed(PlayerStats ps){
         // return true kalo power mencukupi
-        if (ps.getRemainingPower(this.Element) >= this.powerNeeded){
-            //ps.usePower(super.getElmt(), 1); why?
+        if (ps.getRemainingPower(super.getElmt()) >= this.powerNeeded){
             return true;
         }
         else {

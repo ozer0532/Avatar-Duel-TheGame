@@ -2,7 +2,8 @@
 
 package com.avatarduel.gameState;
 
-import com.avatarduel.gameManager;
+import com.avatarduel.card.*;
+import com.avatarduel.gameManager.*;
 
 public class BattlePhase extends GameState implements IMouseClickSub{
     private Card selectedCard;

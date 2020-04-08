@@ -6,7 +6,7 @@ import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
-public class Aura extends Card {
+public class Aura extends Skill {
     private int atk;
     private int def;
 
@@ -44,7 +44,7 @@ public class Aura extends Card {
     }
 
     public boolean CanBePlayed(PlayerStats ps){
-        if (ps.getRemainingPower(this.Element) >= this.powerNeeded){
+        if (ps.getRemainingPower(super.getElmt()) >= this.powerNeeded){
             //ps.usePower(super.getElmt(), 1); 
             return true;
         }

@@ -1,41 +1,49 @@
 package com.avatarduel.player;
 
-import java.util.ArrayList;
 import com.avatarduel.card.*;
+import com.avatarduel.card.Character;
 
 public class PlayerArena {
     static int MAX_CARD = 8;
-    private ArrayList<Character> character;
-    private ArrayList<Aura> skills;
+    private Character[] charCard;
+    private Skill[] skills;
 
     /* CTOR */
     public PlayerArena(){
-        this.character = new ArrayList<Character>();
-        this.skills = new ArrayList<Aura>();
+        this.charCard = new Character[MAX_CARD];
+        this.skills = new Skill[MAX_CARD];
     }
 
     /* UTIL */
-    public void addCharacterCard(Card kartu){
-        this.character.add(kartu);
+    public void addCharacterCard(Character kartu){
+        for (int i = 0; i < MAX_CARD; i++){
+            if (charCard[i] == null){
+                charCard[i] = kartu;
+            }
+        }
     }
 
-    public void addCharacterCard(int idx, Card kartu){
-        this.character.add(idx-1, kartu);
+    public void addCharacterCard(int idx, Character kartu){
+        this.charCard[idx-1] = kartu;
     }
 
-    public void addSkillCard(Card kartu){
-        this.skills.add(kartu);
+    public void addSkillCard(Skill kartu){
+        for (int i = 0; i < MAX_CARD; i++){
+            if (skills[i] == null){
+                skills[i] = kartu;
+            }
+        }
     }
 
-    public void addSkillCard(int idx, Card kartu){
-        this.skills.add(idx-1, kartu);
+    public void addSkillCard(int idx, Skill kartu){
+        this.skills[idx-1] = kartu;
     }
 
-    public void useCharacterCard(int idx){
-        return this.character.get(idx-1);
+    public void removeCharacterCard(int idx){
+        this.charCard[idx-1] = null;
     }
 
-    public void useAuraCard(int idx){
-        return this.skills.get(idx-1);
+    public void removeSkillCard(int idx){
+        this.skills[idx-1] = null;
     }
 }

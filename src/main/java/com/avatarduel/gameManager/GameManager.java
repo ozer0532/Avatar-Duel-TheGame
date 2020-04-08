@@ -3,8 +3,8 @@ package com.avatarduel.gameManager;
 
 import com.avatarduel.player.*;
 import com.avatarduel.sprite.*;
+import javafx.scene.canvas.GraphicsContext;
 import com.avatarduel.gameState.*;
-import javafx.scene.canvas.GraphicsContext.*;
 import java.util.List;
 
 public class GameManager {
@@ -12,6 +12,7 @@ public class GameManager {
     private Player currentPlayer;
     private Player oppositePlayer;
     private List<IMouseClickSub> mouseClickSubs;
+    private List<IMouseMoveSub> mouseMoveSubs;
     private GameDrawer gameDrawer;
     private GraphicsContext graphicsContext;
 
@@ -43,8 +44,13 @@ public class GameManager {
     }
 
     // Mendaftarkan IMouseClickSub agar dikirim event nanti
-    public void RegisterMouse(IMouseClickSub click){
+    public void RegisterMouseClick(IMouseClickSub click){
         mouseClickSubs.add(click);
+    }
+
+    // Mendaftarkan IMouseClickSub agar dikirim event nanti
+    public void RegisterMouseMove(IMouseMoveSub move){
+        mouseMoveSubs.add(move);
     }
     
     // Getter
@@ -94,6 +100,12 @@ public class GameManager {
 
     public void SendMouseClickEvent(MouseEvent event){
         // Kirim event OnMouseClick ke subs dari MouseClickSubs saat klik
+		// Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
+		// Reference: (1) - Cari bagian mouse click
+    }
+
+    public void SendMouseMoveEvent(MouseEvent event){
+        // Kirim event OnMouseMove ke subs dari MouseClickSubs saat klik
 		// Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
 		// Reference: (1) - Cari bagian mouse click
     }

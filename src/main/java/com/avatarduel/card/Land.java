@@ -13,7 +13,7 @@ public class Land extends Card {
     }
 
     public boolean isElementValid() {
-        return ((this.element == Element.AIR) || (this.element == Element.WATER) || (this.element == Element.FIRE) || (this.element == Element.EARTH))
+        return ((this.element == Element.AIR) || (this.element == Element.WATER) || (this.element == Element.FIRE) || (this.element == Element.EARTH));
     }
     // Hapus diri dari arena, tambahin stats power dari player
     public void OnCardPlayed(GameManager gm, int idx) {
@@ -26,7 +26,7 @@ public class Land extends Card {
 
     // Return true kalo land belom dimainin saat itu
     public boolean CanBePlayed(PlayerStats ps){
-        if (!(ps.getPlayedLandThisRound()) && (ps.getRemainingPower(this.Element) > 0)){
+        if (!(ps.getPlayedLandThisRound()) && (ps.getRemainingPower(super.getElmt()) > 0)){
             return true;
         }
         else {
