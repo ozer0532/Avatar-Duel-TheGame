@@ -13,6 +13,6 @@ public abstract class Skill extends Card {
         super(name, elmt, desc, sprite, pn);
     }
     // Abstract Methods
-    public abstract void OnCardPlayed(GameManager gm, int idx);
+    public abstract void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy);
     public abstract boolean CanBePlayed(PlayerStats ps);
 }

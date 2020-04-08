@@ -19,7 +19,7 @@ public class Land extends Card {
 
     // Method Implementation
     // Hapus diri dari arena, tambahin stats power dari player
-    public void OnCardPlayed(GameManager gm, int idx) {
+    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy) {
         if (this.isElementValid()) {
             PlayerStats temp = gm.getCurrentPlayer().getPlayerStats();
             temp.incrementPower(this.element);

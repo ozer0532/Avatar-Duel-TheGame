@@ -74,7 +74,7 @@ public class Character extends Card {
 
 
     // Method Implementation
-    public void OnCardPlayed(GameManager gm, int idx){
+    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addCharacterCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);
