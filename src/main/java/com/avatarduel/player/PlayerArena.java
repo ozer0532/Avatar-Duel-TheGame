@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class PlayerArena {
     static int MAX_CARD = 8;
-    private List<Character> character;
-    private List<Aura> skills;
+    private ArrayList<Character> character;
+    private ArrayList<Aura> skills;
 
+    /* CTOR */
     public PlayerArena(){
         this.character = new ArrayList<Character>();
         this.skills = new ArrayList<Aura>();
     }
 
+    /* UTIL */
     public void addCharacterCard(Card kartu){
         this.character.add(kartu);
     }
