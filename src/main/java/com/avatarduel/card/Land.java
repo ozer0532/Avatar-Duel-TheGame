@@ -12,9 +12,12 @@ public class Land extends Card {
         super(name, elmt, desc, sprite, 1);
     }
 
+    // Public Method
     public boolean isElementValid() {
         return ((this.element == Element.AIR) || (this.element == Element.WATER) || (this.element == Element.FIRE) || (this.element == Element.EARTH));
     }
+
+    // Method Implementation
     // Hapus diri dari arena, tambahin stats power dari player
     public void OnCardPlayed(GameManager gm, int idx) {
         if (this.isElementValid()) {

@@ -7,12 +7,12 @@ import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
 public class Destroy extends Skill {
-    // CONSTRUCTOR
+    // Constructor
     public Destroy(String name, Element elmt, String desc, CardSprite sprite, int pn){
         super(name, elmt, desc, sprite, pn);
     }
 
-    // METHODS
+    // Method Implementation
     public void OnCardPlayed(GameManager gm, int idx){
         // hapus musuh di sisi berlawanan
         gm.getOppositePlayer().getPlayerArena().removeCharacterCard(idx);

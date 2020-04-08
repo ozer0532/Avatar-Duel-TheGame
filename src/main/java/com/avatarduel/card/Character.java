@@ -1,17 +1,20 @@
 // Land.java
 
 package com.avatarduel.card;
+
 import com.avatarduel.sprite.CardSprite;
 import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
 public class Character extends Card {
+    // Atribut
     private int atk;
     private int def;
     private boolean isDefense;
     private boolean isPoweredUp;
 
+    // Constructor
     public Character(String name, Element elmt, String desc, 
     CardSprite spr , int pow, int atk, int def){
         super(name, elmt, desc, spr, pow);
@@ -21,7 +24,7 @@ public class Character extends Card {
         this.isPoweredUp = false;
     }
 
-    // GETTER
+    // Getter for Character
     public int getAttack(){
         return this.atk;
     }
@@ -52,7 +55,7 @@ public class Character extends Card {
     }
 
 
-    // SETTER
+    // Setter for Character;
     public void setAttack(int atk) {
         this.atk=atk;
     }
@@ -70,7 +73,7 @@ public class Character extends Card {
     }
 
 
-    // METHODS
+    // Method Implementation
     public void OnCardPlayed(GameManager gm, int idx){
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addCharacterCard(idx,this);
@@ -79,7 +82,6 @@ public class Character extends Card {
 
     public boolean CanBePlayed(PlayerStats ps){
         if (ps.getRemainingPower(super.getElmt()) >= this.powerNeeded){
-            //ps.usePower(super.getElmt(), 1);
             return true;
         }
         else {

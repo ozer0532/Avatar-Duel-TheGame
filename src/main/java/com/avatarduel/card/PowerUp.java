@@ -7,11 +7,12 @@ import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
 public class PowerUp extends Skill {
-    // CONSTRUCTOR
+    // Constructor
     public PowerUp(String name, Element elmt, String desc, CardSprite sprite, int pn){
         super(name, elmt, desc, sprite, pn);
     }
 
+    // Method Implementation
     public void OnCardPlayed(GameManager gm, int idx){
         PlayerArena temp=gm.getCurrentPlayer().getPlayerArena();
         temp.addSkillCard(idx,this);

@@ -10,7 +10,7 @@ import java.util.List;
 import javafx.scene.input.MouseEvent;
 
 public class GameManager {
-    private GameState gameState;
+    // Atribut-atribut dari GameManager
     private Player currentPlayer;
     private Player oppositePlayer;
     private List<IMouseClickSub> mouseClickSubs;
@@ -18,6 +18,7 @@ public class GameManager {
     private GameDrawer gameDrawer;
     private GraphicsContext graphicsContext;
 
+    // Constructor
     public GameManager(GraphicsContext gc){
         // Init gameDrawer
         graphicsContext = gc;
@@ -26,38 +27,27 @@ public class GameManager {
         // Init CurrentPlayer dan oppositePlayer
         currentPlayer = new Player(false);
         oppositePlayer = new Player(true);
-
+        
         // Generate kartu dan masukin ke player yang bersangkutan, dan simpan ke drawListnya GameDrawer
         // Init exit button dan masukin spritenya ke drawlistnya gamedrawer
         // Masukin 7 kartu ke tangan kedua player
         // Init state dengan draw phase
     }
-
+    
+    // Public Method untuk GameManager
     public void gameLoop(double durationSinceLastFrame){
         // Ini dipanggil oleh Avatar Duel pada Animation Timer pada handle()
         // Reference: (1) - Cari bagian animation (bisa dipake buat yang bukan animasi juga)
         this.gameDrawer.drawGame(this, durationSinceLastFrame);
     }
 
-
-    public void sendMouseClickEvent(MouseEvent event){
-        // Kirim event OnMouseClick ke subs dari MouseClickSubs saat klik
-        // Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
-        // Reference: (1) - Cari bagian mouse click
-        for (int i = 0; i < mouseClickSubs.size(); i++){
-            mouseClickSubs.get(i).OnMouseClick(event);
-        }
+    public void switchPlayer(){
+        // Menukar giliran player dalam bermain
+        Player temp = this.currentPlayer;
+        this.currentPlayer = this.oppositePlayer;
+        this.oppositePlayer = temp;
     }
-
-    public void sendMouseMoveEvent(MouseEvent event){
-        // Kirim event OnMouseMove ke subs dari MouseClickSubs saat klik
-        // Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
-        // Reference: (1) - Cari bagian mouse move
-        for (int i = 0; i < mouseMoveSubs.size(); i++){
-            mouseMoveSubs.get(i).OnMouseMove(event);
-        }
-    }
-
+    
     public Card getClickedCardFromHand(int X, int Y){
         // Cek kartu apa yang di klik dari tangan player saat itu
         // Return null kalo gak ada kartu yang di klik
@@ -93,17 +83,7 @@ public class GameManager {
         return null;
     }
 
-    // Setter
-    public void setGameState(GameState gs){
-        this.gameState = gs;
-    }
-
-    public void switchPlayer(){
-        Player temp = this.currentPlayer;
-        this.currentPlayer = this.oppositePlayer;
-        this.oppositePlayer = temp;
-    }
-
+    // Setter untuk GameManager
     public void setCurrentPlayer(Player P){
         this.currentPlayer = P;
     }
@@ -128,21 +108,8 @@ public class GameManager {
         this.graphicsContext = gc;
     }
 
-    // Mendaftarkan IMouseClickSub agar dikirim event nanti
-    public void RegisterMouseClick(IMouseClickSub click){
-        mouseClickSubs.add(click);
-    }
-
-    // Mendaftarkan IMouseClickSub agar dikirim event nanti
-    public void RegisterMouseMove(IMouseMoveSub move){
-        mouseMoveSubs.add(move);
-    }
     
-    // Getter
-    public GameState getGameState(){
-        return this.gameState;
-    }
-
+    // Getter untuk GameManager
     public Player getCurrentPlayer(){
         return this.currentPlayer;
     }
@@ -158,13 +125,41 @@ public class GameManager {
     public List<IMouseMoveSub> getMouseMoveSubs(){
         return this.mouseMoveSubs;
     }
-
+    
     public GameDrawer getGameDrawer(){
         return this.gameDrawer;
     }
-
+    
     public GraphicsContext getGraphicsContext(){
         return this.graphicsContext;
     }
+    
+    // Subscriber-Publisher Method
+    public void RegisterMouseClick(IMouseClickSub click){
+        // Mendaftarkan IMouseClickSub agar dikirim event nanti
+        mouseClickSubs.add(click);
+    }
 
+    public void RegisterMouseMove(IMouseMoveSub move){
+        // Mendaftarkan IMouseClickSub agar dikirim event nanti
+        mouseMoveSubs.add(move);
+    }
+
+    public void sendMouseClickEvent(MouseEvent event){
+        // Kirim event OnMouseClick ke subs dari MouseClickSubs saat klik
+        // Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
+        // Reference: (1) - Cari bagian mouse click
+        for (int i = 0; i < mouseClickSubs.size(); i++){
+            mouseClickSubs.get(i).OnMouseClick(event);
+        }
+    }
+
+    public void sendMouseMoveEvent(MouseEvent event){
+        // Kirim event OnMouseMove ke subs dari MouseClickSubs saat klik
+        // Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
+        // Reference: (1) - Cari bagian mouse move
+        for (int i = 0; i < mouseMoveSubs.size(); i++){
+            mouseMoveSubs.get(i).OnMouseMove(event);
+        }
+    }
 }

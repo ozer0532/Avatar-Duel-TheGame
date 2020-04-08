@@ -8,12 +8,14 @@ import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
 public abstract class Card {
+    // Atribut-atribut dari Card
     protected String name;
     protected Element element;
     protected String description;
     protected CardSprite sprite;
     protected int powerNeeded;
 
+    // Constructor
     public Card(String name, Element elmt, String desc, CardSprite spr, int pow) {
         this.name = name;
         this.element = elmt;
@@ -60,7 +62,6 @@ public abstract class Card {
         return this.powerNeeded;
     }
 
-
     // Abstract Methods
     public abstract void OnCardPlayed(GameManager gm, int idx);
     public abstract boolean CanBePlayed(PlayerStats ps);
@@ -72,6 +73,4 @@ public abstract class Card {
     public void DrawCardDetail() {
         // do nothing
     }
-    
-
 }

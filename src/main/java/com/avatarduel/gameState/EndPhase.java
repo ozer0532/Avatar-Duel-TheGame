@@ -1,5 +1,7 @@
 package com.avatarduel.gameState;
 
+import com.avatarduel.gameManager.GameManager;
+
 public class EndPhase extends GameState{
     public EndPhase(GameManager gameManager){
         super(gameManager);
@@ -7,19 +9,19 @@ public class EndPhase extends GameState{
 
     public void StartTurn(){
         // Tuker current player dan opposite player
-        Player temp;
-        temp = currentPlayer;
-        currentPlayer = oppositePlayer;
-        oppositePlayer = temp;
+        GameManager gm = super.getGameManager()
+        gm.switchPlayer();
+        super.setGameManager(gm);
+
         // Panggil endturn
-        EndTurn();
+        this.EndTurn();
     }
 
     public void EndTurn(){
         // Pindah ke draw phase
         GameManager gm = getGameManager();
-        GameState gs = DrawPhase;
         gm.setGameState(gs);
+        GameState gs = new DrawPhase(gm);
         super.gameState(gm);
     }
 }
