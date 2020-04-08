@@ -1,26 +1,30 @@
 package com.avatarduel.gameState;
 
-import com.avatarduel.gameManager.GameManager;
+import com.avatarduel.card.*;
+import com.avatarduel.gameManager.*;
+import com.avatarduel.player.*;
 
-public class Main1Phase extends GameState {
+public class BattlePhase extends GameState implements IMouseClickSub{
     private Card selectedCard;
     private RoundInfo roundInfo;
 
-    public Main1Phase(GameManager gameManager){
-        super(gameManager);
-    }
-
     public void StartTurn(){
         // Subscribe to mouse click subs
-        GameManager.RegisterMouse(this);
+        RegisterMouseClick(this);
+        RegisterMouseMove(this);
     }
 
     public void EndTurn(){
         // Unsubscribe to mouse click subs
-        
-        // Pindah ke battle phase, dan kirim round infonya
+        List<IMouseClickSub> mc = getMouseClickSubs();
+        List<IMouseMoveSub> mm = getMouseMoveSubs();
+        mc.remove(this);
+        mm.remove(this);
+        setMouseClickSubs(mc);
+        setMouseMoveSubs(mm);
+        // Pindah ke main 2 phase, dan kirim round infonya
         GameManager gm = getGameManager();
-        GameState gs = BattlePhase;
+        GameState gs = Main2Phase;
         gm.setGameState(gs);
         super.gameState(gm);
     }
@@ -28,20 +32,45 @@ public class Main1Phase extends GameState {
     public void OnMouseClick (MouseEvent event){
         // Kalau klik di kartu di hand, simpan kartu ke SelectedCard
         // Kalau engga, SelectedCard set null
-        if () {
-
+        Card cardClicked = getChosenCard();
+        List<Character> pc = getPlayedCards();
+        boolean adaKartu = pc.contains(cardClicked);
+        if (!adaKartu) {
+            this.selectedCard = cardClicked;
         }
         else {
             this.selectedCard = null;
         }
         // Kalau ada kartu yang selected, dan klik di arena di area yang valid, pindahin kartu ke arena
         // (Cek dulu cardCanBePlayed), simpan kartu ke playedCards di RoundInfo.
-        // Kalau engga dan klik di arena, putar kartu Karakter atau buang kartu skill
-        if (this.selectedCard != null) {
-
+		// Kalau engga dan klik di arena, putar kartu Karakter atau buang kartu skill
+        boolean cek = CanBePlayed(getPlayerStats());
+        if ((this.selectedCard != null) && (cek)) {
+            if (cardClicked == charCard) {
+                if (isCharacter && !characterSlotOccupied) {
+                    addCharacterCard(event, cardClicked);
+                }
+            }
+            else if (cardClicked == skills) {
+                if (!isCharacter && !skillSlotOccupied) {
+                    addSkillCard(event, cardClicked);
+                }
+            }
+            addPlayedCards(cardClicked);
         }
         else {
-            
+            Card c = getChosenCard();
+            if (c == charCard) {
+                if (getIsDefense() == true) {
+                    setIsDefense(false);
+                }
+                else {
+                    setIsDefense(true);
+                }
+            }
+            else if (c == skills) {
+                removeSkillCard(event);
+            }
         }
     }
 }

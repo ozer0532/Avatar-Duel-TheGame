@@ -9,7 +9,7 @@ public class EndPhase extends GameState{
 
     public void StartTurn(){
         // Tuker current player dan opposite player
-        GameManager gm = super.getGameManager()
+        GameManager gm = super.getGameManager();
         gm.switchPlayer();
         super.setGameManager(gm);
 
