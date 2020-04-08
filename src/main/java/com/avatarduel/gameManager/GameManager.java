@@ -4,6 +4,7 @@ package com.avatarduel.gameManager;
 import com.avatarduel.player.*;
 import com.avatarduel.sprite.*;
 import com.avatarduel.gameState.*;
+import javafx.scene.canvas.GraphicsContext.*;
 import java.util.List;
 
 public class GameManager {
