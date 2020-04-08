@@ -14,6 +14,24 @@ public class PlayerArena {
         this.skills = new Skill[MAX_CARD];
     }
 
+    // Getter
+    public Character[] getCharCard(){
+        return this.charCard;
+    }
+
+    public Skill[] getSkills(){
+        return this.skills;
+    }
+
+    // Setter
+    public void setCharCard(Character[] charCard){
+        this.charCard = charCard;
+    }
+
+    public void setSkills(Skill[] skills){
+        this.skills = skills;
+    }
+
     /* UTIL */
     public void addCharacterCard(Character kartu){
         for (int i = 0; i < MAX_CARD; i++){

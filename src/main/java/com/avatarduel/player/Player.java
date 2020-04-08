@@ -13,8 +13,8 @@ public class Player {
     private Stack<Card> playerDeck; 
 
     // Constructor
-    public Player(){
-        this.isTopPlayer = false;
+    public Player(boolean topPlayer){
+        this.isTopPlayer = topPlayer;
         this.playerArena = new PlayerArena();
         this.playerHands = new ArrayList<Card>();
         this.playerStats = new PlayerStats();

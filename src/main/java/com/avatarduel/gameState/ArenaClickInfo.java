@@ -13,8 +13,13 @@ public class ArenaClickInfo {
     private boolean skillSlotOccupied; // True kalo di kolom itu ada skill (aura / power up)
 
     // Constructor
-    public ArenaClickInfo(){
-        // Do Nothing
+    public ArenaClickInfo(Card chosenCard, boolean isCharacter, boolean isTopPlayer, int idx, boolean cso, boolean sso){
+        this.chosenCard = chosenCard;
+        this.isCharacter = isCharacter;
+        this.isTopPlayer = isTopPlayer;
+        this.idx = idx;
+        this.characterSlotOccupied = cso;
+        this.skillSlotOccupied = sso;
     }
 
     // Setter for ArenaClickInfo()

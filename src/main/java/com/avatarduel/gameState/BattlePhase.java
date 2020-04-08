@@ -5,16 +5,18 @@ package com.avatarduel.gameState;
 import com.avatarduel.card.*;
 import com.avatarduel.gameManager.*;
 
-public class BattlePhase extends GameState implements IMouseClickSub{
+import javafx.scene.input.MouseEvent;
+
+public class BattlePhase extends GameState implements IMouseClickSub {
     private Card selectedCard;
     private RoundInfo roundInfo;
 
-    public void StartTurn(){
+    public void StartTurn() {
         // Subscribe to mouse click subs
-        GameManager.RegisterMouse(this);
+        GameManager.RegisterMouseClick(this);
     }
 
-    public void EndTurn(){
+    public void EndTurn() {
         // Unsubscribe to mouse click subs
         // Pindah ke main 2 phase, dan kirim round infonya
         GameManager gm = getGameManager();
@@ -38,5 +40,11 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         if ( && this.selectedCard != null) {
             
         }
+    }
+
+    @Override
+    public void OnMouseClick(MouseEvent event) {
+        // TODO Auto-generated method stub
+
     }
 }
