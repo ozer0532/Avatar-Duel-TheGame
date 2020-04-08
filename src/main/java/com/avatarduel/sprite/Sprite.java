@@ -1,21 +1,23 @@
 package com.avatarduel.sprite;
 
 import javafx.scene.image.Image;
+import javafx.scene.transform.Affine;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Sprite {
-    private Image image;
-    private double x, y;
-    private double w, h; // Width, Height
-    private double pivotX, pivotY; // Posisi Scaling
-    private double anchorX, anchorY; // Posisi relatif dari layar
+    protected Image image;
+    protected double x, y;
+    protected double w, h; // Width, Height
+    protected double pivotX, pivotY; // Posisi Scaling
+    protected double anchorX, anchorY; // Posisi relatif dari layar
+    protected double scaleX, scaleY; // Scaling keseluruhan image
 
     // Untuk animasi
-    private double targetX, targetY; // Target posisi animasi
-    private double targetW, targetH;
-    private double targetAnchorX, targetAnchorY;
+    protected double targetX, targetY; // Target posisi animasi
+    protected double targetScaleX, targetScaleY;
+    protected double targetAnchorX, targetAnchorY;
 
-    private double absoluteX, absoluteY; // Posisi dari pojok atas kiri
+    protected double absoluteX, absoluteY; // Posisi dari pojok atas kiri
 
     public Sprite(String image) {
         this.image = new Image(image);
@@ -24,10 +26,11 @@ public class Sprite {
         h = this.image.getHeight();
         pivotX = pivotY = 0.5;
         anchorX = anchorY = 0.5;
+        scaleX = scaleY = 1;
 
         targetX = targetY = 0;
-        targetW = w;
-        targetH = h;
+        targetScaleX = w;
+        targetScaleY = h;
         anchorX = anchorY = 0.5;
     }
 
@@ -39,11 +42,12 @@ public class Sprite {
         h = this.image.getHeight();
         pivotX = pivotY = 0.5;
         anchorX = anchorY = 0.5;
+        scaleX = scaleY = 1;
 
         targetX = x;
         targetY = y;
-        targetW = w;
-        targetH = h;
+        targetScaleX = w;
+        targetScaleY = h;
         anchorX = anchorY = 0.5;
     }
 
@@ -55,11 +59,12 @@ public class Sprite {
         this.h = h;
         pivotX = pivotY = 0.5;
         anchorX = anchorY = 0.5;
+        scaleX = scaleY = 1;
 
         targetX = x;
         targetY = y;
-        targetW = w;
-        targetH = h;
+        targetScaleX = w;
+        targetScaleY = h;
         anchorX = anchorY = 0.5;
     }
 
@@ -75,12 +80,14 @@ public class Sprite {
     public double getAnchorY () { return anchorY; }
     public double getTargetX () { return targetX; }
     public double getTargetY () { return targetY; }
-    public double getTargetW () { return targetW; }
-    public double getTargetH () { return targetH; }
+    public double getTargetScaleX () { return targetScaleX; }
+    public double getTargetScaleY () { return targetScaleY; }
     public double getTargetAnchorX () { return targetAnchorX; }
     public double getTargetAnchorY () { return targetAnchorY; }
     public double getAbsoluteX () { return absoluteX; }
     public double getAbsoluteY () { return absoluteY; }
+    public double getScaleX () { return scaleX; }
+    public double getScaleY () { return scaleY; }
 
     // Setter
     public void setImage (String image) { setImage(image, true); }
@@ -92,8 +99,8 @@ public class Sprite {
         if (autoWidth) {
             w = image.getWidth(); 
             h = image.getHeight();
-            targetW = w;
-            targetH = h;
+            targetScaleX = w;
+            targetScaleY = h;
         }
     }
     
@@ -110,18 +117,9 @@ public class Sprite {
         targetY = y;
     }
     
-    public void changeSize (double w, double h) {
-        changeSize(w, h, false);
-    }
-    
-    public void changeSize (double w, double h, boolean instant) {
-        targetW = w;
-        targetH = h;
-        
-        if (instant) {
-            this.w = w;
-            this.h = h;
-        }
+    public void setSize (double w, double h) {
+        this.w = w;
+        this.h = h;
     }
     
     public void changeAnchor (double x, double y) {
@@ -143,6 +141,20 @@ public class Sprite {
         pivotY = y;
     }
 
+    public void changeScale (double x, double y) {
+        changeScale(x, y, false);
+    }
+
+    public void changeScale (double x, double y, boolean instant) {
+        targetScaleX = x;
+        targetScaleY = y;
+
+        if (instant) {
+            scaleX = x;
+            scaleY = y;
+        }
+    }
+
     public void setAbsolutePosition (double x, double y) {
         absoluteX = x;
         absoluteY = y;
@@ -154,7 +166,7 @@ public class Sprite {
         double xStartPos = screenWidth * anchorX;
         double yStartPos = screenHeight * anchorY;
         
-        setAbsolutePosition(xStartPos + x - w * pivotX, yStartPos + y - h * pivotY);
+        setAbsolutePosition(xStartPos + x - w * pivotX * scaleX, yStartPos + y - h * pivotY * scaleY);
     }
 
     // Melakukan smoothing terhadap atribut-atribut sprite
@@ -166,19 +178,27 @@ public class Sprite {
         // Melakukan smoothing dengan "linear interpolation" (a*t + b*(1-t))
         x = (x * smoothing * deltaTime) + (targetX * (1 - smoothing * deltaTime));
         y = (y * smoothing * deltaTime) + (targetY * (1 - smoothing * deltaTime));
-        w = (w * smoothing * deltaTime) + (targetW * (1 - smoothing * deltaTime));
-        h = (h * smoothing * deltaTime) + (targetH * (1 - smoothing * deltaTime));
         anchorX = (anchorX * smoothing * deltaTime) + (targetAnchorX * (1 - smoothing * deltaTime));
         anchorY = (anchorY * smoothing * deltaTime) + (targetAnchorY * (1 - smoothing * deltaTime));
+        scaleX = (scaleX * smoothing * deltaTime) + (targetScaleX * (1 - smoothing * deltaTime));
+        scaleY = (scaleY * smoothing * deltaTime) + (targetScaleY * (1 - smoothing * deltaTime));
 
         updateAbsolutePosition(gc);
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(image, absoluteX, absoluteY, w, h);
+        gc.save();
+
+        Affine a = new Affine();
+        a.appendScale(scaleX, scaleY);
+
+        a.prependTranslation(absoluteX, absoluteY);
+        gc.drawImage(image, 0, 0, w, h);
+
+        gc.restore();
     }
 
-    public boolean isPointOverlap(float x, float y){
+    public boolean isPointOverlap(double x, double y){
         return (x > absoluteX) && (x < absoluteX + w) && (y > absoluteY) && (y < absoluteY + h);
     }
 }

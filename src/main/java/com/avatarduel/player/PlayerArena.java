@@ -1,23 +1,34 @@
 package com.avatarduel.player;
 
 import java.util.ArrayList;
+import com.avatarduel.card.*;
 
 public class PlayerArena {
     static int MAX_CARD = 8;
-    private List<Character> character;
-    private List<Aura> skills;
+    private ArrayList<Character> character;
+    private ArrayList<Aura> skills;
 
+    /* CTOR */
     public PlayerArena(){
         this.character = new ArrayList<Character>();
         this.skills = new ArrayList<Aura>();
     }
 
+    /* UTIL */
     public void addCharacterCard(Card kartu){
         this.character.add(kartu);
     }
 
+    public void addCharacterCard(int idx, Card kartu){
+        this.character.add(idx-1, kartu);
+    }
+
     public void addSkillCard(Card kartu){
         this.skills.add(kartu);
+    }
+
+    public void addSkillCard(int idx, Card kartu){
+        this.skills.add(idx-1, kartu);
     }
 
     public void useCharacterCard(int idx){

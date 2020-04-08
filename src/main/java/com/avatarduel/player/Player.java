@@ -1,9 +1,8 @@
-// Player.java
-
 package com.avatarduel.player;
 
 import java.util.List;
 import java.util.Stack;
+import com.avatarduel.card.*;
 
 public class Player {
     private boolean isTopPlayer;
@@ -38,6 +37,10 @@ public class Player {
         this.playerHands.add(kartu);
     }
     
+    public void setPlayerArena(PlayerArena pa) {
+        this.playerArena=pa;
+    }
+
     // Getter for Player
     public boolean getIsTopPlayer(){
         return this.isTopPlayer;

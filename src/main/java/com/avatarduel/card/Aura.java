@@ -10,13 +10,15 @@ public class Aura extends Card {
     private int atk;
     private int def;
 
-    public Aura(String name, Element elmt, String desc, CardSprite sprite
-    ,int atk, int def){
-        super(name, elmt, desc, sprite);
+    // CONSTRUCTOR
+    public Aura(String name, Element elmt, String desc, CardSprite sprite,
+    int pn,int atk, int def){
+        super(name, elmt, desc, sprite, pn);
         this.atk = atk;
         this.def = def;
     }
 
+    // SETTER
     public void setAttack(int atk){
         this.atk = atk;
     }
@@ -25,6 +27,7 @@ public class Aura extends Card {
         this.def = def;
     }
 
+    // GETTER
     public int getAttack(){
         return this.atk;
     }
@@ -33,13 +36,16 @@ public class Aura extends Card {
         return this.def;
     }
 
-    public void OnCardPlayed(GameManager gm){
-        // do nothing
+    // METHODS
+    public void OnCardPlayed(GameManager gm, int idx){
+        PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
+        temp.addSkillCard(idx,this);
+        gm.getCurrentPlayer().setPlayerArena(temp);
     }
 
     public boolean CanBePlayed(PlayerStats ps){
-        if (ps.getRemainingPower(super.getElmt()) > 0){
-            ps.usePower(super.getElmt(), 1);
+        if (ps.getRemainingPower(this.Element) >= this.powerNeeded){
+            //ps.usePower(super.getElmt(), 1); 
             return true;
         }
         else {

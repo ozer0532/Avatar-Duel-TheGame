@@ -8,16 +8,18 @@ import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
 abstract class Card {
-    private String name;
-    private Element element;
-    private String description;
-    private CardSprite sprite;
+    protected String name;
+    protected Element element;
+    protected String description;
+    protected CardSprite sprite;
+    protected int powerNeeded;
 
-    public Card(String name, Element elmt, String desc, CardSprite spr) {
+    public Card(String name, Element elmt, String desc, CardSprite spr, int pow) {
         this.name = name;
         this.element = elmt;
         this.description = desc;
         this.sprite = spr;
+        this.powerNeeded = pow;
     }
 
     // Setter for Card
@@ -33,6 +35,9 @@ abstract class Card {
     public void setSprite(CardSprite spr) {
         this.sprite = spr;
     }
+    public void setPowerNeeded(int p){
+        this.powerNeeded=p;
+    }
 
     // Getter for Card
     public String getName() {
@@ -46,20 +51,27 @@ abstract class Card {
     public String getDesc() {
         return this.description;
     }
+
     public CardSprite getSprite() {
         return this.sprite;
     }
 
+    public int getPowerNeeded() {
+        return this.powerNeeded;
+    }
+
+
     // Abstract Methods
-    public abstract void OnCardPlayed(GameManager gm);
+    public abstract void OnCardPlayed(GameManager gm, int idx);
     public abstract boolean CanBePlayed(PlayerStats ps);
 
     // Public Methods
-    public void DrawCardSimple(float x, float y, boolean isFlipped){
+    public void DrawCardSimple(float x, float y, boolean isFlipped) {
         // do nothing
     }
-    public void DrawCardDetail(){
+    public void DrawCardDetail() {
         // do nothing
     }
+    
 
 }

@@ -2,6 +2,8 @@
 package com.avatarduel.gameManager;
 import javafx.scene.input.*;
 
-interface IMouseClickSub {
+import javafx.scene.input.MouseEvent;
+
+public interface IMouseClickSub {
     public void OnMouseClick(MouseEvent event);
 }

@@ -6,11 +6,16 @@ public class Main2Phase extends GameState{
 
     public void StartTurn(){
         // Subscribe to mouse click subs
+        GameManager.RegisterMouse(this);
     }
 
     public void EndTurn(){
         // Unsubscribe to mouse click subs
         // Pindah ke end phase
+        GameManager gm = getGameManager();
+        GameState gs = EndPhase;
+        gm.setGameState(gs);
+        super.gameState(gm);
     }
 
     public void OnMouseClick (MouseEvent event){
