@@ -198,7 +198,7 @@ public class Sprite {
         gc.restore();
     }
 
-    public boolean isPointOverlap(float x, float y){
+    public boolean isPointOverlap(double x, double y){
         return (x > absoluteX) && (x < absoluteX + w) && (y > absoluteY) && (y < absoluteY + h);
     }
 }

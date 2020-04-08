@@ -50,7 +50,7 @@ public class GameDrawer {
 
     // Menggambar kartu-kartu yang berada pada tangan pemain
     // p : Player yang kartunya akan digambar
-    private void drawHands (Player p) {
+    private void drawHands (Player p, boolean isCurrentPlayer) {
         //double yPos;
         //final double xCenterPos = ...;
         //final double xOffset = ...;
@@ -62,7 +62,12 @@ public class GameDrawer {
         // }
         
         for (int i = 0; i < 8; i++) {
-            //p.playerArena.character[i].MoveToPos(cardXPos + cardXOffset * i, characterYPos);
+            //p.getPlayerHands()[i].MoveToPos(cardXPos + cardXOffset * i, characterYPos);
+            if (isCurrentPlayer) {
+                //p.getPlayerHands()[i].ChangeScale(-1, 1);
+            } else {
+                //p.getPlayerHands()[i].ChangeScale(1, 1);
+            }
         }
     }
 
@@ -117,9 +122,13 @@ public class GameDrawer {
     // isTop : Posisi kartu
     // private void drawCardInfo (GraphicsContext gc, Card card, bool isTop) {
     //     double yPos = (isTop) ? yAtas : yBawah
+    //     -------------------------
     //     CardSprite spr = new CardSprite("Gambar template kartu", "Backface kartu", card.image, x, yPos, w, h);
     //     spr.InsertText(card...., x, y, w, h);
     //     ... Add for all card attributes ...
+    //     -------------------------
+    //     CardSprite spr = card.DrawCardDetail();
+    //     spr.jumpToPos(...);
     //
     //     spr.render(gc);
     // }
@@ -128,6 +137,12 @@ public class GameDrawer {
     // gm : Tempat penyimpanan sentral informasi tentang game
     // deltaTime : Waktu sejak frame terakhir (untuk animasi)
     public void drawGame (GameManager gm, double deltaTime) {
-        
+        drawArena(gm.getCurrentPlayer());
+        drawArena(gm.getOppositePlayer());
+        drawHands(gm.getCurrentPlayer(), true);
+        drawHands(gm.getOppositePlayer(), false);
+        // drawStats(gm.gc, gm.getCurrentPlayer())
+        // drawStats(gm.gc, gm.getOppositePlayer())
+        // drawCardInfo(gm.gc, ..., ...);
     }
 }
