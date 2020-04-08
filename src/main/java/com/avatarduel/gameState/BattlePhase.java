@@ -14,6 +14,10 @@ public class BattlePhase extends GameState implements IMouseClickSub{
     private Card selectedCard;
     private RoundInfo roundInfo;
 
+    public BattlePhase(GameManager gameManager){
+        super(gameManager);
+    }
+
     public void StartTurn(){
         // Subscribe to mouse click subs
         RegisterMouseClick(this);
@@ -30,7 +34,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         setMouseMoveSubs(mm);
         // Pindah ke main 2 phase, dan kirim round infonya
         GameManager gm = getGameManager();
-        GameState gs = Main2Phase;
+        GameState gs = new Main2Phase(gm);
         gm.setGameState(gs);
         super.gameState(gm);
     }

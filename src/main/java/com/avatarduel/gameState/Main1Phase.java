@@ -4,9 +4,13 @@ import com.avatarduel.card.*;
 import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 
-public class BattlePhase extends GameState implements IMouseClickSub{
+public class Main1Phase extends GameState implements IMouseClickSub{
     private Card selectedCard;
     private RoundInfo roundInfo;
+
+    public Main1Phase(GameManager gameManager){
+        super(gameManager);
+    }
 
     public void StartTurn(){
         // Subscribe to mouse click subs
@@ -24,7 +28,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         setMouseMoveSubs(mm);
         // Pindah ke main 2 phase, dan kirim round infonya
         GameManager gm = getGameManager();
-        GameState gs = Main2Phase;
+        GameState gs = new BattlePhase(gm);
         gm.setGameState(gs);
         super.gameState(gm);
     }

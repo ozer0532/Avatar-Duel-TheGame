@@ -8,6 +8,10 @@ public class Main2Phase extends GameState{
     private Card selectedCard;
     private RoundInfo roundInfo;
 
+    public Main2Phase(GameManager gameManager){
+        super(gameManager);
+    }
+
     public void StartTurn(){
         // Subscribe to mouse click subs
         RegisterMouseClick(this);
@@ -25,7 +29,7 @@ public class Main2Phase extends GameState{
         /* disini buat set list IMouseClickSub */
         // Pindah ke end phase
         GameManager gm = getGameManager();
-        GameState gs = EndPhase;
+        GameState gs = new EndPhase(gm);
         gm.setGameState(gs);
         super.gameState(gm);
     }

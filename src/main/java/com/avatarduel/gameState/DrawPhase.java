@@ -20,7 +20,7 @@ public class DrawPhase extends GameState {
         // Pindah ke main phase 1
         // Cara pindah: bikin phase baru, set fase GameManager jadi fase baru itu (liat referensi diatas) 
         GameManager gm = getGameManager();
-        GameState gs = Main1Phase;
+        GameState gs = new Main1Phase(gm);
         gm.setGameState(gs);
         super.gameState(gm);
     }
