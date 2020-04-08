@@ -1,9 +1,8 @@
-// Player.java
-
 package com.avatarduel.player;
 
 import java.util.List;
 import java.util.Stack;
+import com.avatarduel.card.*;
 
 public class Player {
     private boolean isTopPlayer;

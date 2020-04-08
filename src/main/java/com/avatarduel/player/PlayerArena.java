@@ -1,6 +1,7 @@
 package com.avatarduel.player;
 
 import java.util.ArrayList;
+import com.avatarduel.card.*;
 
 public class PlayerArena {
     static int MAX_CARD = 8;
