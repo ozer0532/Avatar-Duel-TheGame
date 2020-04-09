@@ -1,12 +1,19 @@
 // GameManager.java
 package com.avatarduel.gameManager;
 
+import com.avatarduel.card.*;
+import com.avatarduel.gameState.*;
+import com.avatarduel.model.Element;
 import com.avatarduel.player.*;
 import com.avatarduel.sprite.*;
+import com.avatarduel.util.CSVReader;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.*;
+
 import javafx.scene.canvas.GraphicsContext;
-import com.avatarduel.card.Card;
-import com.avatarduel.gameState.*;
-import java.util.List;
 import javafx.scene.input.MouseEvent;
 
 public class GameManager {
@@ -160,6 +167,130 @@ public class GameManager {
         // Reference: (1) - Cari bagian mouse move
         for (int i = 0; i < mouseMoveSubs.size(); i++){
             mouseMoveSubs.get(i).OnMouseMove(event);
+        }
+    }
+
+    private void LoadCards() throws IOException, URISyntaxException, NumberFormatException {
+        final String LAND_CSV_FILE_PATH = "card/data/land.csv";
+        final String CHAR_CSV_FILE_PATH = "card/data/character.csv";
+        final String AURA_CSV_FILE_PATH = "card/data/skill_aura.csv";
+        final String P1_CSV_FILE_PATH = "card/data/player1.csv";
+        final String P2_CSV_FILE_PATH = "card/data/player2.csv";
+        
+        List<Card> p1Cards = new LinkedList<>();
+        List<Card> p2Cards = new LinkedList<>();
+
+        File landCSVFile = new File(getClass().getResource(LAND_CSV_FILE_PATH).toURI());
+        CSVReader landReader = new CSVReader(landCSVFile, "\t");
+        landReader.setSkipHeader(true);
+        List<String[]> landRows = landReader.read();
+        
+        File charCSVFile = new File(getClass().getResource(CHAR_CSV_FILE_PATH).toURI());
+        CSVReader charReader = new CSVReader(charCSVFile, "\t");
+        charReader.setSkipHeader(true);
+        List<String[]> charRows = charReader.read();
+        
+        File auraCSVFile = new File(getClass().getResource(AURA_CSV_FILE_PATH).toURI());
+        CSVReader auraReader = new CSVReader(auraCSVFile, "\t");
+        auraReader.setSkipHeader(true);
+        List<String[]> auraRows = auraReader.read();
+
+        File p1CSVFile = new File(getClass().getResource(P1_CSV_FILE_PATH).toURI());
+        CSVReader p1Reader = new CSVReader(p1CSVFile, "\t");
+        p1Reader.setSkipHeader(true);
+        List<String[]> p1Rows = p1Reader.read();
+        for (String[] row : p1Rows) {
+            addCards(p1Cards, row[0], landRows, charRows, auraRows);
+        }
+        if (p1Rows.size() > 60 || p1Rows.size() < 40) {
+            // throw not enough cards exception
+        }
+        Stack<Card> p1Deck = currentPlayer.getPlayerDeck();
+        for (Card card : p1Cards) {
+            p1Deck.push(card);
+        }
+
+        File p2CSVFile = new File(getClass().getResource(P2_CSV_FILE_PATH).toURI());
+        CSVReader p2Reader = new CSVReader(p2CSVFile, "\t");
+        p2Reader.setSkipHeader(true);
+        List<String[]> p2Rows = p2Reader.read();
+        for (String[] row : p2Rows) {
+            addCards(p2Cards, row[0], landRows, charRows, auraRows);
+        }
+        if (p2Rows.size() > 60 || p2Rows.size() < 40) {
+            // throw not enough cards exception
+        }
+        Stack<Card> p2Deck = oppositePlayer.getPlayerDeck();
+        for (Card card : p2Cards) {
+            p2Deck.push(card);
+        }
+    }
+
+    private void addCards(List<Card> cardsList, String card, List<String[]> landRows, List<String[]> charRows, List<String[]> auraRows) {
+        Random random = new Random();
+        // if (card == "PA") {
+        //     cardsList.add(random.nextInt(cardsList.size()), new PowerUp("Power Up", Element.AIR, "Power Up", sprite, 2));
+        //     return;
+        // }
+        // if (card == "PE") {
+        //     cardsList.add(random.nextInt(cardsList.size()), new PowerUp("Power Up", Element.EARTH, "Power Up", sprite, 2));
+        //     return;
+        // }
+        // if (card == "PF") {
+        //     cardsList.add(random.nextInt(cardsList.size()), new PowerUp("Power Up", Element.FIRE, "Power Up", sprite, 2));
+        //     return;
+        // }
+        // if (card == "PW") {
+        //     cardsList.add(random.nextInt(cardsList.size()), new PowerUp("Power Up", Element.WATER, "Power Up", sprite, 2));
+        //     return;
+        // }
+        // if (card == "DA") {
+        //     cardsList.add(random.nextInt(cardsList.size()), new Destroy("Destroy", Element.AIR, "Destory", sprite, 2));
+        //     return;
+        // }
+        // if (card == "DE") {
+        //     cardsList.add(random.nextInt(cardsList.size()), new Destroy("Destroy", Element.EARTH, "Destory", sprite, 2));
+        //     return;
+        // }
+        // if (card == "DF") {
+        //     cardsList.add(random.nextInt(cardsList.size()), new Destroy("Destroy", Element.FIRE, "Destory", sprite, 2));
+        //     return;
+        // }
+        // if (card == "DW") {
+        //     cardsList.add(random.nextInt(cardsList.size()), new Destroy("Destroy", Element.WATER, "Destory", sprite, 2));
+        //     return;
+        // }
+        String[] cardAttributes = cardsInList(landRows, card);
+        if (cardAttributes != null) {
+            // cardsList.add(random.nextInt(cardsList.size()), 
+            //         new Land(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3]));
+            return;
+        }
+        cardAttributes = cardsInList(charRows, card);
+        if (cardAttributes != null) {
+            // cardsList.add(random.nextInt(cardsList.size()), 
+            //         new Char(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], 
+            //                 Integer.parseInt(cardAttributes[7]), Integer.parseInt(cardAttributes[5]), Integer.parseInt(cardAttributes[6]));
+            return;
+        }
+        cardAttributes = cardsInList(auraRows, card);
+        if (cardAttributes != null) {
+            // cardsList.add(random.nextInt(cardsList.size()), 
+            //         new Aura(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], 
+            //                 Integer.parseInt(cardAttributes[5]), Integer.parseInt(cardAttributes[6]), Integer.parseInt(cardAttributes[7]));
+            return;
+        }
+        // throw card not found error
+    }
+
+    private String[] cardsInList (List<String[]> list, String index) {
+        Optional<String[]> strings = list.stream()
+                .filter(s -> s[0] == index)
+                .findFirst();
+        if (strings.isPresent()) {
+            return strings.get();
+        } else {
+            return null;
         }
     }
 }

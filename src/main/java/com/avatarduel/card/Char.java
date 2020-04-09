@@ -14,7 +14,7 @@ public class Char extends Card {
     private boolean isPoweredUp;
 
     public Char(String name, Element elmt, String desc, 
-    CardSprite spr , int pow, int atk, int def){
+        CardSprite spr , int pow, int atk, int def){
         super(name, elmt, desc, spr, pow);
         this.atk = atk;
         this.def = def;
