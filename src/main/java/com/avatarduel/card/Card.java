@@ -63,7 +63,7 @@ public abstract class Card {
     }
 
     // Abstract Methods
-    public abstract void OnCardPlayed(GameManager gm, int idx);
+    public abstract void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy);
     public abstract boolean CanBePlayed(PlayerStats ps);
 
     // Public Methods

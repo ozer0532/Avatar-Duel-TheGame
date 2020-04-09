@@ -3,7 +3,7 @@ package com.avatarduel.player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import com.avatarduel.card.*;
+import com.avatarduel.card.Card;
 
 public class Player {
     private boolean isTopPlayer;

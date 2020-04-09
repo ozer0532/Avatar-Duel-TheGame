@@ -7,15 +7,13 @@ import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
-public class Character extends Card {
-    // Atribut
+public class Char extends Card {
     private int atk;
     private int def;
     private boolean isDefense;
     private boolean isPoweredUp;
 
-    // Constructor
-    public Character(String name, Element elmt, String desc, 
+    public Char(String name, Element elmt, String desc, 
     CardSprite spr , int pow, int atk, int def){
         super(name, elmt, desc, spr, pow);
         this.atk = atk;
@@ -74,14 +72,15 @@ public class Character extends Card {
 
 
     // Method Implementation
-    public void OnCardPlayed(GameManager gm, int idx){
+    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addCharacterCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);
     }
 
     public boolean CanBePlayed(PlayerStats ps){
-        if (ps.getRemainingPower(super.getElmt()) >= this.powerNeeded){
+        if (ps.getRemainingPower(this.element) >= this.powerNeeded) {
+            //ps.usePower(super.getElmt(), 1);
             return true;
         }
         else {

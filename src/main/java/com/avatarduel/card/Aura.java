@@ -38,7 +38,7 @@ public class Aura extends Skill {
     }
 
     // Method Implementation
-    public void OnCardPlayed(GameManager gm, int idx){
+    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addSkillCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);
