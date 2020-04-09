@@ -44,7 +44,7 @@ public class Aura extends Card {
     }
 
     public boolean CanBePlayed(PlayerStats ps){
-        if (ps.getRemainingPower(this.Element) >= this.powerNeeded){
+        if (ps.getRemainingPower(this.element) >= this.powerNeeded) {
             //ps.usePower(super.getElmt(), 1); 
             return true;
         }

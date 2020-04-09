@@ -7,7 +7,7 @@ import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
-abstract class Card {
+public abstract class Card {
     protected String name;
     protected Element element;
     protected String description;
@@ -59,7 +59,6 @@ abstract class Card {
     public int getPowerNeeded() {
         return this.powerNeeded;
     }
-
 
     // Abstract Methods
     public abstract void OnCardPlayed(GameManager gm, int idx);

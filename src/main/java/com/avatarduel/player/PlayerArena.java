@@ -1,41 +1,77 @@
 package com.avatarduel.player;
 
-import java.util.ArrayList;
-import com.avatarduel.card.*;
+import java.util.Arrays;
+import com.avatarduel.card.Char;
+import com.avatarduel.card.Aura;
 
 public class PlayerArena {
     static int MAX_CARD = 8;
-    private ArrayList<Character> character;
-    private ArrayList<Aura> skills;
+    private Char[] character;
+    private Aura[] skills;
 
     /* CTOR */
     public PlayerArena(){
-        this.character = new ArrayList<Character>();
-        this.skills = new ArrayList<Aura>();
+        this.character = new Char[8];
+        this.skills = new Aura[8];
+
+        Arrays.fill(character, null);
+        Arrays.fill(skills, null);
     }
 
-    /* UTIL */
-    public void addCharacterCard(Card kartu){
-        this.character.add(kartu);
+    /* SETTER */
+    public void addCharacterCard(Char charCard){
+        boolean flag = false;
+
+        for (int i = 0; i < 8; i++){
+            if (this.character[i] == null){
+                this.character[i] = charCard;
+                flag = true;
+                break;
+            }
+        }
+
+        if (!flag){
+            System.out.println("Character slot is full");
+        }
     }
 
-    public void addCharacterCard(int idx, Card kartu){
-        this.character.add(idx-1, kartu);
+    // ini buat apa ya?
+    public void addCharacterCard(int idx, Char charCard){
+        this.character[idx=1] = charCard;
     }
 
-    public void addSkillCard(Card kartu){
-        this.skills.add(kartu);
+    public void addSkillCard(Aura auraCard){
+        boolean flag = false;
+
+        for (int i = 0; i < 8; i++){
+            if (this.skills[i] == null){
+                this.skills[i] = auraCard;
+                flag = true;
+                break;
+            }
+        }
+
+        if (!flag){
+            System.out.println("Skill slot is full");
+        }
     }
 
-    public void addSkillCard(int idx, Card kartu){
-        this.skills.add(idx-1, kartu);
+    // ini buat apa ya?
+    public void addSkillCard(int idx, Aura auraCard){
+        this.skills[idx-1] = auraCard;
     }
 
+    /* GETTER */
     public void useCharacterCard(int idx){
-        return this.character.get(idx-1);
+        // ini mau di remove dari array?
     }
 
     public void useAuraCard(int idx){
-        return this.skills.get(idx-1);
+        // ini mau di remove dari array?
+    }
+
+    /* DEBUG */
+    public static void main(String[] args){
+        
     }
 }
