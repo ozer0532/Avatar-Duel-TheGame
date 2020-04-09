@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 import com.avatarduel.gameManager.GameManager;
 import com.avatarduel.model.Element;
-import com.avatarduel.model.Land;
+import com.avatarduel.card.Land;
 import com.avatarduel.util.CSVReader;
 import com.avatarduel.util.LongValue;
 
@@ -55,7 +55,7 @@ public class AvatarDuel extends Application {
         double deltaTime = (double)(currentNanoTime - previousFrame.value) / 1000000000;
 
         gc.drawImage(background, 0, 0);
-        gm.GameLoop(deltaTime);
+        gm.gameLoop(deltaTime);
 
         previousFrame.value = currentNanoTime;
       }
