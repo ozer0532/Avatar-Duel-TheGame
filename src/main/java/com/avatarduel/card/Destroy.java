@@ -8,8 +8,8 @@ import com.avatarduel.model.*;
 
 public class Destroy extends Skill {
     // Constructor
-    public Destroy(String name, Element elmt, String desc, CardSprite sprite, int pn){
-        super(name, elmt, desc, sprite, pn);
+    public Destroy(String name, Element elmt, String desc, int pn){
+        super(name, elmt, desc, pn);
     }
 
     // Method Implementation
@@ -31,5 +31,21 @@ public class Destroy extends Skill {
         else {
             return false;
         }
+    }
+
+    public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
+        CardSprite cs;
+        String imagePath, front, back, stext;
+
+        //imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name;
+        //front="";
+        //back="";
+        stext="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
+        cs = new CardSprite(front, back, imagePath, x, y);
+        cs.InsertText(stext,0,0);
+        return cs;
+    }
+    public CardSprite DrawCardDetail() {
+        return cs;
     }
 }

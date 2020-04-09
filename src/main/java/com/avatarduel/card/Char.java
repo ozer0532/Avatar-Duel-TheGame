@@ -3,6 +3,7 @@
 package com.avatarduel.card;
 
 import com.avatarduel.sprite.CardSprite;
+import com.avatarduel.sprite.CardText;
 import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
@@ -14,8 +15,8 @@ public class Char extends Card {
     private boolean isPoweredUp;
 
     public Char(String name, Element elmt, String desc, 
-        CardSprite spr , int pow, int atk, int def){
-        super(name, elmt, desc, spr, pow);
+         int pow, int atk, int def){
+        super(name, elmt, desc, pow);
         this.atk = atk;
         this.def = def;
         this.isDefense = false;
@@ -86,5 +87,21 @@ public class Char extends Card {
         else {
             return false;
         }
+    }
+
+    public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
+        CardSprite cs;
+        String imagePath, front, back, stext;
+
+        imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name;
+        //front="";
+        //back="";
+        stext="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
+        cs = new CardSprite(front, back, imagePath, x, y);
+        cs.InsertText(stext,0,0);
+        return cs;
+    }
+    public CardSprite DrawCardDetail() {
+        return cs;
     }
 }
