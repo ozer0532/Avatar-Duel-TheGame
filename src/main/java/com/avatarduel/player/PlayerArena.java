@@ -4,11 +4,12 @@ import com.avatarduel.card.*;
 import com.avatarduel.card.Character;
 
 public class PlayerArena {
+    // Atribut
     static int MAX_CARD = 8;
     private Character[] charCard;
     private Skill[] skills;
 
-    /* CTOR */
+    // Constructor
     public PlayerArena(){
         this.charCard = new Character[MAX_CARD];
         this.skills = new Skill[MAX_CARD];
@@ -32,7 +33,7 @@ public class PlayerArena {
         this.skills = skills;
     }
 
-    /* UTIL */
+    // Utility
     public void addCharacterCard(Character kartu){
         for (int i = 0; i < MAX_CARD; i++){
             if (charCard[i] == null){

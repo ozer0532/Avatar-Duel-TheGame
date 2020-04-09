@@ -93,10 +93,4 @@ public class BattlePhase extends GameState implements IMouseClickSub{
             addCardsAttacked(cardClicked2);
         }
     }
-
-    @Override
-    public void OnMouseClick(MouseEvent event) {
-        // TODO Auto-generated method stub
-
-    }
 }

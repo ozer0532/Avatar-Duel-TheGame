@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 
 public class GameManager {
     // Atribut-atribut dari GameManager
+    private GameState gameState;
     private Player currentPlayer;
     private Player oppositePlayer;
     private List<IMouseClickSub> mouseClickSubs;
@@ -84,6 +85,10 @@ public class GameManager {
     }
 
     // Setter untuk GameManager
+    public void setGameState(GameState gs){
+        this.gameState = gs;
+    }
+
     public void setCurrentPlayer(Player P){
         this.currentPlayer = P;
     }
@@ -110,6 +115,10 @@ public class GameManager {
 
     
     // Getter untuk GameManager
+    public GameState getGameState(){
+        return this.gameState;
+    }
+
     public Player getCurrentPlayer(){
         return this.currentPlayer;
     }
