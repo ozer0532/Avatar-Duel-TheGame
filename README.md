@@ -31,7 +31,7 @@ Kelas K-02 Kelompok G-10
 - 13518065 - Fritz Gerald Tjie
 - 13518089 - Annisa Rahim
 - 13518107 - Chokyi Ozer
-- 13518134 - Raihan Iqbal
+- 13518134 - Muhammad Raihan Iqbal
 
 ## Credit
 

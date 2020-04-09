@@ -6,21 +6,26 @@ import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
-public class Destroy extends Card {
-    // CONSTRUCTOR
+public class Destroy extends Skill {
+    // Constructor
     public Destroy(String name, Element elmt, String desc, CardSprite sprite, int pn){
         super(name, elmt, desc, sprite, pn);
     }
 
-    // METHODS
-    public void OnCardPlayed(GameManager gm){
+    // Method Implementation
+    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         // hapus musuh di sisi berlawanan
-        //gm.getOppositePlayer().
+        if (isPlayedonEnemy) {
+            gm.getOppositePlayer().getPlayerArena().removeCharacterCard(idx);
+        }
+        else {
+            gm.getCurrentPlayer().getPlayerArena().removeCharacterCard(idx);
+        }
+        
     }
 
     public boolean CanBePlayed(PlayerStats ps){
-        if (ps.getRemainingPower(this.Element) >= this.powerNeeded){
-            //ps.usePower(super.getElmt(), 1); why?
+        if (ps.getRemainingPower(super.getElmt()) >= this.powerNeeded){
             return true;
         }
         else {

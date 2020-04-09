@@ -6,11 +6,12 @@ import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
-public class Aura extends Card {
+public class Aura extends Skill {
+    // Atribut dari Aura
     private int atk;
     private int def;
 
-    // CONSTRUCTOR
+    // Constructor
     public Aura(String name, Element elmt, String desc, CardSprite sprite,
     int pn,int atk, int def){
         super(name, elmt, desc, sprite, pn);
@@ -18,7 +19,7 @@ public class Aura extends Card {
         this.def = def;
     }
 
-    // SETTER
+    // Setter for Aura
     public void setAttack(int atk){
         this.atk = atk;
     }
@@ -27,7 +28,7 @@ public class Aura extends Card {
         this.def = def;
     }
 
-    // GETTER
+    // Getter for Aura
     public int getAttack(){
         return this.atk;
     }
@@ -36,16 +37,15 @@ public class Aura extends Card {
         return this.def;
     }
 
-    // METHODS
-    public void OnCardPlayed(GameManager gm, int idx){
+    // Method Implementation
+    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addSkillCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);
     }
 
     public boolean CanBePlayed(PlayerStats ps){
-        if (ps.getRemainingPower(this.element) >= this.powerNeeded) {
-            //ps.usePower(super.getElmt(), 1); 
+        if (ps.getRemainingPower(super.getElmt()) >= this.powerNeeded){
             return true;
         }
         else {

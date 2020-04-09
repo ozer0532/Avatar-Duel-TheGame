@@ -1,5 +1,6 @@
 package com.avatarduel.player;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import com.avatarduel.card.Card;
@@ -7,15 +8,15 @@ import com.avatarduel.card.Card;
 public class Player {
     private boolean isTopPlayer;
     private PlayerArena playerArena;
-    private List<Card> playerHands;
+    private ArrayList<Card> playerHands;
     private PlayerStats playerStats;
     private Stack<Card> playerDeck; 
 
     // Constructor
-    public Player(){
-        this.isTopPlayer = false;
+    public Player(boolean topPlayer){
+        this.isTopPlayer = topPlayer;
         this.playerArena = new PlayerArena();
-        this.playerHands = new List<Card>();
+        this.playerHands = new ArrayList<Card>();
         this.playerStats = new PlayerStats();
         this.playerDeck = new Stack<Card>();
     }

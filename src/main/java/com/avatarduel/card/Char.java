@@ -1,6 +1,7 @@
 // Land.java
 
 package com.avatarduel.card;
+
 import com.avatarduel.sprite.CardSprite;
 import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
@@ -21,7 +22,7 @@ public class Char extends Card {
         this.isPoweredUp = false;
     }
 
-    // GETTER
+    // Getter for Character
     public int getAttack(){
         return this.atk;
     }
@@ -52,7 +53,7 @@ public class Char extends Card {
     }
 
 
-    // SETTER
+    // Setter for Character;
     public void setAttack(int atk) {
         this.atk=atk;
     }
@@ -70,8 +71,8 @@ public class Char extends Card {
     }
 
 
-    // METHODS
-    public void OnCardPlayed(GameManager gm, int idx){
+    // Method Implementation
+    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addCharacterCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);

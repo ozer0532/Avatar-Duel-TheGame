@@ -3,28 +3,87 @@ package com.avatarduel.gameManager;
 
 import com.avatarduel.player.*;
 import com.avatarduel.sprite.*;
+import javafx.scene.canvas.GraphicsContext;
+import com.avatarduel.card.Card;
 import com.avatarduel.gameState.*;
 import java.util.List;
+import javafx.scene.input.MouseEvent;
 
 public class GameManager {
-    private GameState gameState;
+    // Atribut-atribut dari GameManager
     private Player currentPlayer;
     private Player oppositePlayer;
     private List<IMouseClickSub> mouseClickSubs;
+    private List<IMouseMoveSub> mouseMoveSubs;
     private GameDrawer gameDrawer;
     private GraphicsContext graphicsContext;
 
-    // Setter
-    public void setGameState(GameState gs){
-        this.gameState = gs;
+    // Constructor
+    public GameManager(GraphicsContext gc){
+        // Init gameDrawer
+        graphicsContext = gc;
+        gameDrawer = new GameDrawer();
+        
+        // Init CurrentPlayer dan oppositePlayer
+        currentPlayer = new Player(false);
+        oppositePlayer = new Player(true);
+        
+        // Generate kartu dan masukin ke player yang bersangkutan, dan simpan ke drawListnya GameDrawer
+        // Init exit button dan masukin spritenya ke drawlistnya gamedrawer
+        // Masukin 7 kartu ke tangan kedua player
+        // Init state dengan draw phase
+    }
+    
+    // Public Method untuk GameManager
+    public void gameLoop(double durationSinceLastFrame){
+        // Ini dipanggil oleh Avatar Duel pada Animation Timer pada handle()
+        // Reference: (1) - Cari bagian animation (bisa dipake buat yang bukan animasi juga)
+        this.gameDrawer.drawGame(this, durationSinceLastFrame);
     }
 
     public void switchPlayer(){
+        // Menukar giliran player dalam bermain
         Player temp = this.currentPlayer;
         this.currentPlayer = this.oppositePlayer;
         this.oppositePlayer = temp;
     }
+    
+    public Card getClickedCardFromHand(int X, int Y){
+        // Cek kartu apa yang di klik dari tangan player saat itu
+        // Return null kalo gak ada kartu yang di klik
+        // Caranya loop untuk setiap kartu di hand kalo Sprite.OverlapPoint
+        for (Card kartu : this.currentPlayer.getPlayerHands()){
+            if (kartu.getSprite().isPointOverlap(X, Y)){
+                return kartu;
+            }
+        }
+        return null;
+    }
 
+    public ArenaClickInfo getArenaClickInfo(int X, int Y){
+        // Cek posisi klik dari mouse, apakah ada di belah atas atau bawah, dan ada di kolom ke berapa
+        // Cek apakah ada kartu di posisi tersebut
+        // Return ArenaClickInfo
+        for (int i = 0; i < 8; i++){
+            Card kartu = this.currentPlayer.getPlayerArena().getCharCard()[i];
+            if (kartu != null){
+                if (kartu.getSprite().isPointOverlap(X, Y)){
+                    return new ArenaClickInfo(kartu, true, this.currentPlayer.getIsTopPlayer(), i, true, false);
+                }
+            }
+        }
+        for (int i = 0; i < 8; i++){
+            Card kartu = this.currentPlayer.getPlayerArena().getSkills()[i];
+            if (kartu != null){
+                if (kartu.getSprite().isPointOverlap(X, Y)){
+                    return new ArenaClickInfo(kartu, false, this.currentPlayer.getIsTopPlayer(), i, false, true);
+                }
+            }
+        }
+        return null;
+    }
+
+    // Setter untuk GameManager
     public void setCurrentPlayer(Player P){
         this.currentPlayer = P;
     }
@@ -37,20 +96,20 @@ public class GameManager {
         this.gameDrawer = gd;
     }
 
+    public void setMouseClickSubs(List<IMouseClickSub> mcSubs){
+        this.mouseClickSubs = mcSubs;
+    }
+
+    public void setMouseMoveSubs(List<IMouseMoveSub> mmSubs){
+        this.mouseMoveSubs = mmSubs;
+    }
+
     public void setGraphicsContext(GraphicsContext gc){
         this.graphicsContext = gc;
     }
 
-    // Mendaftarkan IMouseClickSub agar dikirim event nanti
-    public void RegisterMouse(IMouseClickSub click){
-        mouseClickSubs.add(click);
-    }
     
-    // Getter
-    public GameState getGameState(){
-        return this.gameState;
-    }
-
+    // Getter untuk GameManager
     public Player getCurrentPlayer(){
         return this.currentPlayer;
     }
@@ -63,49 +122,44 @@ public class GameManager {
         return this.mouseClickSubs;
     }
 
+    public List<IMouseMoveSub> getMouseMoveSubs(){
+        return this.mouseMoveSubs;
+    }
+    
     public GameDrawer getGameDrawer(){
         return this.gameDrawer;
     }
-
+    
     public GraphicsContext getGraphicsContext(){
         return this.graphicsContext;
     }
-
-    public GameManager(GraphicsContext gc){
-        // Init gameDrawer
-        graphicsContext = gc;
-        gameDrawer = new GameDrawer();
-        // Init CurrentPlayer dan oppositePlayer
-        currentPlayer = new Player();
-        oppositePlayer = new Player();
-
-        // Generate kartu dan masukin ke player yang bersangkutan, dan simpan ke drawListnya GameDrawer
-        // Init exit button dan masukin spritenya ke drawlistnya gamedrawer
-        // Masukin 7 kartu ke tangan kedua player
-        // Init state dengan draw phase
+    
+    // Subscriber-Publisher Method
+    public void RegisterMouseClick(IMouseClickSub click){
+        // Mendaftarkan IMouseClickSub agar dikirim event nanti
+        mouseClickSubs.add(click);
     }
 
-    public void GameLoop(double durationSinceLastFrame){
-        // Ini dipanggil oleh Avatar Duel pada Animation Timer pada handle()
-	    // Reference: (1) - Cari bagian animation (bisa dipake buat yang bukan animasi juga)
+    public void RegisterMouseMove(IMouseMoveSub move){
+        // Mendaftarkan IMouseClickSub agar dikirim event nanti
+        mouseMoveSubs.add(move);
     }
 
-
-    public void SendMouseClickEvent(MouseEvent event){
+    public void sendMouseClickEvent(MouseEvent event){
         // Kirim event OnMouseClick ke subs dari MouseClickSubs saat klik
-		// Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
-		// Reference: (1) - Cari bagian mouse click
+        // Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
+        // Reference: (1) - Cari bagian mouse click
+        for (int i = 0; i < mouseClickSubs.size(); i++){
+            mouseClickSubs.get(i).OnMouseClick(event);
+        }
     }
 
-    public void getClickedCardFromHand(int X, int Y){
-        // Cek kartu apa yang di klik dari tangan player saat itu
-		// Return null kalo gak ada kartu yang di klik
-		// Caranya loop untuk setiap kartu di hand kalo Sprite.OverlapPoint
-    }
-
-    public ArenaClickInfo GetArenaClickInfo(int X, int Y){
-        // Cek posisi klik dari mouse, apakah ada di belah atas atau bawah, dan ada di kolom ke berapa
-        // Cek apakah ada kartu di posisi tersebut
-        // Return ArenaClickInfo
+    public void sendMouseMoveEvent(MouseEvent event){
+        // Kirim event OnMouseMove ke subs dari MouseClickSubs saat klik
+        // Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
+        // Reference: (1) - Cari bagian mouse move
+        for (int i = 0; i < mouseMoveSubs.size(); i++){
+            mouseMoveSubs.get(i).OnMouseMove(event);
+        }
     }
 }

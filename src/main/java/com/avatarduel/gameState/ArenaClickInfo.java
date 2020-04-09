@@ -2,23 +2,24 @@
 
 package com.avatarduel.gameState;
 
+import com.avatarduel.card.*;
+
 public class ArenaClickInfo {
-    // chosenCard -> kartu yang dipilih
-    private Card chosenCard;
-    // isCharacter -> True kalo slot karakter, false kalo slot skill
-    private boolean isCharacter;
-    // isTopPlayer -> True kalo bagian arena yang di klik di belah atas
-    private boolean isTopPlayer;
-    // idx -> 0 sampai 7 kiri ke kanan
-    private int idx;
-    // characterSlotOccupied -> True kalo di kolom itu ada karakter
-    private boolean characterSlotOccupied;
-    // True kalo di kolom itu ada skill (aura / power up)
-    private boolean skillSlotOccupied;
+    private Card chosenCard; // chosenCard -> kartu yang dipilih
+    private boolean isCharacter; // isCharacter -> True kalo slot karakter, false kalo slot skill
+    private boolean isTopPlayer; // isTopPlayer -> True kalo bagian arena yang di klik di belah atas
+    private int idx; // idx -> 0 sampai 7 kiri ke kanan
+    private boolean characterSlotOccupied; // characterSlotOccupied -> True kalo di kolom itu ada karakter
+    private boolean skillSlotOccupied; // True kalo di kolom itu ada skill (aura / power up)
 
     // Constructor
-    public ArenaClickInfo(){
-        // Do Nothing
+    public ArenaClickInfo(Card chosenCard, boolean isCharacter, boolean isTopPlayer, int idx, boolean cso, boolean sso){
+        this.chosenCard = chosenCard;
+        this.isCharacter = isCharacter;
+        this.isTopPlayer = isTopPlayer;
+        this.idx = idx;
+        this.characterSlotOccupied = cso;
+        this.skillSlotOccupied = sso;
     }
 
     // Setter for ArenaClickInfo()
