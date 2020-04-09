@@ -14,14 +14,15 @@ import com.avatarduel.player.Player;
 import com.avatarduel.util.CSVReader;
 
 public class DataLoader {
+    static final String LAND_CSV_FILE_PATH = "card/data/land.csv";
+    static final String CHAR_CSV_FILE_PATH = "card/data/character.csv";
+    static final String AURA_CSV_FILE_PATH = "card/data/skill_aura.csv";
+    static final String PWRU_CSV_FILE_PATH = "card/data/skill_powerup.csv";
+    static final String DSTR_CSV_FILE_PATH = "card/data/skill_destroy.csv";
+    static final String P1_CSV_FILE_PATH = "card/data/player1.csv";
+    static final String P2_CSV_FILE_PATH = "card/data/player2.csv";
+    
     public void LoadCards(Player player1, Player player2) throws IOException, URISyntaxException, NumberFormatException {
-        final String LAND_CSV_FILE_PATH = "card/data/land.csv";
-        final String CHAR_CSV_FILE_PATH = "card/data/character.csv";
-        final String AURA_CSV_FILE_PATH = "card/data/skill_aura.csv";
-        final String PWRU_CSV_FILE_PATH = "card/data/skill_powerup.csv";
-        final String DSTR_CSV_FILE_PATH = "card/data/skill_destroy.csv";
-        final String P1_CSV_FILE_PATH = "card/data/player1.csv";
-        final String P2_CSV_FILE_PATH = "card/data/player2.csv";
         
         // List of cards each player have
         List<Card> p1Cards = new LinkedList<>();
