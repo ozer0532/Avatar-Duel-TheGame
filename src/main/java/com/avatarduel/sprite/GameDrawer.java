@@ -1,10 +1,11 @@
 package com.avatarduel.sprite;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.avatarduel.gameManager.GameManager;
 import com.avatarduel.model.Element;
-import com.avatarduel.player.*;
+import com.avatarduel.player.Player;
 
 import javafx.scene.canvas.GraphicsContext;
 
@@ -141,8 +142,8 @@ public class GameDrawer {
         drawArena(gm.getOppositePlayer());
         drawHands(gm.getCurrentPlayer(), true);
         drawHands(gm.getOppositePlayer(), false);
-        // drawStats(gm.gc, gm.getCurrentPlayer())
-        // drawStats(gm.gc, gm.getOppositePlayer())
+        drawStats(gm.getGraphicsContext(), gm.getCurrentPlayer());
+        drawStats(gm.getGraphicsContext(), gm.getOppositePlayer());
         // drawCardInfo(gm.gc, ..., ...);
     }
 }

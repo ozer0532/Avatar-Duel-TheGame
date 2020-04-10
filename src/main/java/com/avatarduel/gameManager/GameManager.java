@@ -1,12 +1,19 @@
 // GameManager.java
 package com.avatarduel.gameManager;
 
+import com.avatarduel.card.*;
+import com.avatarduel.gameState.*;
+import com.avatarduel.model.Element;
 import com.avatarduel.player.*;
 import com.avatarduel.sprite.*;
+import com.avatarduel.util.CSVReader;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.*;
+
 import javafx.scene.canvas.GraphicsContext;
-import com.avatarduel.card.Card;
-import com.avatarduel.gameState.*;
-import java.util.List;
 import javafx.scene.input.MouseEvent;
 
 public class GameManager {
@@ -30,8 +37,27 @@ public class GameManager {
         oppositePlayer = new Player(true);
         
         // Generate kartu dan masukin ke player yang bersangkutan, dan simpan ke drawListnya GameDrawer
+        DataLoader dl = new DataLoader();
+        try {
+            dl.LoadCards(currentPlayer, oppositePlayer);
+        } catch (Exception e) {
+            // Data pada csv tidak valid, perlu restart...
+        }
+        for (Card card : currentPlayer.getPlayerDeck()) {
+            gameDrawer.addToDrawList(card.getSprite());
+        }
+        for (Card card : oppositePlayer.getPlayerDeck()) {
+            gameDrawer.addToDrawList(card.getSprite());
+        }
+
         // Init exit button dan masukin spritenya ke drawlistnya gamedrawer
         // Masukin 7 kartu ke tangan kedua player
+        for (int i = 0; i < 7; i++) {
+            currentPlayer.addPlayerHands(currentPlayer.getCardFromDeck());
+        }
+        for (int i = 0; i < 7; i++) {
+            oppositePlayer.addPlayerHands(oppositePlayer.getCardFromDeck());
+        }
         // Init state dengan draw phase
     }
     

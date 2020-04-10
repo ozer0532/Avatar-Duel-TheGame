@@ -16,11 +16,11 @@ public abstract class Card {
     protected int powerNeeded;
 
     // Constructor
-    public Card(String name, Element elmt, String desc, CardSprite spr, int pow) {
+    public Card(String name, Element elmt, String desc, int pow) {
         this.name = name;
         this.element = elmt;
         this.description = desc;
-        this.sprite = spr;
+        this.sprite = this.DrawCardSimple(0, 0, false);
         this.powerNeeded = pow;
     }
 
@@ -65,12 +65,6 @@ public abstract class Card {
     // Abstract Methods
     public abstract void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy);
     public abstract boolean CanBePlayed(PlayerStats ps);
-
-    // Public Methods
-    public void DrawCardSimple(float x, float y, boolean isFlipped) {
-        // do nothing
-    }
-    public void DrawCardDetail() {
-        // do nothing
-    }
+    public abstract CardSprite DrawCardSimple(float x, float y, boolean isFlipped);
+    public abstract CardSprite DrawCardDetail();
 }

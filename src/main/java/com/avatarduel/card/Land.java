@@ -8,8 +8,8 @@ import com.avatarduel.model.*;
 
 public class Land extends Card {
     // Constructor
-    public Land(String name, Element elmt, String desc, CardSprite sprite){
-        super(name, elmt, desc, sprite, 1);
+    public Land(String name, Element elmt, String desc){
+        super(name, elmt, desc, 1);
     }
 
     // Public Method
@@ -35,5 +35,21 @@ public class Land extends Card {
         else {
             return false;
         }
+    }
+
+    public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
+        CardSprite cs;
+        String imagePath, front, back, stext;
+
+        //imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name;
+        //front="";
+        //back="";
+        stext="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
+        cs = new CardSprite(front, back, imagePath, x, y);
+        cs.InsertText(stext,0,0);
+        return cs;
+    }
+    public CardSprite DrawCardDetail() {
+        return cs;
     }
 }

@@ -12,9 +12,9 @@ public class Aura extends Skill {
     private int def;
 
     // Constructor
-    public Aura(String name, Element elmt, String desc, CardSprite sprite,
+    public Aura(String name, Element elmt, String desc,
     int pn,int atk, int def){
-        super(name, elmt, desc, sprite, pn);
+        super(name, elmt, desc, pn);
         this.atk = atk;
         this.def = def;
     }
@@ -51,5 +51,21 @@ public class Aura extends Skill {
         else {
             return false;
         }
+    }
+
+    public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
+        CardSprite cs;
+        String imagePath, front, back, stext;
+
+        //imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name;
+        //front="";
+        //back="";
+        stext="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
+        cs = new CardSprite(front, back, imagePath, x, y);
+        cs.InsertText(stext,0,0);
+        return cs;
+    }
+    public CardSprite DrawCardDetail() {
+        return cs;
     }
 }
