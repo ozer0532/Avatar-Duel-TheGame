@@ -90,18 +90,66 @@ public class Char extends Card {
     }
 
     public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
+        // kamus lokal
         CardSprite cs;
-        String imagePath, front, back, stext;
+        String imagePath, front, back, attr, elmt;
 
-        imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name;
-        //front="";
-        //back="";
-        stext="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
+        if (this.element==Element.AIR) {
+            elmt="Air";
+        }
+        else if (this.element==Element.EARTH) {
+            elmt="Earth";
+        }
+        else if (this.element==Element.ENERGY) {
+            elmt="Energy";
+        }
+        else if (this.element==Element.FIRE) {
+            elmt="Fire";
+        }
+        else if (this.element=Element.WATER) {
+            elmt="Water";
+        }
+        imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name+".png";
+        front="../../../../resources/com/avatarduel/generic/image/"+Elmt+"SmallCard.png";
+        back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
+        attr="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
         cs = new CardSprite(front, back, imagePath, x, y);
-        cs.InsertText(stext,0,0);
+        cs.InsertText(attr,0,0);
         return cs;
     }
     public CardSprite DrawCardDetail() {
+        // kamus lokal
+        CardSprite cs;
+        String imagePath, front, back, attr, elmt, desc, type;
+
+        if (this.element==Element.AIR) {
+            elmt="Air";
+        }
+        else if (this.element==Element.EARTH) {
+            elmt="Earth";
+        }
+        else if (this.element==Element.ENERGY) {
+            elmt="Energy";
+        }
+        else if (this.element==Element.FIRE) {
+            elmt="Fire";
+        }
+        else if (this.element=Element.WATER) {
+            elmt="Water";
+        }
+        imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name+".png";
+        front="../../../../resources/com/avatarduel/generic/image/"+Elmt+"LargeCard.png";
+        back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
+        
+        cs = new CardSprite(front, back, imagePath);
+
+        attr="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
+        type="[ Character ]";     
+        cs.InsertText(this.name,0,0);   
+        cs.InsertText(type,0,0);
+        cs.InsertText(this.description,0,0);
+        cs.InsertText(attr,0,0);
+
         return cs;
     }
 }
