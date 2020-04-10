@@ -38,11 +38,11 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         mc.remove(this);
         GameManager gm = super.getGameManager();
         gm.setMouseClickSubs(mc);
-        super.setGameManager(gm);
 
         // Pindah ke main 2 phase, dan kirim round infonya
-        GameState gs = new Main2Phase(gm);
+        GameState gs = new EndPhase(gm);
         gm.setGameState(gs);
+        super.setGameManager(gm);
     }
 
     public void OnMouseClick (MouseEvent event){

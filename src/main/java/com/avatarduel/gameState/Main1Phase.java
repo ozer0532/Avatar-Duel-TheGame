@@ -1,5 +1,7 @@
 package com.avatarduel.gameState;
 
+import java.util.List;
+
 import com.avatarduel.card.*;
 import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
@@ -14,23 +16,20 @@ public class Main1Phase extends GameState implements IMouseClickSub{
 
     public void StartTurn(){
         // Subscribe to mouse click subs
-        RegisterMouseClick(this);
-        RegisterMouseMove(this);
+        super.getGameManager().RegisterMouseClick(this);
     }
 
     public void EndTurn(){
         // Unsubscribe to mouse click subs
-        List<IMouseClickSub> mc = getMouseClickSubs();
-        List<IMouseMoveSub> mm = getMouseMoveSubs();
+        List<IMouseClickSub> mc = super.getGameManager().getMouseClickSubs();
         mc.remove(this);
-        mm.remove(this);
-        setMouseClickSubs(mc);
-        setMouseMoveSubs(mm);
+        GameManager gm = super.getGameManager();
+        gm.setMouseClickSubs(mc);
+
         // Pindah ke main 2 phase, dan kirim round infonya
-        GameManager gm = getGameManager();
         GameState gs = new BattlePhase(gm);
         gm.setGameState(gs);
-        super.gameState(gm);
+        super.setGameManager(gm);
     }
 
     public void OnMouseClick (MouseEvent event){

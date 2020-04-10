@@ -2,6 +2,7 @@ package com.avatarduel.gameState;
 
 import com.avatarduel.gameManager.GameManager;
 import com.avatarduel.player.*;
+import com.avatarduel.card.*;
 
 public class DrawPhase extends GameState {
     public DrawPhase(GameManager gameManager){
@@ -20,6 +21,6 @@ public class DrawPhase extends GameState {
         // Pindah ke main phase 1
         // Cara pindah: bikin phase baru, set fase GameManager jadi fase baru itu (liat referensi diatas) 
         GameManager gm = super.getGameManager();
-        super.getGameManager().setGameState(new MainPhase1(gm));
+        super.getGameManager().setGameState(new Main1Phase(gm));
     }
 }
