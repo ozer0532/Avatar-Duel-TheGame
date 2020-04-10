@@ -8,6 +8,7 @@ import com.avatarduel.player.*;
 
 import javafx.scene.input.MouseEvent;
 import java.util.Arrays;
+import java.util.List;
 
 // BattlePhase.java
 public class BattlePhase extends GameState implements IMouseClickSub{
@@ -18,25 +19,30 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         super(gameManager);
     }
 
+    public Card getSelectedCard(){
+        return this.selectedCard;
+    }
+
+    public RoundInfo getRoundInfo(){
+        return this.roundInfo;
+    }
+
     public void StartTurn(){
         // Subscribe to mouse click subs
-        RegisterMouseClick(this);
-        RegisterMouseMove(this);
+        super.getGameManager().RegisterMouseClick(this);
     }
 
     public void EndTurn(){
         // Unsubscribe to mouse click subs
-        List<IMouseClickSub> mc = getMouseClickSubs();
-        List<IMouseMoveSub> mm = getMouseMoveSubs();
+        List<IMouseClickSub> mc = super.getGameManager().getMouseClickSubs();
         mc.remove(this);
-        mm.remove(this);
-        setMouseClickSubs(mc);
-        setMouseMoveSubs(mm);
+        GameManager gm = super.getGameManager();
+        gm.setMouseClickSubs(mc);
+        super.setGameManager(gm);
+
         // Pindah ke main 2 phase, dan kirim round infonya
-        GameManager gm = getGameManager();
         GameState gs = new Main2Phase(gm);
         gm.setGameState(gs);
-        super.gameState(gm);
     }
 
     public void OnMouseClick (MouseEvent event){
@@ -54,11 +60,11 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         // Kalau klik kartu musuh di arena, dan selectedCard ada, serang musuh dengan getAttack kartu selectedCard
         //dan getDefend musuh. Kalau musuh gak sedang defend atau ada skill power up, kurangin darah musuh.
         //Simpan kartu ke cardsAttacked di RoundInfo
-        Card cardClicked2 = getChosenCard();
-        Player p = getOppositePlayer();
-        Character[] cc = p.getPlayerArena().getCharCard();
-        bool cek = false;
-        for (int i=0; i < cc.length; i++) {
+        Card cardClicked2 = getSelectedCard();
+        Player p = super.getGameManager().getOppositePlayer();
+        Char[] cc = p.getPlayerArena().getCharCard();
+        boolean cek = false;
+        for (int i = 0; i < cc.length; i++) {
             if (cc[i] == cardClicked2) {
                 cek = true;
                 break;

@@ -19,8 +19,7 @@ public class EndPhase extends GameState{
 
     public void EndTurn(){
         // Pindah ke draw phase
-        GameManager gm = getGameManager();
-        GameState gs = new DrawPhase(gm);
-        super.gameState(gm);
+        GameManager gm = super.getGameManager();
+        super.getGameManager().setGameState(new DrawPhase(gm));
     }
 }

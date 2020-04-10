@@ -16,10 +16,10 @@ public class Destroy extends Skill {
     public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         // hapus musuh di sisi berlawanan
         if (isPlayedonEnemy) {
-            gm.getOppositePlayer().getPlayerArena().removeCharacterCard(idx);
+            gm.getOppositePlayer().getPlayerArena().removeCharCard(idx);
         }
         else {
-            gm.getCurrentPlayer().getPlayerArena().removeCharacterCard(idx);
+            gm.getCurrentPlayer().getPlayerArena().removeSkillCard(idx);
         }
         
     }

@@ -66,7 +66,7 @@ public class GameManager {
         // Cek apakah ada kartu di posisi tersebut
         // Return ArenaClickInfo
         for (int i = 0; i < 8; i++){
-            Card kartu = this.currentPlayer.getPlayerArena().getCharCard()[i];
+            Card kartu = this.currentPlayer.getPlayerArena().getCharCard(i);
             if (kartu != null){
                 if (kartu.getSprite().isPointOverlap(X, Y)){
                     return new ArenaClickInfo(kartu, true, this.currentPlayer.getIsTopPlayer(), i, true, false);
@@ -74,7 +74,7 @@ public class GameManager {
             }
         }
         for (int i = 0; i < 8; i++){
-            Card kartu = this.currentPlayer.getPlayerArena().getSkills()[i];
+            Card kartu = this.currentPlayer.getPlayerArena().getSkillCard(i);
             if (kartu != null){
                 if (kartu.getSprite().isPointOverlap(X, Y)){
                     return new ArenaClickInfo(kartu, false, this.currentPlayer.getIsTopPlayer(), i, false, true);
