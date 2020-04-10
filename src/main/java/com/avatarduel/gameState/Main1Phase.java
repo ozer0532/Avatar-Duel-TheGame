@@ -7,8 +7,10 @@ import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 
 public class Main1Phase extends GameState implements IMouseClickSub{
+    private GameManager gm;
     private Card selectedCard;
     private RoundInfo roundInfo;
+    private ArenaClickInfo aci;
 
     public Main1Phase(GameManager gameManager){
         super(gameManager);
@@ -21,15 +23,15 @@ public class Main1Phase extends GameState implements IMouseClickSub{
 
     public void EndTurn(){
         // Unsubscribe to mouse click subs
-        List<IMouseClickSub> mc = super.getGameManager().getMouseClickSubs();
+        this.gm = super.getGameManager();
+        List<IMouseClickSub> mc = this.gm.getMouseClickSubs();
         mc.remove(this);
-        GameManager gm = super.getGameManager();
-        gm.setMouseClickSubs(mc);
+        this.gm.setMouseClickSubs(mc);
 
         // Pindah ke main 2 phase, dan kirim round infonya
-        GameState gs = new BattlePhase(gm);
-        gm.setGameState(gs);
-        super.setGameManager(gm);
+        GameState gs = new BattlePhase(this.gm);
+        this.gm.setGameState(gs);
+        super.setGameManager(this.gm);
     }
 
     public void OnMouseClick (MouseEvent event){
