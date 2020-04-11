@@ -93,7 +93,7 @@ public class Char extends Card {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt;
-
+        elmt = "";
         if (this.element==Element.AIR) {
             elmt="Air";
         }
@@ -106,11 +106,11 @@ public class Char extends Card {
         else if (this.element==Element.FIRE) {
             elmt="Fire";
         }
-        else if (this.element=Element.WATER) {
+        else if (this.element==Element.WATER) {
             elmt="Water";
         }
         imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+Elmt+"SmallCard.png";
+        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"SmallCard.png";
         back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
         attr="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
         cs = new CardSprite(front, back, imagePath, x, y);
@@ -121,7 +121,7 @@ public class Char extends Card {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt, desc, type;
-
+        elmt = "";
         if (this.element==Element.AIR) {
             elmt="Air";
         }
@@ -134,11 +134,11 @@ public class Char extends Card {
         else if (this.element==Element.FIRE) {
             elmt="Fire";
         }
-        else if (this.element=Element.WATER) {
+        else if (this.element==Element.WATER) {
             elmt="Water";
         }
         imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+Elmt+"LargeCard.png";
+        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"LargeCard.png";
         back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
         
         cs = new CardSprite(front, back, imagePath);

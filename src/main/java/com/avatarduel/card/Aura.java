@@ -57,7 +57,7 @@ public class Aura extends Skill {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt, pow, attack, defense;
-
+        elmt = "";
         if (this.element==Element.AIR) {
             elmt="Air";
         }
@@ -70,12 +70,12 @@ public class Aura extends Skill {
         else if (this.element==Element.FIRE) {
             elmt="Fire";
         }
-        else if (this.element=Element.WATER) {
+        else if (this.element==Element.WATER) {
             elmt="Water";
         }
 
         imagePath="../../../../resources/com/avatarduel/card/image/skill/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+Elmt+"SmallCard.png";
+        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"SmallCard.png";
         back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
 
         cs = new CardSprite(front, back, imagePath, x, y);
@@ -105,7 +105,7 @@ public class Aura extends Skill {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt, desc, type, effect, attack, defense, pow;
-
+        elmt = "";
         if (this.element==Element.AIR) {
             elmt="Air";
         }
@@ -118,12 +118,12 @@ public class Aura extends Skill {
         else if (this.element==Element.FIRE) {
             elmt="Fire";
         }
-        else if (this.element=Element.WATER) {
+        else if (this.element==Element.WATER) {
             elmt="Water";
         }
 
         imagePath="../../../../resources/com/avatarduel/card/image/skill/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+Elmt+"LargeCard.png";
+        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"LargeCard.png";
         back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
 
         cs = new CardSprite(front, back, imagePath);
