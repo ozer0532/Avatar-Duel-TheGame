@@ -11,9 +11,8 @@ public class DrawPhase extends GameState {
     public void StartTurn(){
         // Ambil kartu dari deck player saat ini
         // Masukin kartu ke hand
-        Card a;
-        a = getCardFromDeck();
-        addPlayerHands(a);
+        Card a = getCardFromDeck();
+        super.getGameManager().getCurrentPlayer().addPlayerHands(a);
     }
 
     public void EndTurn(){
