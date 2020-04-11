@@ -20,7 +20,7 @@ public abstract class Card {
         this.name = name;
         this.element = elmt;
         this.description = desc;
-        this.sprite = this.DrawCardSimple(0, 0, false);
+        this.sprite = this.DrawCardSimple(0, 0, true);
         this.powerNeeded = pow;
     }
 

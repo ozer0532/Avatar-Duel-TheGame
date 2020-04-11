@@ -12,6 +12,7 @@ import java.util.List;
 
 // BattlePhase.java
 public class BattlePhase extends GameState implements IMouseClickSub{
+    private GameManager gm;
     private Card selectedCard;
     private RoundInfo roundInfo;
 
@@ -34,15 +35,15 @@ public class BattlePhase extends GameState implements IMouseClickSub{
 
     public void EndTurn(){
         // Unsubscribe to mouse click subs
-        List<IMouseClickSub> mc = super.getGameManager().getMouseClickSubs();
+        this.gm = super.getGameManager();
+        List<IMouseClickSub> mc = this.gm.getMouseClickSubs();
         mc.remove(this);
-        GameManager gm = super.getGameManager();
-        gm.setMouseClickSubs(mc);
-        super.setGameManager(gm);
+        this.gm.setMouseClickSubs(mc);
 
         // Pindah ke main 2 phase, dan kirim round infonya
-        GameState gs = new Main2Phase(gm);
-        gm.setGameState(gs);
+        GameState gs = new EndPhase(this.gm);
+        this.gm.setGameState(gs);
+        super.setGameManager(this.gm);
     }
 
     public void OnMouseClick (MouseEvent event){
