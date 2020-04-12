@@ -1,9 +1,9 @@
-package com.avatarduel.gameState;
+package com.avatarduel.gamestate;
 
 import java.util.List;
 
 import com.avatarduel.card.*;
-import com.avatarduel.gameManager.*;
+import com.avatarduel.gamemanager.*;
 import com.avatarduel.player.*;
 
 public class Main1Phase extends GameState implements IMouseClickSub{

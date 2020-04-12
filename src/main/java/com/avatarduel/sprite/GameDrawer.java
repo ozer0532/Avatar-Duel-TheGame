@@ -3,7 +3,7 @@ package com.avatarduel.sprite;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.avatarduel.gameManager.GameManager;
+import com.avatarduel.gamemanager.GameManager;
 import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
 

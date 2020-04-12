@@ -1,6 +1,6 @@
-package com.avatarduel.gameState;
+package com.avatarduel.gamestate;
 
-import com.avatarduel.gameManager.GameManager;
+import com.avatarduel.gamemanager.GameManager;
 
 public class EndPhase extends GameState{
     public EndPhase(GameManager gameManager){

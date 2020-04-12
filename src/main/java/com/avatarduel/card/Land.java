@@ -2,7 +2,7 @@
 
 package com.avatarduel.card;
 import com.avatarduel.sprite.CardSprite;
-import com.avatarduel.gameManager.*;
+import com.avatarduel.gamemanager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 

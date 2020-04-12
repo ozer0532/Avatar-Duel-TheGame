@@ -1,4 +1,4 @@
-package com.avatarduel.gameManager;
+package com.avatarduel.gamemanager;
 
 import java.io.File;
 import java.io.IOException;

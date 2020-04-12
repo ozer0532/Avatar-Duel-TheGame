@@ -1,6 +1,6 @@
 // ArenaClickInfo.java
 
-package com.avatarduel.gameState;
+package com.avatarduel.gamestate;
 
 import com.avatarduel.card.*;
 

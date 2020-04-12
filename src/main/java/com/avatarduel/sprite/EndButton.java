@@ -1,6 +1,6 @@
 package com.avatarduel.sprite;
 
-import com.avatarduel.gameManager.*;
+import com.avatarduel.gamemanager.*;
 
 import javafx.scene.input.MouseEvent;
 
