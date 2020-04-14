@@ -14,12 +14,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import com.avatarduel.gameManager.GameManager;
+import com.avatarduel.gamemanager.GameManager;
 import com.avatarduel.util.LongValue;
 
 public class AvatarDuel extends Application {
-  private static final String LAND_CSV_FILE_PATH = "card/data/land.csv";
-
   @Override
   public void start(Stage stage) {
 
