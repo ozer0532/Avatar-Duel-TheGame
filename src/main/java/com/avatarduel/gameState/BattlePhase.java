@@ -14,6 +14,7 @@ import java.util.List;
 public class BattlePhase extends GameState implements IMouseClickSub{
     private GameManager gm;
     private Card selectedCard;
+    private Player pemain;
     private RoundInfo roundInfo;
 
     public BattlePhase(GameManager gameManager){
@@ -49,37 +50,47 @@ public class BattlePhase extends GameState implements IMouseClickSub{
     public void OnMouseClick (MouseEvent event){
         // Kalau klik kartu currentplayer di arena (dan kartunya gak ada di playedCards), simpen ke selectedcard
         // Kalau engga, Selected Card set null
-        Card cardClicked = getChosenCard();
-        List<Character> pc = getPlayedCards();
-        boolean adaKartu = pc.contains(cardClicked);
-        if (!adaKartu) {
-            this.selectedCard = cardClicked;
+        double X = event.getX();
+        double Y = event.getY();
+        this.gm = super.getGameManager();
+        this.pemain = this.gm.getCurrentPlayer();
+        boolean cekOverlap = false;
+        int i;
+        for (i=0; i < this.pemain.getPlayerHands().size(); i++) {
+            if (this.pemain.getPlayerHands().get(i).getSprite().isPointOverlap(X, Y)) {
+                cekOverlap = true;
+                break;
+            }
+        }
+        if (cekOverlap) {
+            this.selectedCard = this.pemain.getPlayerHands().get(i);
         }
         else {
             this.selectedCard = null;
         }
+        
         // Kalau klik kartu musuh di arena, dan selectedCard ada, serang musuh dengan getAttack kartu selectedCard
         //dan getDefend musuh. Kalau musuh gak sedang defend atau ada skill power up, kurangin darah musuh.
         //Simpan kartu ke cardsAttacked di RoundInfo
-        Card cardClicked2 = getSelectedCard();
+        Card cardClicked = getSelectedCard();
         Player p = super.getGameManager().getOppositePlayer();
         Char[] cc = p.getPlayerArena().getCharCard();
         boolean cek = false;
-        for (int i = 0; i < cc.length; i++) {
-            if (cc[i] == cardClicked2) {
+        for (int j = 0; j < cc.length; j++) {
+            if (cc[j] == cardClicked) {
                 cek = true;
                 break;
             }
         }
         if ((cek) && (this.selectedCard != null) && (this.selectedCard.getIsDefense() == false)) {
             int attCur = this.selectedCard.getAttack();
-            int defOpp = cardClicked2.getDefense();
-            int attOpp = cardClicked2.getAttack();
-            if ((cardClicked2.getIsDefense() == false) && (attCur >= attOpp)) {
+            int defOpp = cardClicked.getDefense();
+            int attOpp = cardClicked.getAttack();
+            if ((cardClicked.getIsDefense() == false) && (attCur >= attOpp)) {
                 // karakter lawan mati
-                for (int i=0; i < cc.length; i++) {
-                    if (cc[i] == cardClicked2) {
-                        cc = ArrayUtils.remove(cc, i);
+                for (int a=0; i < cc.length; a++) {
+                    if (cc[a] == cardClicked2) {
+                        cc = ArrayUtils.remove(cc, a);
                         break;
                     }
                 }
@@ -87,17 +98,17 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                 int healthNow = getHealth() - (attCur - attOpp);
                 p.setHealth(healthNow);
             }
-            else if ((cardClicked2.getIsDefense() == true) && (attCur >= defOpp)) {
+            else if ((cardClicked.getIsDefense() == true) && (attCur >= defOpp)) {
                 // karakter lawan mati
-                for (int i=0; i < cc.length; i++) {
-                    if (cc[i] == cardClicked2) {
-                        cc = ArrayUtils.remove(cc, i);
+                for (int b=0; i < cc.length; b++) {
+                    if (cc[b] == cardClicked) {
+                        cc = ArrayUtils.remove(cc, b);
                         break;
                     }
                 }
                 setCharCard(cc);
             }
-            addCardsAttacked(cardClicked2);
+            addCardsAttacked(cardClicked);
         }
     }
 }
