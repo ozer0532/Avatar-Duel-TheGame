@@ -5,10 +5,11 @@ package com.avatarduel.gamestate;
 import com.avatarduel.card.*;
 import com.avatarduel.gamemanager.*;
 import com.avatarduel.player.*;
+import com.avatarduel.sprite.*;
 
 import javafx.scene.input.MouseEvent;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Arrays; 
+import java.util.stream.IntStream; 
 
 // BattlePhase.java
 public class BattlePhase extends GameState implements IMouseClickSub{
@@ -19,14 +20,6 @@ public class BattlePhase extends GameState implements IMouseClickSub{
 
     public BattlePhase(GameManager gameManager){
         super(gameManager);
-    }
-
-    public Card getSelectedCard(){
-        return this.selectedCard;
-    }
-
-    public RoundInfo getRoundInfo(){
-        return this.roundInfo;
     }
 
     public void StartTurn(){
@@ -68,47 +61,47 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         else {
             this.selectedCard = null;
         }
-        
+
         // Kalau klik kartu musuh di arena, dan selectedCard ada, serang musuh dengan getAttack kartu selectedCard
         //dan getDefend musuh. Kalau musuh gak sedang defend atau ada skill power up, kurangin darah musuh.
         //Simpan kartu ke cardsAttacked di RoundInfo
-        Card cardClicked = getSelectedCard();
-        Player p = super.getGameManager().getOppositePlayer();
-        Char[] cc = p.getPlayerArena().getCharCard();
+        double A = event.getX();
+        double B = event.getY();
+        RoundInfo roundinfo = new RoundInfo();
+        Player opp = this.gm.getOppositePlayer();
+        Char[] cc = opp.getPlayerArena().getCharCard();
+        Card cardOpp;
         boolean cek = false;
-        for (int j = 0; j < cc.length; j++) {
-            if (cc[j] == cardClicked) {
+        for (i = 0; i < cc.length; i++) {
+            if (opp.getPlayerHands().get(i).getSprite().isPointOverlap(A, B)) {
                 cek = true;
                 break;
             }
         }
-        if ((cek) && (this.selectedCard != null) && (this.selectedCard.getIsDefense() == false)) {
-            int attCur = this.selectedCard.getAttack();
-            int defOpp = cardClicked.getDefense();
-            int attOpp = cardClicked.getAttack();
-            if ((cardClicked.getIsDefense() == false) && (attCur >= attOpp)) {
-                // karakter lawan mati
-                for (int a=0; i < cc.length; a++) {
-                    if (cc[a] == cardClicked2) {
-                        cc = ArrayUtils.remove(cc, a);
-                        break;
-                    }
-                }
-                setCharCard(cc);
-                int healthNow = getHealth() - (attCur - attOpp);
-                p.setHealth(healthNow);
-            }
-            else if ((cardClicked.getIsDefense() == true) && (attCur >= defOpp)) {
-                // karakter lawan mati
-                for (int b=0; i < cc.length; b++) {
-                    if (cc[b] == cardClicked) {
-                        cc = ArrayUtils.remove(cc, b);
-                        break;
-                    }
-                }
-                setCharCard(cc);
-            }
-            addCardsAttacked(cardClicked);
+        if (cek) {
+            cardOpp = opp.getPlayerArena().getCharCard(i);
         }
+        else {
+            cardOpp = null;
+        }
+        Char charCur = (Char) this.selectedCard;
+        Char charOpp = (Char) cardOpp;
+        if ((cekOverlap) && (cek) && (this.selectedCard != null) && (charCur.getIsDefense() == false)) {
+            int attCur = charCur.getAttack();
+            int defOpp = charOpp.getDefense();
+            int attOpp = charOpp.getAttack();
+            if ((charOpp.getIsDefense() == false) && (attCur >= attOpp)) {
+                // karakter lawan mati
+                opp.getPlayerArena().removeCharCard(i);
+                int healthNow = opp.getPlayerStats().getHealth() - (attCur - attOpp);
+                opp.getPlayerStats().setHealth(healthNow);
+            }
+            else if ((charOpp.getIsDefense() == true) && (attCur >= defOpp)) {
+                // karakter lawan mati
+                opp.getPlayerArena().removeCharCard(i);
+            }
+            roundinfo.addCardsAttacked(charOpp);
+        }
+        super.setGameManager(gm);
     }
 }
