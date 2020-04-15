@@ -2,14 +2,17 @@
 
 package com.avatarduel.card;
 import com.avatarduel.sprite.CardSprite;
+
+import javafx.scene.image.Image;
+
 import com.avatarduel.gamemanager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
 public class PowerUp extends Skill {
     // Constructor
-    public PowerUp(String name, Element elmt, String desc, int pn){
-        super(name, elmt, desc, pn);
+    public PowerUp(String name, Element elmt, String desc, String image, int pn){
+        super(name, elmt, desc, image, pn);
     }
 
     // Method Implementation
@@ -17,6 +20,7 @@ public class PowerUp extends Skill {
         PlayerArena temp=gm.getCurrentPlayer().getPlayerArena();
         temp.addSkillCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);
+        gm.getCurrentPlayer().getPlayerHands().remove(this);
     }
 
     public boolean CanBePlayed(PlayerStats ps){
@@ -50,14 +54,13 @@ public class PowerUp extends Skill {
             elmt="Water";
         }
 
-        imagePath="../../../../resources/com/avatarduel/card/image/skill/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"SmallCard.png";
-        back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
+        imagePath=image;
+        front="com/avatarduel/generic/image/"+elmt+"SmallCard.png";
+        back="com/avatarduel/generic/image/BackSmallCard.png";
 
+        attr="POWER UP / P: " + this.powerNeeded;
         cs = new CardSprite(front, back, imagePath, x, y);
-
-        attr="POW/"+this.powerNeeded;
-        cs.InsertText(attr,0,0);
+        cs.InsertText(attr,25,354,"Arial Bold",32);
         return cs;
     }
     public CardSprite DrawCardDetail() {
@@ -81,9 +84,9 @@ public class PowerUp extends Skill {
             elmt="Water";
         }
 
-        imagePath="../../../../resources/com/avatarduel/card/image/skill/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"LargeCard.png";
-        back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
+        imagePath=image;
+        front="com/avatarduel/generic/image/"+elmt+"LargeCard.png";
+        back="com/avatarduel/generic/image/BackSmallCard.png";
 
         cs = new CardSprite(front, back, imagePath);
 

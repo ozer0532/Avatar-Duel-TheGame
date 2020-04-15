@@ -10,7 +10,6 @@ import com.avatarduel.sprite.*;
 import javafx.scene.input.MouseEvent;
 
 public class Main1Phase extends GameState implements IMouseClickSub{
-    private GameManager gm;
     private Player pemain;
     private Card selectedCard;
     private RoundInfo roundInfo;
@@ -18,24 +17,25 @@ public class Main1Phase extends GameState implements IMouseClickSub{
 
     public Main1Phase(GameManager gameManager){
         super(gameManager);
+        roundInfo = new RoundInfo();
     }
 
     public void StartTurn(){
         // Subscribe to mouse click subs
         super.getGameManager().RegisterMouseClick(this);
+        System.out.println("test");
     }
 
     public void EndTurn(){
         // Unsubscribe to mouse click subs
-        this.gm = super.getGameManager();
-        List<IMouseClickSub> mc = this.gm.getMouseClickSubs();
+        gameManager = super.getGameManager();
+        List<IMouseClickSub> mc = gameManager.getMouseClickSubs();
         mc.remove(this);
-        this.gm.setMouseClickSubs(mc);
 
         // Pindah ke main 2 phase, dan kirim round infonya
-        GameState gs = new BattlePhase(this.gm);
-        this.gm.setGameState(gs);
-        super.setGameManager(this.gm);
+        GameState gs = new BattlePhase(gameManager);
+        gameManager.setGameState(gs);
+        super.setGameManager(gameManager);
     }
 
     public void OnMouseClick (MouseEvent event){
@@ -43,8 +43,7 @@ public class Main1Phase extends GameState implements IMouseClickSub{
         // Kalau engga, SelectedCard set null
         double X = event.getX();
         double Y = event.getY();
-        this.gm = super.getGameManager();
-        this.pemain = this.gm.getCurrentPlayer();
+        this.pemain = gameManager.getCurrentPlayer();
         boolean cekOverlap = false;
         int i;
         for (i=0; i < this.pemain.getPlayerHands().size(); i++) {
@@ -55,54 +54,56 @@ public class Main1Phase extends GameState implements IMouseClickSub{
         }
         if (cekOverlap) {
             this.selectedCard = this.pemain.getPlayerHands().get(i);
+            System.out.println(this.selectedCard.getName());
         }
         else {
-            this.selectedCard = null;
-        }
+            // Kalau ada kartu yang selected, dan klik di arena di area yang valid, pindahin kartu ke arena
+            // (Cek dulu cardCanBePlayed), simpan kartu ke playedCards di RoundInfo.
+            // Kalau engga dan klik di arena, putar kartu Karakter atau buang kartu skill
+            ArenaClickInfo info = gameManager.getArenaClickInfo(X, Y);
+            if (info != null) {
 
-        // Kalau ada kartu yang selected, dan klik di arena di area yang valid, pindahin kartu ke arena
-        // (Cek dulu cardCanBePlayed), simpan kartu ke playedCards di RoundInfo.
-		// Kalau engga dan klik di arena, putar kartu Karakter atau buang kartu skill
-        boolean cek = this.selectedCard.CanBePlayed(this.pemain.getPlayerStats());
-        RoundInfo roundinfo = new RoundInfo();
-        if ((this.selectedCard != null) && (cek)) {
-            if (this.selectedCard instanceof Char) {
-                // if (!ArenaClickInfo.getCharacterSlotOccupied()) {
-                    Char ch = (Char) this.selectedCard;
-                    this.pemain.getPlayerArena().addCharacterCard(ch);
-                    roundinfo.addPlayedCards(ch);
-                // }
-            }
-            else if (this.selectedCard instanceof Skill) {
-                // if (!ArenaClickInfo.getSkillSlotOccupied()) {
-                    Skill sk = (Skill) this.selectedCard;
-                    this.pemain.getPlayerArena().addSkillCard(sk);
-                // }
-            }
-            this.selectedCard = null;
-        }
-        else {
-            // Pemain tidak memilih kartu di tangan dan (mungkin) memilih kartu di arena
-            boolean cekArena = false;
-            for (i=0; i < this.pemain.getPlayerHands().size(); i++) {
-                if (this.pemain.getPlayerHands().get(i).getSprite().isPointOverlap(X, Y)) {
-                    cekArena = true;
-                    break;
-                }
-            }
-            if (this.selectedCard instanceof Char) {
-                Char ch = (Char) this.selectedCard;
-                if (ch.getIsDefense() == true) {
-                    ch.setIsDefense(false);
+                if ((this.selectedCard != null) && (this.selectedCard.CanBePlayed(this.pemain.getPlayerStats()))) {
+                    if (this.selectedCard instanceof Char) {
+                        System.out.println("----CHAR-----");
+                        if (!info.getCharacterSlotOccupied()) {
+                            System.out.println("test");
+                            this.selectedCard.OnCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
+                            roundInfo.addPlayedCards((Char) this.selectedCard);
+                        }
+                    }
+                    else if (this.selectedCard instanceof Skill) {
+                        System.out.println("----SKILL-----");
+                        if (!info.getSkillSlotOccupied()) {
+                            this.selectedCard.OnCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
+                            this.pemain.getPlayerArena().addSkillCard((Skill) this.selectedCard);
+                        }
+                    } else {
+                        System.out.println("----LAND-----");
+                        assert this.selectedCard instanceof Land;
+                        this.selectedCard.OnCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
+                    }
+                    this.selectedCard = null;
                 }
                 else {
-                    ch.setIsDefense(true);
+                    // Pemain tidak memilih kartu di tangan dan (mungkin) memilih kartu di arena
+                    if (info.getChosenCard() != null) {
+                        if (info.getChosenCard() instanceof Char) {
+                            Char ch = (Char) info.getChosenCard();
+                            if (ch.getIsDefense() == true) {
+                                ch.setIsDefense(false);
+                            }
+                            else {
+                                ch.setIsDefense(true);
+                            }
+                        } else if (info.getChosenCard() instanceof Skill) {
+                            this.pemain.getPlayerArena().removeSkillCard(info.getIdx());
+                        }
+                    }
                 }
             }
-            else if (this.selectedCard instanceof Skill) {
-                this.pemain.getPlayerArena().removeSkillCard(i);
-            }
+            
+            this.selectedCard = null;
         }
-        super.setGameManager(gm);
     }
 }

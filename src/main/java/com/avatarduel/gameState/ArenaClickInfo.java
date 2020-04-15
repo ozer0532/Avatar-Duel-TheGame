@@ -11,48 +11,17 @@ public class ArenaClickInfo {
     private int idx; // idx -> 0 sampai 7 kiri ke kanan
     private boolean characterSlotOccupied; // characterSlotOccupied -> True kalo di kolom itu ada karakter
     private boolean skillSlotOccupied; // True kalo di kolom itu ada skill (aura / power up)
+    private boolean isEnemy;
 
     // Constructor
-    public ArenaClickInfo(Card chosenCard, boolean isCharacter, boolean isTopPlayer, int idx, boolean cso, boolean sso){
+    public ArenaClickInfo(Card chosenCard, boolean isCharacter, boolean isTopPlayer, int idx, boolean cso, boolean sso, boolean enemy){
         this.chosenCard = chosenCard;
         this.isCharacter = isCharacter;
         this.isTopPlayer = isTopPlayer;
         this.idx = idx;
         this.characterSlotOccupied = cso;
         this.skillSlotOccupied = sso;
-    }
-
-    // Setter for ArenaClickInfo()
-    public void setChosenCard(Card chosenCard){
-        this.chosenCard = chosenCard;
-    }
-
-    public void setCharacterCard(){
-        this.isCharacter = true;
-    }
-
-    public void setSkillCard(){
-        this.isCharacter = false;
-    }
-
-    public void setTopPlayer(){
-        this.isTopPlayer = true;
-    }
-
-    public void setDownPlayer(){
-        this.isTopPlayer = false;
-    }
-
-    public void setPosition(int idx){
-        this.idx = idx;
-    }
-
-    public void setCharacterSlotOccupied(){
-        this.characterSlotOccupied = true;
-    }
-
-    public void setSkillSlotOccupied(){
-        this.skillSlotOccupied = true;
+        this.isEnemy = enemy;
     }
 
     // Getter for ArenaClickInfo
@@ -78,5 +47,9 @@ public class ArenaClickInfo {
 
     public boolean getSkillSlotOccupied(){
         return skillSlotOccupied;
+    }
+
+    public boolean getIsEnemy() {
+        return isEnemy;
     }
 }

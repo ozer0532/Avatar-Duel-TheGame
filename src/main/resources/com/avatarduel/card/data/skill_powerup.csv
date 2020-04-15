@@ -1,6 +1,6 @@
-id	name	element	description	imagepath
-400	Air Power Up	AIR	Air power up	x
-401	Earth Power Up	EARTH	Earth power up	x
-402	Fire Power Up	FIRE	Fire power up	x
-403	Water Power Up	WATER	Water power up	x
-405	Energy Power Up	ENERGY	Energy power up	x
+id	name	element	description	imagepath	pow
+400	Air Power Up	AIR	Air power up	com/avatarduel/card/image/skill/Air Scooter.png	2
+401	Earth Power Up	EARTH	Earth power up	com/avatarduel/card/image/skill/Rock Gloves.png	2
+402	Fire Power Up	FIRE	Fire power up	com/avatarduel/card/image/skill/Trebuchets.png	2
+403	Water Power Up	WATER	Water power up	com/avatarduel/card/image/skill/Tangle Mine.png	2
+405	Energy Power Up	ENERGY	Energy power up	com/avatarduel/card/image/skill/Astral Projection.png	2

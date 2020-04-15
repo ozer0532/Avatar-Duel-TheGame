@@ -5,7 +5,7 @@ package com.avatarduel.gamestate;
 import com.avatarduel.gamemanager.*;
 
 public abstract class GameState {
-    private GameManager gameManager;
+    protected GameManager gameManager;
 
     public GameState(GameManager gameManager){
         this.gameManager = gameManager;

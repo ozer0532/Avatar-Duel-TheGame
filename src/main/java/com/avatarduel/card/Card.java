@@ -3,6 +3,9 @@
 package com.avatarduel.card;
 
 import com.avatarduel.sprite.CardSprite;
+
+import javafx.scene.image.Image;
+
 import com.avatarduel.gamemanager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
@@ -12,16 +15,18 @@ public abstract class Card {
     protected String name;
     protected Element element;
     protected String description;
+    protected String image;
     protected CardSprite sprite;
     protected int powerNeeded;
 
     // Constructor
-    public Card(String name, Element elmt, String desc, int pow) {
+    public Card(String name, Element elmt, String desc, String image, int pow) {
         this.name = name;
         this.element = elmt;
         this.description = desc;
-        this.sprite = this.DrawCardSimple(0, 0, true);
+        this.image = image;
         this.powerNeeded = pow;
+        this.sprite = this.DrawCardSimple(0, 0, true);
     }
 
     // Setter for Card

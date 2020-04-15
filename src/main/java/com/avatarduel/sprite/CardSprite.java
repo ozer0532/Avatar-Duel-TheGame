@@ -118,7 +118,7 @@ public class CardSprite extends Sprite {
         double absoluteX;
         double absoluteY;
         
-        if (w > 0) {
+        if (scaleX > 0) {
             absoluteX = xStartPos + x - w * pivotX * scaleX;
         } else {
             absoluteX = xStartPos + x - w * (pivotX - 1) * scaleX;
@@ -134,36 +134,31 @@ public class CardSprite extends Sprite {
      */
     @Override
     public void render(GraphicsContext gc) {
-        final double imageXOffset = 0;
-        final double imageYOffset = 0;
+        final double imageXOffset = 36;
+        final double imageYOffset = 35;
         final double imageWidth = 250;
         final double imageHeight = 250;
 
         gc.save();
 
         Affine a = new Affine();
+        if (scaleX > 1) System.out.println("Test");
         a.appendScale(scaleX, scaleY);
 
         a.prependTranslation(absoluteX, absoluteY);
         gc.setTransform(a);
-        if (w > 0) {
-            gc.drawImage(image, absoluteX, absoluteY, w, h);
-            a.prependTranslation(-absoluteX, -absoluteY);
+        if (scaleX > 0) {
+            gc.drawImage(image, 0, 0, w, h);
 
             for (CardText text : textList) {
-                a.prependTranslation(text.getX() + absoluteX, text.getY() + absoluteY);;
-                gc.setTransform(a);
                 gc.setFont(text.getFont());
-                gc.fillText(text.getText(), 0, 0);
-                a.prependTranslation(-text.getX() - absoluteX, -text.getY() - absoluteY);
+                gc.fillText(text.getText(), text.getX(), text.getY());
             }
 
-            a.prependTranslation(absoluteX + imageXOffset, absoluteY + imageYOffset);
-            gc.setTransform(a);
-            gc.drawImage(cardImage, x, y, imageWidth, imageHeight);
+            gc.drawImage(cardImage, imageXOffset, imageYOffset, imageWidth, imageHeight);
         }
         else {
-            gc.drawImage(backface, absoluteX, absoluteY, -w, h);
+            gc.drawImage(backface, 0, 0, -w, h);
         }
 
         gc.restore();
@@ -177,7 +172,7 @@ public class CardSprite extends Sprite {
      */
     @Override
     public boolean isPointOverlap(double x, double y){
-        if (w > 0) {
+        if (scaleX > 0) {
             return (x > absoluteX) && (x < absoluteX + w * scaleX) && (y > absoluteY) && (y < absoluteY + h * scaleY);
         } else {
             return (x > absoluteX) && (x < absoluteX - w * scaleX) && (y > absoluteY) && (y < absoluteY + h * scaleY);

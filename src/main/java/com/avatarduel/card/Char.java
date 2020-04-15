@@ -4,6 +4,9 @@ package com.avatarduel.card;
 
 import com.avatarduel.sprite.CardSprite;
 import com.avatarduel.sprite.CardText;
+
+import javafx.scene.image.Image;
+
 import com.avatarduel.gamemanager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
@@ -14,11 +17,12 @@ public class Char extends Card {
     private boolean isDefense;
     private boolean isPoweredUp;
 
-    public Char(String name, Element elmt, String desc, 
+    public Char(String name, Element elmt, String desc, String image,
          int pow, int atk, int def){
-        super(name, elmt, desc, pow);
+        super(name, elmt, desc, image, pow);
         this.atk = atk;
         this.def = def;
+        this.sprite = this.DrawCardSimple(0, 0, true);
         this.isDefense = false;
         this.isPoweredUp = false;
     }
@@ -77,6 +81,7 @@ public class Char extends Card {
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addCharacterCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);
+        gm.getCurrentPlayer().getPlayerHands().remove(this);
     }
 
     public boolean CanBePlayed(PlayerStats ps){
@@ -109,12 +114,12 @@ public class Char extends Card {
         else if (this.element==Element.WATER) {
             elmt="Water";
         }
-        imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"SmallCard.png";
-        back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
-        attr="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
+        imagePath=image;
+        front="com/avatarduel/generic/image/"+elmt+"SmallCard.png";
+        back="com/avatarduel/generic/image/BackSmallCard.png";
+        attr="A: "+this.atk+" / "+"D: "+this.def+" / "+"P: "+this.powerNeeded;
         cs = new CardSprite(front, back, imagePath, x, y);
-        cs.InsertText(attr,0,0);
+        cs.InsertText(attr,25,354,"Arial Bold",32);
         return cs;
     }
     public CardSprite DrawCardDetail() {
@@ -137,9 +142,9 @@ public class Char extends Card {
         else if (this.element==Element.WATER) {
             elmt="Water";
         }
-        imagePath="../../../../resources/com/avatarduel/card/image/character/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"LargeCard.png";
-        back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
+        imagePath=image;
+        front="com/avatarduel/generic/image/"+elmt+"LargeCard.png";
+        back="com/avatarduel/generic/image/BackSmallCard.png";
         
         cs = new CardSprite(front, back, imagePath);
 

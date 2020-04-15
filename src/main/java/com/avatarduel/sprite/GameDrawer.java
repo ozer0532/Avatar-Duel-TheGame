@@ -2,7 +2,9 @@ package com.avatarduel.sprite;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
+import com.avatarduel.card.Card;
 import com.avatarduel.gamemanager.GameManager;
 import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
@@ -24,50 +26,54 @@ public class GameDrawer {
     // Menggambar kartu-kartu yang berada pada arena
     // p : Player yang kartunya akan digambar
     private void drawArena (Player p) {
-        //double characterYPos;
-        //double skillYPos;
-        //final double cardXPos = ...;
-        //final double cardXOffset = ...;
+        double characterYPos;
+        double skillYPos;
+        final double cardXPos = 358;
+        final double cardXOffset = 95;
 
-        // if (p.isTopPlayer) {
-        //     characterYPos = ...;
-        //     skillYPos = ...;
-        // } else {
-        //     characterYPos = ...;
-        //     skillYPos = ...;
-        // }
+        if (p.getIsTopPlayer()) {
+            characterYPos = 300;
+            skillYPos = 180;
+        } else {
+            characterYPos = 420;
+            skillYPos = 540;
+        }
 
         for (int i = 0; i < 8; i++) {
-            //if (p.getPlayerArena().character[i] != null) { 
-            //    p.playerArena.character[i].MoveToPos(cardXPos + cardXOffset * i, characterYPos);
-            //}
+            if (p.getPlayerArena().getCharCard(i) != null) { 
+                p.getPlayerArena().getCharCard(i).getSprite().moveToPos(cardXPos + cardXOffset * i, characterYPos);
+                p.getPlayerArena().getCharCard(i).getSprite().changeScale(.28, .28);
+            }
         }
         for (int i = 0; i < 8; i++) {
-            //if (p.getPlayerArena().character[i] != null) { 
-            //    p.playerArena.skill[i].MoveToPos(cardXPos + cardXOffset * i, skillYPos);
-            //}
+            if (p.getPlayerArena().getSkillCard(i) != null) { 
+                p.getPlayerArena().getSkillCard(i).getSprite().moveToPos(cardXPos + cardXOffset * i, skillYPos);
+                p.getPlayerArena().getSkillCard(i).getSprite().changeScale(.28, .28);
+            }
         }
     }
 
     // Menggambar kartu-kartu yang berada pada tangan pemain
     // p : Player yang kartunya akan digambar
     private void drawHands (Player p, boolean isCurrentPlayer) {
-        //double yPos;
-        //final double xCenterPos = ...;
-        //final double xOffset = ...;
+        double yPos;
+        final double xCenterPos = 738;
+        final double xOffset = 95;
 
-        // if (p.isTopPlayer) {
-        //     yPos = ...;
-        // } else {
-        //     yPos = ...;
-        // }
+        if (p.getIsTopPlayer()) {
+            yPos = 60;
+        } else {
+            yPos = 660;
+        }
+
+        double size = p.getPlayerHands().size();
         
-        for (int i = 0; i < 8; i++) {
-            //p.getPlayerHands()[i].MoveToPos(cardXPos + cardXOffset * i, characterYPos);
+        for (int i = 0; i < size; i++) {
+            p.getPlayerHands().get(i).getSprite().moveToPos(xCenterPos + xOffset * ((double)i - size/2), yPos);
             if (isCurrentPlayer) {
-                //p.getPlayerHands()[i].ChangeScale(-1, 1);
+                p.getPlayerHands().get(i).getSprite().changeScale(.28, .28);
             } else {
-                //p.getPlayerHands()[i].ChangeScale(1, 1);
+                p.getPlayerHands().get(i).getSprite().changeScale(-0.28, 0.28);
             }
         }
     }
@@ -138,6 +144,7 @@ public class GameDrawer {
     // gm : Tempat penyimpanan sentral informasi tentang game
     // deltaTime : Waktu sejak frame terakhir (untuk animasi)
     public void drawGame (GameManager gm, double deltaTime) {
+        
         drawArena(gm.getCurrentPlayer());
         drawArena(gm.getOppositePlayer());
         drawHands(gm.getCurrentPlayer(), true);
@@ -145,5 +152,9 @@ public class GameDrawer {
         drawStats(gm.getGraphicsContext(), gm.getCurrentPlayer());
         drawStats(gm.getGraphicsContext(), gm.getOppositePlayer());
         // drawCardInfo(gm.gc, ..., ...);
+        for (Sprite spr : drawList) {
+            spr.update(gm.getGraphicsContext(), deltaTime);
+            spr.render(gm.getGraphicsContext());
+        }
     }
 }

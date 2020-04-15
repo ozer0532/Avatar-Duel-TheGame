@@ -9,18 +9,24 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.Stack;
 
+import com.avatarduel.card.Aura;
 import com.avatarduel.card.Card;
+import com.avatarduel.card.Char;
+import com.avatarduel.card.Destroy;
+import com.avatarduel.card.Land;
+import com.avatarduel.card.PowerUp;
+import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
 import com.avatarduel.util.CSVReader;
 
 public class DataLoader {
-    static final String LAND_CSV_FILE_PATH = "card/data/land.csv";
-    static final String CHAR_CSV_FILE_PATH = "card/data/character.csv";
-    static final String AURA_CSV_FILE_PATH = "card/data/skill_aura.csv";
-    static final String PWRU_CSV_FILE_PATH = "card/data/skill_powerup.csv";
-    static final String DSTR_CSV_FILE_PATH = "card/data/skill_destroy.csv";
-    static final String P1_CSV_FILE_PATH = "card/data/player1.csv";
-    static final String P2_CSV_FILE_PATH = "card/data/player2.csv";
+    static final String LAND_CSV_FILE_PATH = "/com/avatarduel/card/data/land.csv";
+    static final String CHAR_CSV_FILE_PATH = "/com/avatarduel/card/data/character.csv";
+    static final String AURA_CSV_FILE_PATH = "/com/avatarduel/card/data/skill_aura.csv";
+    static final String PWRU_CSV_FILE_PATH = "/com/avatarduel/card/data/skill_powerup.csv";
+    static final String DSTR_CSV_FILE_PATH = "/com/avatarduel/card/data/skill_destroy.csv";
+    static final String P1_CSV_FILE_PATH = "/com/avatarduel/card/data/player1.csv";
+    static final String P2_CSV_FILE_PATH = "/com/avatarduel/card/data/player2.csv";
     
     public void LoadCards(Player player1, Player player2) throws IOException, URISyntaxException, NumberFormatException {
         
@@ -49,7 +55,8 @@ public class DataLoader {
         for (Card card : p1Cards) {
             p1Deck.push(card);
         }
-
+        
+        System.out.println("----------------------------- 0 ------------------------------");
         // Get deck contents
         List<String[]> p2Rows = getCSVData(P2_CSV_FILE_PATH);
         // Randomize deck insert
@@ -71,46 +78,46 @@ public class DataLoader {
         Random random = new Random();
         String[] cardAttributes = cardsInList(landRows, card);
         if (cardAttributes != null) {
-            // cardsList.add(random.nextInt(cardsList.size()), 
-            //         new Land(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3]));
+            cardsList.add(random.nextInt(cardsList.size() + 1), 
+                    new Land(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], cardAttributes[4]));
             return;
         }
         cardAttributes = cardsInList(charRows, card);
         if (cardAttributes != null) {
-            // cardsList.add(random.nextInt(cardsList.size()), 
-            //         new Char(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], 
-            //                 Integer.parseInt(cardAttributes[7]), Integer.parseInt(cardAttributes[5]), Integer.parseInt(cardAttributes[6]));
+            cardsList.add(random.nextInt(cardsList.size() + 1), 
+            new Char(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], cardAttributes[4],
+            Integer.parseInt(cardAttributes[7]), Integer.parseInt(cardAttributes[5]), Integer.parseInt(cardAttributes[6])));
             return;
         }
         cardAttributes = cardsInList(auraRows, card);
         if (cardAttributes != null) {
-            // cardsList.add(random.nextInt(cardsList.size()), 
-            //         new Aura(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], 
-            //                 Integer.parseInt(cardAttributes[5]), Integer.parseInt(cardAttributes[6]), Integer.parseInt(cardAttributes[7]));
+            cardsList.add(random.nextInt(cardsList.size() + 1), 
+            new Aura(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], cardAttributes[4],
+            Integer.parseInt(cardAttributes[5]), Integer.parseInt(cardAttributes[6]), Integer.parseInt(cardAttributes[7])));
             return;
         }
         cardAttributes = cardsInList(dstrRows, card);
         if (cardAttributes != null) {
-            // cardsList.add(random.nextInt(cardsList.size()), 
-            //         new Aura(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], 
-            //                 Integer.parseInt(cardAttributes[5]), Integer.parseInt(cardAttributes[6]), Integer.parseInt(cardAttributes[7]));
+            cardsList.add(random.nextInt(cardsList.size() + 1), 
+            new Destroy(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], cardAttributes[4], Integer.parseInt(cardAttributes[5])));
             return;
         }
-        cardAttributes = cardsInList(dstrRows, card);
+        cardAttributes = cardsInList(pwruRows, card);
         if (cardAttributes != null) {
-            // cardsList.add(random.nextInt(cardsList.size()), 
-            //         new Aura(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], 
-            //                 Integer.parseInt(cardAttributes[5]), Integer.parseInt(cardAttributes[6]), Integer.parseInt(cardAttributes[7]));
+            cardsList.add(random.nextInt(cardsList.size() + 1), 
+            new PowerUp(cardAttributes[1], Element.valueOf(cardAttributes[2]), cardAttributes[3], cardAttributes[4], Integer.parseInt(cardAttributes[5])));
             return;
         }
+        // System.out.println("----------------------------- 1 ------------------------------");
         // throw card not found error
     }
-
+    
     private String[] cardsInList (List<String[]> list, String index) {
         Optional<String[]> strings = list.stream()
-                .filter(s -> s[0] == index)
-                .findFirst();
+        .filter(s -> s[0].equals(index))
+        .findFirst();
         if (strings.isPresent()) {
+            System.out.println("Loading card: " + strings.get()[1]);
             return strings.get();
         } else {
             return null;

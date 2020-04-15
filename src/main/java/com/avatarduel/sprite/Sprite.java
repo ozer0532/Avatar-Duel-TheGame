@@ -74,12 +74,12 @@ public class Sprite {
         w = this.image.getWidth(); 
         h = this.image.getHeight();
         pivotX = pivotY = 0.5;
-        anchorX = anchorY = 0.5;
+        anchorX = anchorY = 0;
         scaleX = scaleY = 1;
 
         targetX = targetY = 0;
-        targetScaleX = w;
-        targetScaleY = h;
+        targetScaleX = 1;
+        targetScaleY = 1;
         anchorX = anchorY = 0.5;
     }
 
@@ -97,13 +97,13 @@ public class Sprite {
         w = this.image.getWidth(); 
         h = this.image.getHeight();
         pivotX = pivotY = 0.5;
-        anchorX = anchorY = 0.5;
+        anchorX = anchorY = 0;
         scaleX = scaleY = 1;
 
         targetX = x;
         targetY = y;
-        targetScaleX = w;
-        targetScaleY = h;
+        targetScaleX = 1;
+        targetScaleY = 1;
         anchorX = anchorY = 0.5;
     }
 
@@ -122,13 +122,13 @@ public class Sprite {
         this.w = w;
         this.h = h;
         pivotX = pivotY = 0.5;
-        anchorX = anchorY = 0.5;
+        anchorX = anchorY = 0;
         scaleX = scaleY = 1;
 
         targetX = x;
         targetY = y;
-        targetScaleX = w;
-        targetScaleY = h;
+        targetScaleX = 1;
+        targetScaleY = 1;
         anchorX = anchorY = 0.5;
     }
 

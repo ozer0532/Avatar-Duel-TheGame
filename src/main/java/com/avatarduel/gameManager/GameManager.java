@@ -31,6 +31,9 @@ public class GameManager {
         // Init gameDrawer
         graphicsContext = gc;
         gameDrawer = new GameDrawer();
+
+        mouseClickSubs = new ArrayList<>();
+        mouseMoveSubs = new ArrayList<>();
         
         // Init CurrentPlayer dan oppositePlayer
         currentPlayer = new Player(false);
@@ -41,15 +44,20 @@ public class GameManager {
         try {
             dl.LoadCards(currentPlayer, oppositePlayer);
         } catch (Exception e) {
+            System.out.println(e.toString());
             // Data pada csv tidak valid, perlu restart...
         }
         for (Card card : currentPlayer.getPlayerDeck()) {
             gameDrawer.addToDrawList(card.getSprite());
+            card.getSprite().jumpToPos(50, 660);
+            card.getSprite().changeScale(-0.3, 0.3, true);
         }
         for (Card card : oppositePlayer.getPlayerDeck()) {
             gameDrawer.addToDrawList(card.getSprite());
+            card.getSprite().jumpToPos(50, 60);
+            card.getSprite().changeScale(-0.3, 0.3, true);
         }
-
+        
         // Init exit button dan masukin spritenya ke drawlistnya gamedrawer
         // Masukin 7 kartu ke tangan kedua player
         for (int i = 0; i < 7; i++) {
@@ -59,6 +67,8 @@ public class GameManager {
             oppositePlayer.addPlayerHands(oppositePlayer.getCardFromDeck());
         }
         // Init state dengan draw phase
+        gameState = new DrawPhase(this);
+        gameState.StartTurn();
     }
     
     // Public Method untuk GameManager
@@ -87,27 +97,37 @@ public class GameManager {
         return null;
     }
 
-    public ArenaClickInfo getArenaClickInfo(int X, int Y){
-        // Cek posisi klik dari mouse, apakah ada di belah atas atau bawah, dan ada di kolom ke berapa
-        // Cek apakah ada kartu di posisi tersebut
-        // Return ArenaClickInfo
-        for (int i = 0; i < 8; i++){
-            Card kartu = this.currentPlayer.getPlayerArena().getCharCard(i);
-            if (kartu != null){
-                if (kartu.getSprite().isPointOverlap(X, Y)){
-                    return new ArenaClickInfo(kartu, true, this.currentPlayer.getIsTopPlayer(), i, true, false);
-                }
-            }
+    public ArenaClickInfo getArenaClickInfo(double x, double y) {
+        final double xStart = 310;
+        final double xOffset = 95;
+        final double yStart = 120;
+        final double yOffset = 120;
+
+        int xIndex = (int)((x - xStart) / xOffset);
+        int yIndex = (int)((y - yStart) / yOffset);
+
+        if (xIndex < 0 || xIndex > 7 || yIndex < 0 || yIndex > 3) {
+            System.out.println("Not touching arena");
+            return null;
         }
-        for (int i = 0; i < 8; i++){
-            Card kartu = this.currentPlayer.getPlayerArena().getSkillCard(i);
-            if (kartu != null){
-                if (kartu.getSprite().isPointOverlap(X, Y)){
-                    return new ArenaClickInfo(kartu, false, this.currentPlayer.getIsTopPlayer(), i, false, true);
-                }
-            }
+        System.out.println("Touching arena");
+
+        boolean isCharacter = (yIndex == 1 || yIndex == 2);
+        boolean isTopPlayer = yIndex > 1;
+        boolean isCurrent = getCurrentPlayer().getIsTopPlayer() == isTopPlayer;
+        Player selectedPlayer = (isCurrent) ? getCurrentPlayer() : getOppositePlayer();
+
+        boolean charSlotOccupied = selectedPlayer.getPlayerArena().getCharCard(xIndex) != null;
+        boolean skillSlotOccupied = selectedPlayer.getPlayerArena().getSkillCard(xIndex) != null;
+
+        Card selectedCard;
+        if (isCharacter) {
+            selectedCard = selectedPlayer.getPlayerArena().getCharCard(xIndex);
+        } else {
+            selectedCard = selectedPlayer.getPlayerArena().getSkillCard(xIndex);
         }
-        return null;
+
+        return new ArenaClickInfo(selectedCard, isCharacter, isTopPlayer, xIndex, charSlotOccupied, skillSlotOccupied, isCurrent);
     }
 
     // Setter untuk GameManager
@@ -184,6 +204,7 @@ public class GameManager {
         // Kirim event OnMouseClick ke subs dari MouseClickSubs saat klik
         // Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
         // Reference: (1) - Cari bagian mouse click
+        System.out.println("mouseclick");
         for (int i = 0; i < mouseClickSubs.size(); i++){
             mouseClickSubs.get(i).OnMouseClick(event);
         }

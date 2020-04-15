@@ -2,6 +2,9 @@
 
 package com.avatarduel.card;
 import com.avatarduel.sprite.CardSprite;
+
+import javafx.scene.image.Image;
+
 import com.avatarduel.gamemanager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
@@ -12,11 +15,12 @@ public class Aura extends Skill {
     private int def;
 
     // Constructor
-    public Aura(String name, Element elmt, String desc,
+    public Aura(String name, Element elmt, String desc, String image,
     int pn,int atk, int def){
-        super(name, elmt, desc, pn);
+        super(name, elmt, desc, image, pn);
         this.atk = atk;
         this.def = def;
+        this.sprite = this.DrawCardSimple(0, 0, true);
     }
 
     // Setter for Aura
@@ -42,6 +46,7 @@ public class Aura extends Skill {
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addSkillCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);
+        gm.getCurrentPlayer().getPlayerHands().remove(this);
     }
 
     public boolean CanBePlayed(PlayerStats ps){
@@ -56,7 +61,7 @@ public class Aura extends Skill {
     public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
         // kamus lokal
         CardSprite cs;
-        String imagePath, front, back, attr, elmt, pow, attack, defense;
+        String imagePath, front, back, attr, elmt, attack, defense;
         elmt = "";
         if (this.element==Element.AIR) {
             elmt="Air";
@@ -74,30 +79,25 @@ public class Aura extends Skill {
             elmt="Water";
         }
 
-        imagePath="../../../../resources/com/avatarduel/card/image/skill/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"SmallCard.png";
-        back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
+        imagePath=image;
+        front="com/avatarduel/generic/image/"+elmt+"SmallCard.png";
+        back="com/avatarduel/generic/image/BackSmallCard.png";
 
+        if (this.atk >= 0) {
+            attack = "+" + this.atk;
+        } else {
+            attack = "" + this.atk;
+        }
+
+        if (this.def >= 0) {
+            attack = "+" + this.def;
+        } else {
+            attack = "" + this.def;
+        }
+
+        attr="A: "+attack+" / "+"D: "+this.def+" / "+"P: "+this.powerNeeded;
         cs = new CardSprite(front, back, imagePath, x, y);
-
-        if (this.atk>=0) {
-            attack="+"+this.atk+" ATK";
-        }
-        else {
-            attack=this.atk+" ATK";
-        }
-        
-        if (this.def>=0) {
-            defense="+"+this.def+" DEF";
-        }
-        else {
-            defense=this.def+" DEF";
-        }
-
-        attr=attack+" "+defense;
-        pow="POW/"+this.powerNeeded;
-        cs.InsertText(attr,0,0);
-        cs.InsertText(pow,0,0);
+        cs.InsertText(attr,25,354,"Arial Bold",32);
 
         return cs;
     }
@@ -122,9 +122,9 @@ public class Aura extends Skill {
             elmt="Water";
         }
 
-        imagePath="../../../../resources/com/avatarduel/card/image/skill/"+this.name+".png";
-        front="../../../../resources/com/avatarduel/generic/image/"+elmt+"LargeCard.png";
-        back="../../../../resources/com/avatarduel/generic/image/BackSmallCard.png";
+        imagePath=image;
+        front="com/avatarduel/generic/image/"+elmt+"LargeCard.png";
+        back="com/avatarduel/generic/image/BackSmallCard.png";
 
         cs = new CardSprite(front, back, imagePath);
         
