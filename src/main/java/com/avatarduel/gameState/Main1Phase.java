@@ -30,7 +30,7 @@ public class Main1Phase extends GameState implements IMouseClickSub{
         gameManager.UnregisterMouseClick(this);
 
         // Pindah ke main 2 phase, dan kirim round infonya
-        GameState gs = new BattlePhase(gameManager);
+        GameState gs = new BattlePhase(gameManager, roundInfo);
         gameManager.setGameState(gs);
         gameManager.getGameState().StartTurn();
     }
@@ -65,7 +65,6 @@ public class Main1Phase extends GameState implements IMouseClickSub{
                     if (this.selectedCard instanceof Char) {
                         System.out.println("----CHAR-----");
                         if (!info.getCharacterSlotOccupied()) {
-                            System.out.println("test");
                             this.selectedCard.OnCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
                             roundInfo.addPlayedCards((Char) this.selectedCard);
                         }

@@ -126,17 +126,14 @@ public class GameManager {
 
         Card selectedCard;
         if (isCharacter) {
-            System.out.println("CHAR: " + xIndex);
             selectedCard = selectedPlayer.getPlayerArena().getCharCard(xIndex);
             System.out.println(selectedPlayer.getPlayerArena().getCharCard(xIndex) == null);
         } else {
-            System.out.println("SKILL: " + xIndex);
             selectedCard = selectedPlayer.getPlayerArena().getSkillCard(xIndex);
             System.out.println(selectedPlayer.getPlayerArena().getSkillCard(xIndex) == null);
         }
-        System.out.println("TOP: " + selectedPlayer.getIsTopPlayer());
 
-        return new ArenaClickInfo(selectedCard, isCharacter, isTopPlayer, xIndex, charSlotOccupied, skillSlotOccupied, isCurrent);
+        return new ArenaClickInfo(selectedCard, isCharacter, isTopPlayer, xIndex, charSlotOccupied, skillSlotOccupied, !isCurrent);
     }
 
     // Setter untuk GameManager
