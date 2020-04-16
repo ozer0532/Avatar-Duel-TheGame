@@ -91,12 +91,12 @@ public class Aura extends Skill {
         }
 
         if (this.def >= 0) {
-            attack = "+" + this.def;
+            defense = "+" + this.def;
         } else {
-            attack = "" + this.def;
+            defense = "" + this.def;
         }
 
-        attr="A: "+attack+" / "+"D: "+this.def+" / "+"P: "+this.powerNeeded;
+        attr="A: "+attack+" / "+"D: "+defense+" / "+"P: "+this.powerNeeded;
         cs = new CardSprite(front, back, imagePath, x, y);
         cs.InsertText(attr,25,354,"Arial Bold",32);
 
