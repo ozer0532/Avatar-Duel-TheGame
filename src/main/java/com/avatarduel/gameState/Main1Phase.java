@@ -22,7 +22,7 @@ public class Main1Phase extends GameState implements IMouseClickSub{
     public void StartTurn(){
         // Subscribe to mouse click subs
         gameManager.RegisterMouseClick(this);
-        System.out.println("test");
+        System.out.println(">>>>> MAIN PHASE START <<<<<");
     }
 
     public void EndTurn(){
@@ -32,6 +32,7 @@ public class Main1Phase extends GameState implements IMouseClickSub{
         // Pindah ke main 2 phase, dan kirim round infonya
         GameState gs = new BattlePhase(gameManager);
         gameManager.setGameState(gs);
+        gameManager.getGameState().StartTurn();
     }
 
     public void OnMouseClick (MouseEvent event){

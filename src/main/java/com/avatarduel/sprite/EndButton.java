@@ -10,13 +10,16 @@ public class EndButton implements IMouseClickSub {
 
     public EndButton (GameManager gm) {
         this.gm = gm;
-        spr = new Sprite("Gambar Tombolnya", 200, 300);
+        spr = new Sprite("com/avatarduel/generic/image/EndTurnButton.png", 200, 300);
+        spr.setPivot(0, 0.5);
+        spr.jumpToPos(0, 360);
         gm.getGameDrawer().addToDrawList(spr);
     }
 
     public void OnMouseClick (MouseEvent mouse) {
         if (spr.isPointOverlap(mouse.getX(), mouse.getY())) {
-            //gm.getGameState().EndTurn();
+            System.out.println("TES");
+            gm.getGameState().EndTurn();
         }
     }
 }

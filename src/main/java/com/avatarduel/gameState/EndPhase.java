@@ -9,6 +9,7 @@ public class EndPhase extends GameState{
 
     public void StartTurn(){
         // Tuker current player dan opposite player
+        System.out.println(">>>>> END PHASE START <<<<<");
         gameManager.switchPlayer();
 
         // Panggil endturn

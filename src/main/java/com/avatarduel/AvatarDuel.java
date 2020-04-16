@@ -28,7 +28,7 @@ public class AvatarDuel extends Application {
     
     Canvas canvas = new Canvas(1280, 720);
     root.getChildren().add(canvas);
-    Image background = new Image("com/avatarduel/generic/image/Background.jpg"); // TODO: Change to white square later...
+    Image background = new Image("com/avatarduel/generic/image/Background.png"); // TODO: Change to white square later...
     
     GraphicsContext gc = canvas.getGraphicsContext2D();
     GameManager gm = new GameManager(gc);

@@ -51,13 +51,13 @@ public class GameManager {
         }
         for (Card card : currentPlayer.getPlayerDeck()) {
             gameDrawer.addToDrawList(card.getSprite());
-            card.getSprite().jumpToPos(50, 660);
-            card.getSprite().changeScale(-0.3, 0.3, true);
+            card.getSprite().jumpToPos(55, 656);
+            card.getSprite().changeScale(-0.32, 0.32, true);
         }
         for (Card card : oppositePlayer.getPlayerDeck()) {
             gameDrawer.addToDrawList(card.getSprite());
-            card.getSprite().jumpToPos(50, 60);
-            card.getSprite().changeScale(-0.3, 0.3, true);
+            card.getSprite().jumpToPos(55, 64);
+            card.getSprite().changeScale(-0.32, 0.32, true);
         }
         
         // Init exit button dan masukin spritenya ke drawlistnya gamedrawer
@@ -68,6 +68,10 @@ public class GameManager {
         for (int i = 0; i < 7; i++) {
             oppositePlayer.addPlayerHands(oppositePlayer.getCardFromDeck());
         }
+
+        // Init tombol endturn
+        RegisterMouseClick(new EndButton(this));
+
         // Init state dengan draw phase
         gameState = new DrawPhase(this);
         gameState.StartTurn();

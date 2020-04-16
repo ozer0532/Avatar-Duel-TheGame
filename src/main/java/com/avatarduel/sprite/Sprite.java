@@ -316,6 +316,7 @@ public class Sprite {
         a.appendScale(scaleX, scaleY);
 
         a.prependTranslation(absoluteX, absoluteY);
+        gc.setTransform(a);
         gc.drawImage(image, 0, 0, w, h);
 
         gc.restore();
@@ -328,6 +329,6 @@ public class Sprite {
      * @return Bernilai true bila titik bertumpang tindih dengan sprite
      */
     public boolean isPointOverlap(double x, double y){
-        return (x > absoluteX) && (x < absoluteX + w) && (y > absoluteY) && (y < absoluteY + h);
+        return (x > absoluteX) && (x < absoluteX + w * scaleX) && (y > absoluteY) && (y < absoluteY + h * scaleY);
     }
 }

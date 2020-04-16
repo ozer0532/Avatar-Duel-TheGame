@@ -42,13 +42,13 @@ public class GameDrawer {
         for (int i = 0; i < 8; i++) {
             if (p.getPlayerArena().getCharCard(i) != null) { 
                 p.getPlayerArena().getCharCard(i).getSprite().moveToPos(cardXPos + cardXOffset * i, characterYPos);
-                p.getPlayerArena().getCharCard(i).getSprite().changeScale(.28, .28);
+                p.getPlayerArena().getCharCard(i).getSprite().changeScale(0.28, 0.28);
             }
         }
         for (int i = 0; i < 8; i++) {
             if (p.getPlayerArena().getSkillCard(i) != null) { 
                 p.getPlayerArena().getSkillCard(i).getSprite().moveToPos(cardXPos + cardXOffset * i, skillYPos);
-                p.getPlayerArena().getSkillCard(i).getSprite().changeScale(.28, .28);
+                p.getPlayerArena().getSkillCard(i).getSprite().changeScale(0.28, 0.28);
             }
         }
     }
@@ -71,7 +71,7 @@ public class GameDrawer {
         for (int i = 0; i < size; i++) {
             p.getPlayerHands().get(i).getSprite().moveToPos(xCenterPos + xOffset * ((double)i - size/2), yPos);
             if (isCurrentPlayer) {
-                p.getPlayerHands().get(i).getSprite().changeScale(.28, .28);
+                p.getPlayerHands().get(i).getSprite().changeScale(0.28, 0.28);
             } else {
                 p.getPlayerHands().get(i).getSprite().changeScale(-0.28, 0.28);
             }
@@ -141,11 +141,12 @@ public class GameDrawer {
     // }
 
     private void drawDiscardPile(List<CardSprite> cards) {
-        final double xPos = 1380;
+        final double xPos = 1280;
         final double yPos = 360;
 
         for (CardSprite card : cards) {
             card.moveToPos(xPos, yPos);
+            card.changeScale(0.28, 0.28);
         }
     }
 

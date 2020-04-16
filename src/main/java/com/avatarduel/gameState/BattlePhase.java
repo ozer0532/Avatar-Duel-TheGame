@@ -24,6 +24,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
 
     public void StartTurn(){
         // Subscribe to mouse click subs
+        System.out.println(">>>>> BATTLE PHASE START <<<<<");
         gameManager.RegisterMouseClick(this);
     }
 
@@ -34,6 +35,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         // Pindah ke main 2 phase, dan kirim round infonya
         GameState gs = new EndPhase(gameManager);
         gameManager.setGameState(gs);
+        gameManager.getGameState().StartTurn();
     }
 
     public void OnMouseClick (MouseEvent event){
