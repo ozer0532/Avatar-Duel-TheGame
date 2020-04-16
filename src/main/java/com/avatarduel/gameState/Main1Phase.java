@@ -13,7 +13,6 @@ public class Main1Phase extends GameState implements IMouseClickSub{
     private Player pemain;
     private Card selectedCard;
     private RoundInfo roundInfo;
-    private ArenaClickInfo aci;
 
     public Main1Phase(GameManager gameManager){
         super(gameManager);
@@ -22,20 +21,17 @@ public class Main1Phase extends GameState implements IMouseClickSub{
 
     public void StartTurn(){
         // Subscribe to mouse click subs
-        super.getGameManager().RegisterMouseClick(this);
+        gameManager.RegisterMouseClick(this);
         System.out.println("test");
     }
 
     public void EndTurn(){
         // Unsubscribe to mouse click subs
-        gameManager = super.getGameManager();
-        List<IMouseClickSub> mc = gameManager.getMouseClickSubs();
-        mc.remove(this);
+        gameManager.UnregisterMouseClick(this);
 
         // Pindah ke main 2 phase, dan kirim round infonya
         GameState gs = new BattlePhase(gameManager);
         gameManager.setGameState(gs);
-        super.setGameManager(gameManager);
     }
 
     public void OnMouseClick (MouseEvent event){
@@ -64,6 +60,7 @@ public class Main1Phase extends GameState implements IMouseClickSub{
             if (info != null) {
 
                 if ((this.selectedCard != null) && (this.selectedCard.CanBePlayed(this.pemain.getPlayerStats()))) {
+                    System.out.println("----PLAYING CARD-----");
                     if (this.selectedCard instanceof Char) {
                         System.out.println("----CHAR-----");
                         if (!info.getCharacterSlotOccupied()) {
@@ -88,7 +85,9 @@ public class Main1Phase extends GameState implements IMouseClickSub{
                 else {
                     // Pemain tidak memilih kartu di tangan dan (mungkin) memilih kartu di arena
                     if (info.getChosenCard() != null) {
+                        System.out.println("----MODDING ARENA-----");
                         if (info.getChosenCard() instanceof Char) {
+                            System.out.println("-----SWITCH STANCE-----");
                             Char ch = (Char) info.getChosenCard();
                             if (ch.getIsDefense() == true) {
                                 ch.setIsDefense(false);
@@ -97,6 +96,8 @@ public class Main1Phase extends GameState implements IMouseClickSub{
                                 ch.setIsDefense(true);
                             }
                         } else if (info.getChosenCard() instanceof Skill) {
+                            System.out.println("-----REMOVE SKILL-----");
+                            gameManager.addToDiscardPile(this.pemain.getPlayerArena().getSkillCard(info.getIdx()));
                             this.pemain.getPlayerArena().removeSkillCard(info.getIdx());
                         }
                     }

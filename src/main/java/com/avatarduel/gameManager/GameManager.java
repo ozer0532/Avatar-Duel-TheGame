@@ -21,6 +21,7 @@ public class GameManager {
     private GameState gameState;
     private Player currentPlayer;
     private Player oppositePlayer;
+    private List<CardSprite> discardPile;
     private List<IMouseClickSub> mouseClickSubs;
     private List<IMouseMoveSub> mouseMoveSubs;
     private GameDrawer gameDrawer;
@@ -34,6 +35,7 @@ public class GameManager {
 
         mouseClickSubs = new ArrayList<>();
         mouseMoveSubs = new ArrayList<>();
+        discardPile = new ArrayList<>();
         
         // Init CurrentPlayer dan oppositePlayer
         currentPlayer = new Player(false);
@@ -107,13 +109,11 @@ public class GameManager {
         int yIndex = (int)((y - yStart) / yOffset);
 
         if (xIndex < 0 || xIndex > 7 || yIndex < 0 || yIndex > 3) {
-            System.out.println("Not touching arena");
             return null;
         }
-        System.out.println("Touching arena");
 
         boolean isCharacter = (yIndex == 1 || yIndex == 2);
-        boolean isTopPlayer = yIndex > 1;
+        boolean isTopPlayer = yIndex < 2;
         boolean isCurrent = getCurrentPlayer().getIsTopPlayer() == isTopPlayer;
         Player selectedPlayer = (isCurrent) ? getCurrentPlayer() : getOppositePlayer();
 
@@ -122,10 +122,15 @@ public class GameManager {
 
         Card selectedCard;
         if (isCharacter) {
+            System.out.println("CHAR: " + xIndex);
             selectedCard = selectedPlayer.getPlayerArena().getCharCard(xIndex);
+            System.out.println(selectedPlayer.getPlayerArena().getCharCard(xIndex) == null);
         } else {
+            System.out.println("SKILL: " + xIndex);
             selectedCard = selectedPlayer.getPlayerArena().getSkillCard(xIndex);
+            System.out.println(selectedPlayer.getPlayerArena().getSkillCard(xIndex) == null);
         }
+        System.out.println("TOP: " + selectedPlayer.getIsTopPlayer());
 
         return new ArenaClickInfo(selectedCard, isCharacter, isTopPlayer, xIndex, charSlotOccupied, skillSlotOccupied, isCurrent);
     }
@@ -143,22 +148,9 @@ public class GameManager {
         this.oppositePlayer = P;
     }
 
-    public void setGameDrawer(GameDrawer gd){
-        this.gameDrawer = gd;
+    public void addToDiscardPile(Card card) {
+        discardPile.add(card.getSprite());
     }
-
-    public void setMouseClickSubs(List<IMouseClickSub> mcSubs){
-        this.mouseClickSubs = mcSubs;
-    }
-
-    public void setMouseMoveSubs(List<IMouseMoveSub> mmSubs){
-        this.mouseMoveSubs = mmSubs;
-    }
-
-    public void setGraphicsContext(GraphicsContext gc){
-        this.graphicsContext = gc;
-    }
-
     
     // Getter untuk GameManager
     public GameState getGameState(){
@@ -173,12 +165,8 @@ public class GameManager {
         return this.oppositePlayer;
     }
 
-    public List<IMouseClickSub> getMouseClickSubs(){
-        return this.mouseClickSubs;
-    }
-
-    public List<IMouseMoveSub> getMouseMoveSubs(){
-        return this.mouseMoveSubs;
+    public List<CardSprite> getDiscardPile() {
+        return this.discardPile;
     }
     
     public GameDrawer getGameDrawer(){
@@ -195,9 +183,17 @@ public class GameManager {
         mouseClickSubs.add(click);
     }
 
+    public void UnregisterMouseClick(IMouseClickSub click) {
+        mouseClickSubs.remove(click);
+    }
+
     public void RegisterMouseMove(IMouseMoveSub move){
         // Mendaftarkan IMouseClickSub agar dikirim event nanti
         mouseMoveSubs.add(move);
+    }
+
+    public void UnregisterMouseMove(IMouseMoveSub move) {
+        mouseMoveSubs.remove(move);
     }
 
     public void sendMouseClickEvent(MouseEvent event){

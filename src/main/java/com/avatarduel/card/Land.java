@@ -29,6 +29,7 @@ public class Land extends Card {
             temp.incrementPower(this.element);
             temp.setPlayedLandThisRound(true);
             gm.getCurrentPlayer().getPlayerHands().remove(this);
+            gm.addToDiscardPile(this);
         }
     }
 

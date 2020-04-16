@@ -82,6 +82,7 @@ public class Char extends Card {
         temp.addCharacterCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);
         gm.getCurrentPlayer().getPlayerHands().remove(this);
+        gm.getCurrentPlayer().getPlayerStats().usePower(element, powerNeeded);
     }
 
     public boolean CanBePlayed(PlayerStats ps){

@@ -1,5 +1,5 @@
 id	name	element	description	imagepath	pow
-500	Destroy	AIR	Air power up	com/avatarduel/card/image/skill/Asphyxiation.png	2
+500	Destroy	AIR	Air power up	com/avatarduel/card/image/skill/Asphyxiation.png	1
 501	Destroy	EARTH	Earth power up	com/avatarduel/card/image/skill/Earth Sink.png	2
 502	Destroy	FIRE	Fire power up	com/avatarduel/card/image/skill/Lightningbending.png	2
 503	Destroy	WATER	Water power up	com/avatarduel/card/image/skill/Bloodbending.png	2

@@ -14,7 +14,6 @@ import java.util.stream.IntStream;
 
 // BattlePhase.java
 public class BattlePhase extends GameState implements IMouseClickSub{
-    private GameManager gm;
     private Card selectedCard;
     private Player pemain;
     private RoundInfo roundInfo;
@@ -25,20 +24,16 @@ public class BattlePhase extends GameState implements IMouseClickSub{
 
     public void StartTurn(){
         // Subscribe to mouse click subs
-        super.getGameManager().RegisterMouseClick(this);
+        gameManager.RegisterMouseClick(this);
     }
 
     public void EndTurn(){
         // Unsubscribe to mouse click subs
-        this.gm = super.getGameManager();
-        List<IMouseClickSub> mc = this.gm.getMouseClickSubs();
-        mc.remove(this);
-        this.gm.setMouseClickSubs(mc);
+        gameManager.UnregisterMouseClick(this);
 
         // Pindah ke main 2 phase, dan kirim round infonya
-        GameState gs = new EndPhase(this.gm);
-        this.gm.setGameState(gs);
-        super.setGameManager(this.gm);
+        GameState gs = new EndPhase(gameManager);
+        gameManager.setGameState(gs);
     }
 
     public void OnMouseClick (MouseEvent event){
@@ -46,8 +41,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         // Kalau engga, Selected Card set null
         double X = event.getX();
         double Y = event.getY();
-        this.gm = super.getGameManager();
-        this.pemain = this.gm.getCurrentPlayer();
+        this.pemain = gameManager.getCurrentPlayer();
         boolean cekOverlap = false;
         int i;
         for (i=0; i < this.pemain.getPlayerHands().size(); i++) {
@@ -69,7 +63,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         double A = event.getX();
         double B = event.getY();
         RoundInfo roundinfo = new RoundInfo();
-        Player opp = this.gm.getOppositePlayer();
+        Player opp = gameManager.getOppositePlayer();
         Char[] cc = opp.getPlayerArena().getCharCard();
         Card cardOpp;
         boolean cek = false;
@@ -103,6 +97,5 @@ public class BattlePhase extends GameState implements IMouseClickSub{
             }
             roundinfo.addCardsAttacked(charOpp);
         }
-        super.setGameManager(gm);
     }
 }

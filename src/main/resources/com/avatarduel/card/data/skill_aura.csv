@@ -1,8 +1,8 @@
 id	name	element	description	imagepath	power	attack	defense
-301	Air Funnel	AIR	Technique to create a cannon for small projectiles.	com/avatarduel/card/image/skill/Air Funnel.png	2	4	0
-302	Air Scooter	AIR	A form of transportation invented by Aang.	com/avatarduel/card/image/skill/Air Scooter.png	2	2	4
-303	Airbender Staff	AIR	A wooden stave used primarily by airbenders to augment their bending.	com/avatarduel/card/image/skill/Airbender Staff.png	2	2	2
-304	Airbender Upgraded Staff	AIR	Upgraded staff made by Mechanist for Aang at the Fire Nation Invasion.	com/avatarduel/card/image/skill/Airbender Upgraded Staff.png	2	3	3
+301	Air Funnel	AIR	Technique to create a cannon for small projectiles.	com/avatarduel/card/image/skill/Air Funnel.png	1	4	0
+302	Air Scooter	AIR	A form of transportation invented by Aang.	com/avatarduel/card/image/skill/Air Scooter.png	1	2	4
+303	Airbender Staff	AIR	A wooden stave used primarily by airbenders to augment their bending.	com/avatarduel/card/image/skill/Airbender Staff.png	1	2	2
+304	Airbender Upgraded Staff	AIR	Upgraded staff made by Mechanist for Aang at the Fire Nation Invasion.	com/avatarduel/card/image/skill/Airbender Upgraded Staff.png	1	3	3
 305	Asphyxiation	AIR	Manipulates the flow of air within a person's respiratory system and prevents any new intake of breath by forming a ball of air around the head.	com/avatarduel/card/image/skill/Asphyxiation.png	3	-3	-3
 306	Glider	AIR	Aerial transportation made by Mechanist, inspired from Air nomad gliders.	com/avatarduel/card/image/skill/Glider.png	1	2	-1
 307	Hot Air Balloon	AIR	Air balloon created by Mechanist, originally developed for the Fire Nation	com/avatarduel/card/image/skill/Hot Air Balloon.png	3	3	2

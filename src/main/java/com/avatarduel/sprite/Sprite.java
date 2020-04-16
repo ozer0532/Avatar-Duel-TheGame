@@ -292,15 +292,15 @@ public class Sprite {
      * @param deltaTime waktu sejak animasi sebelumnya dalam detik
      */
     public void update(GraphicsContext gc, double deltaTime) {
-        final double smoothing = 5;
+        final double smoothing = 15;
 
         // Melakukan smoothing dengan "linear interpolation" (a*t + b*(1-t))
-        x = (x * smoothing * deltaTime) + (targetX * (1 - smoothing * deltaTime));
-        y = (y * smoothing * deltaTime) + (targetY * (1 - smoothing * deltaTime));
-        anchorX = (anchorX * smoothing * deltaTime) + (targetAnchorX * (1 - smoothing * deltaTime));
-        anchorY = (anchorY * smoothing * deltaTime) + (targetAnchorY * (1 - smoothing * deltaTime));
-        scaleX = (scaleX * smoothing * deltaTime) + (targetScaleX * (1 - smoothing * deltaTime));
-        scaleY = (scaleY * smoothing * deltaTime) + (targetScaleY * (1 - smoothing * deltaTime));
+        x = (x * (1 - smoothing * deltaTime)) + (targetX * (smoothing * deltaTime));
+        y = (y * (1 - smoothing * deltaTime)) + (targetY * (smoothing * deltaTime));
+        anchorX = (anchorX * (1 - smoothing * deltaTime)) + (targetAnchorX * (smoothing * deltaTime));
+        anchorY = (anchorY * (1 - smoothing * deltaTime)) + (targetAnchorY * (smoothing * deltaTime));
+        scaleX = (scaleX * (1 - smoothing * deltaTime)) + (targetScaleX * (smoothing * deltaTime));
+        scaleY = (scaleY * (1 - smoothing * deltaTime)) + (targetScaleY * (smoothing * deltaTime));
 
         updateAbsolutePosition(gc);
     }

@@ -9,9 +9,7 @@ public class EndPhase extends GameState{
 
     public void StartTurn(){
         // Tuker current player dan opposite player
-        GameManager gm = super.getGameManager();
-        gm.switchPlayer();
-        super.setGameManager(gm);
+        gameManager.switchPlayer();
 
         // Panggil endturn
         this.EndTurn();
@@ -19,7 +17,6 @@ public class EndPhase extends GameState{
 
     public void EndTurn(){
         // Pindah ke draw phase
-        GameManager gm = super.getGameManager();
-        super.getGameManager().setGameState(new DrawPhase(gm));
+        gameManager.setGameState(new DrawPhase(gameManager));
     }
 }

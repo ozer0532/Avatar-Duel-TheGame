@@ -25,6 +25,7 @@ public class Destroy extends Skill {
             gm.getCurrentPlayer().getPlayerArena().removeSkillCard(idx);
         }
         gm.getCurrentPlayer().getPlayerHands().remove(this);
+        gm.getCurrentPlayer().getPlayerStats().usePower(element, powerNeeded);
         
     }
 

@@ -140,6 +140,15 @@ public class GameDrawer {
     //     spr.render(gc);
     // }
 
+    private void drawDiscardPile(List<CardSprite> cards) {
+        final double xPos = 1380;
+        final double yPos = 360;
+
+        for (CardSprite card : cards) {
+            card.moveToPos(xPos, yPos);
+        }
+    }
+
     // Menjalankan urutan rendering pada game
     // gm : Tempat penyimpanan sentral informasi tentang game
     // deltaTime : Waktu sejak frame terakhir (untuk animasi)
@@ -152,6 +161,7 @@ public class GameDrawer {
         drawStats(gm.getGraphicsContext(), gm.getCurrentPlayer());
         drawStats(gm.getGraphicsContext(), gm.getOppositePlayer());
         // drawCardInfo(gm.gc, ..., ...);
+        drawDiscardPile(gm.getDiscardPile());
         for (Sprite spr : drawList) {
             spr.update(gm.getGraphicsContext(), deltaTime);
             spr.render(gm.getGraphicsContext());

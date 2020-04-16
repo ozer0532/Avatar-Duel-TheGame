@@ -47,6 +47,7 @@ public class Aura extends Skill {
         temp.addSkillCard(idx,this);
         gm.getCurrentPlayer().setPlayerArena(temp);
         gm.getCurrentPlayer().getPlayerHands().remove(this);
+        gm.getCurrentPlayer().getPlayerStats().usePower(element, powerNeeded);
     }
 
     public boolean CanBePlayed(PlayerStats ps){
