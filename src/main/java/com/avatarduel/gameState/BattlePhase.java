@@ -54,7 +54,9 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                 if (info.getCharacterSlotOccupied()) {
                     System.out.println("----USING CARD-----");
                     selectedCard = gameManager.getCurrentPlayer().getPlayerArena().getCharCard(info.getIdx());
-                    if (roundInfo.getPlayedCards().contains(selectedCard) || roundInfo.getCardsAttacked().contains(selectedCard)) {
+                    if (roundInfo.getPlayedCards().contains(selectedCard) || 
+                            roundInfo.getCardsAttacked().contains(selectedCard) ||
+                            selectedCard.getIsDefense()) {
                         System.out.println("----CANCEL USAGE-----");
                         selectedCard = null;
                     } else {
@@ -65,41 +67,57 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                 // Kalau klik kartu musuh di arena, dan selectedCard ada, serang musuh dengan getAttack kartu selectedCard
                 //dan getDefend musuh. Kalau musuh gak sedang defend atau ada skill power up, kurangin darah musuh.
                 //Simpan kartu ke cardsAttacked di RoundInfo
-                if (info.getCharacterSlotOccupied() && selectedCard != null) {
+                if (selectedCard != null) {
                     Player opp = gameManager.getOppositePlayer();
                     Player cur = gameManager.getCurrentPlayer();
-                    Char charOpp = opp.getPlayerArena().getCharCard(info.getIdx());
                     Char charCur = this.selectedCard;
-                    Aura auraOpp = null;
                     Aura auraCur = null;
                     if (cur.getPlayerArena().getSkillCard(selectedCardIndex) instanceof Aura) {
                         auraCur = (Aura)cur.getPlayerArena().getSkillCard(selectedCardIndex);
                     }
-                    if (opp.getPlayerArena().getSkillCard(info.getIdx()) instanceof Aura) {
-                        auraOpp = (Aura)cur.getPlayerArena().getSkillCard(selectedCardIndex);
-                    }
-
-                    int attCur = charCur.getAttack() + (auraCur != null ? auraCur.getAttack() : 0);
-                    int defOpp = charOpp.getDefense() + (auraOpp != null ? auraOpp.getDefense() : 0);
-                    int attOpp = charOpp.getAttack() + (auraOpp != null ? auraOpp.getAttack() : 0);
-                    System.out.println("----ATTACKING CARD-----");
-                    if (!charOpp.getIsDefense() && (attCur > attOpp)) {
-                        // karakter lawan mati
-                        opp.getPlayerArena().removeCharCard(info.getIdx());
-                        opp.getPlayerStats().takeDamage(attCur - attOpp);
-                        gameManager.addToDiscardPile(charOpp);
-                        roundInfo.addCardsAttacked(charCur);
-                    }
-                    else if (charOpp.getIsDefense() && (attCur > defOpp)) {
-                        // karakter lawan mati
-                        opp.getPlayerArena().removeCharCard(info.getIdx());
-                        gameManager.addToDiscardPile(charOpp);
-                        roundInfo.addCardsAttacked(charCur);
-                        if (cur.getPlayerArena().getSkillCard(info.getIdx()) instanceof PowerUp) {
+                    if (info.getCharacterSlotOccupied()) {
+                        Char charOpp = opp.getPlayerArena().getCharCard(info.getIdx());
+                        Aura auraOpp = null;
+                        if (opp.getPlayerArena().getSkillCard(info.getIdx()) instanceof Aura) {
+                            auraOpp = (Aura)cur.getPlayerArena().getSkillCard(selectedCardIndex);
+                        }
+    
+                        int attCur = charCur.getAttack() + (auraCur != null ? auraCur.getAttack() : 0);
+                        int defOpp = charOpp.getDefense() + (auraOpp != null ? auraOpp.getDefense() : 0);
+                        int attOpp = charOpp.getAttack() + (auraOpp != null ? auraOpp.getAttack() : 0);
+                        System.out.println("----ATTACKING CARD-----");
+                        if (!charOpp.getIsDefense() && (attCur > attOpp)) {
+                            // karakter lawan mati
+                            opp.getPlayerArena().removeCharCard(info.getIdx());
                             opp.getPlayerStats().takeDamage(attCur - attOpp);
+                            gameManager.addToDiscardPile(charOpp);
+                            roundInfo.addCardsAttacked(charCur);
+                        }
+                        else if (charOpp.getIsDefense() && (attCur > defOpp)) {
+                            // karakter lawan mati
+                            opp.getPlayerArena().removeCharCard(info.getIdx());
+                            gameManager.addToDiscardPile(charOpp);
+                            roundInfo.addCardsAttacked(charCur);
+                            if (cur.getPlayerArena().getSkillCard(info.getIdx()) instanceof PowerUp) {
+                                opp.getPlayerStats().takeDamage(attCur - attOpp);
+                            }
+                        } else {
+                            System.out.println("----ATTACK FAILED-----");
                         }
                     } else {
-                        System.out.println("----ATTACK FAILED-----");
+                        // Cek karakter lawan kosong
+                        boolean kosong = true;
+                        for (Char c : opp.getPlayerArena().getCharCard()) {
+                            if (c != null) {
+                                kosong = false;
+                                break;
+                            }
+                        }
+                        if (kosong) {
+                            int attCur = charCur.getAttack() + (auraCur != null ? auraCur.getAttack() : 0);
+                            opp.getPlayerStats().takeDamage(attCur);
+                            roundInfo.addCardsAttacked(charCur);
+                        }
                     }
                 }
                 selectedCard = null;
