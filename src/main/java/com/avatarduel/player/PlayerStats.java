@@ -8,10 +8,12 @@ public class PlayerStats {
     private int earthPower;
     private int firePower;
     private int waterPower;
+    private int energyPower;
     private int remainingAir;
     private int remainingEarth;
     private int remainingFire;
     private int remainingWater;
+    private int remainingEnergy;
     private boolean playedLandThisRound;
 
     /* CTOR */
@@ -21,10 +23,12 @@ public class PlayerStats {
         this.earthPower = 0;
         this.firePower = 0;
         this.waterPower = 0;
+        this.energyPower = 0;
         this.remainingAir = 0;
         this.remainingEarth = 0;
         this.remainingFire = 0;
         this.remainingWater = 0;
+        this.remainingEnergy = 0;
         this.playedLandThisRound = false; 
     }
 
@@ -48,6 +52,9 @@ public class PlayerStats {
             case WATER:
                 ret = this.waterPower;
                 break;
+            case ENERGY:
+                ret = this.energyPower;
+                break;
             default:
                 System.out.println("Invalid element");
         }
@@ -68,6 +75,9 @@ public class PlayerStats {
                 break;
             case WATER:
                 ret = this.remainingWater;
+                break;
+            case ENERGY:
+                ret = this.remainingEnergy;
                 break;
             default:
                 System.out.println("Invalid element");
@@ -98,6 +108,9 @@ public class PlayerStats {
             case WATER:
                 this.waterPower = val;
                 break;
+            case ENERGY:
+                this.energyPower = val;
+                break;
             default:
                 System.out.println("Invalid element");
         }
@@ -116,6 +129,9 @@ public class PlayerStats {
                 break;
             case WATER:
                 this.remainingWater = val;
+                break;
+            case ENERGY:
+                this.remainingEnergy = val;
                 break;
             default:
                 System.out.println("Invalid element");
@@ -145,6 +161,10 @@ public class PlayerStats {
                 this.waterPower += 1;
                 this.remainingWater += 1;
                 break;
+            case ENERGY:
+                this.energyPower += 1;
+                this.remainingEnergy += 1;
+                break;
             default:
                 System.out.println("Invalid element");
         }
@@ -165,6 +185,9 @@ public class PlayerStats {
                 case WATER:
                     this.remainingWater -= amount;
                     break;
+                case ENERGY:
+                    this.remainingEnergy -= amount;
+                    break;
                 default:
                     System.out.println("Invalid element");
             }
@@ -178,6 +201,7 @@ public class PlayerStats {
         this.remainingEarth = this.earthPower;
         this.remainingFire = this.firePower;
         this.remainingWater = this.waterPower;
+        this.remainingEnergy = this.energyPower;
         this.playedLandThisRound = false; 
     }
     
@@ -191,10 +215,12 @@ public class PlayerStats {
         System.out.format("earthPower          : %d", this.getPower(Element.EARTH));
         System.out.format("firePower           : %d", this.getPower(Element.FIRE));
         System.out.format("waterPower          : %d", this.getPower(Element.WATER));
+        System.out.format("energyPower         : %d", this.getPower(Element.ENERGY));
         System.out.format("remainingAir        : %d", this.getRemainingPower(Element.AIR));
         System.out.format("remainingEarth      : %d", this.getRemainingPower(Element.EARTH));
         System.out.format("remainingFire       : %d", this.getRemainingPower(Element.FIRE));
         System.out.format("remainingWater      : %d", this.getRemainingPower(Element.WATER));
+        System.out.format("remainingEnergy     : %d", this.getRemainingPower(Element.ENERGY));
         System.out.format("playedLandThisRound : %s", this.getPlayedLandThisRound() ? "true" : "false");
     }
 }
