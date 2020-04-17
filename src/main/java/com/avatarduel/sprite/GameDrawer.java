@@ -12,6 +12,7 @@ import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.text.Font;
 
 public class GameDrawer {
     private CardSprite highligthtedCard = null;
@@ -94,44 +95,45 @@ public class GameDrawer {
     // p : Player yang kartunya akan digambar
     private void drawStats (GraphicsContext gc, Player p) {
         final double yPos;
-        // if (p.isTopPlayer) {
-        //     yPos = ...;
-        // } else {
-        //     yPos = ...;
-        // }
+        final double xPos = 28;
+        if (p.getIsTopPlayer()) {
+            yPos = 167;
+        } else {
+            yPos = 463;
+        }
 
-        // gc.drawImage("Backdrop", x, y + yPos, w, h));
-        // gc.drawImage("EarthLogo", x, y + yPos, w, h));
-        // gc.drawImage("FireLogo", x, y + yPos, w, h));
-        // gc.drawImage("WaterLogo", x, y + yPos, w, h));
-        // gc.drawImage("AirLogo", x, y + yPos, w, h));
+        String healthPoints = p.getPlayerStats().getHealth()
+                + "/80";
 
-        String earthSkill = "EARTH: "
-                + p.getPlayerStats().getRemainingPower(Element.EARTH)
+        String earthSkill = p.getPlayerStats().getRemainingPower(Element.EARTH)
                 + "/"
                 + p.getPlayerStats().getPower(Element.EARTH);
 
-        String fireSkill = "FIRE: "
-                + p.getPlayerStats().getRemainingPower(Element.FIRE)
+        String fireSkill = p.getPlayerStats().getRemainingPower(Element.FIRE)
                 + "/"
                 + p.getPlayerStats().getPower(Element.FIRE);
 
-        String waterSkill = "WATER: "
-                + p.getPlayerStats().getRemainingPower(Element.WATER)
+        String waterSkill = p.getPlayerStats().getRemainingPower(Element.WATER)
                 + "/"
                 + p.getPlayerStats().getPower(Element.WATER);
 
-        String airSkill = "AIR: "
-                + p.getPlayerStats().getRemainingPower(Element.AIR)
+        String airSkill = p.getPlayerStats().getRemainingPower(Element.AIR)
                 + "/"
                 + p.getPlayerStats().getPower(Element.AIR);
 
-        // gc.save();
-        // gc.setFont(new Font("Arial", 30));
-        // gc.fillText(earthSkill, x, y + yPos);
-        // gc.fillText(fireSkill, x, y + yPos);
-        // gc.fillText(waterSkill, x, y + yPos);
-        // gc.fillText(airSkill, x, y + yPos);
+        String energySkill = p.getPlayerStats().getRemainingPower(Element.ENERGY)
+                + "/"
+                + p.getPlayerStats().getPower(Element.ENERGY);
+
+        gc.save();
+        gc.setFont(new Font("Arial", 20));
+        gc.fillText(healthPoints, xPos, 0 + yPos);
+        gc.fillText(airSkill, xPos, 21 + yPos);
+        gc.fillText(earthSkill, xPos, 42 + yPos);
+        gc.fillText(waterSkill, xPos, 63 + yPos);
+        gc.fillText(fireSkill, xPos, 84 + yPos);
+        gc.fillText(energySkill, xPos, 105 + yPos);
+        gc.restore();
     }
 
     // Menggambar versi penuh kartu yang memiliki semua info tentang kartu
