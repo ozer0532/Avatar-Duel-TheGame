@@ -86,6 +86,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                     if (!charOpp.getIsDefense() && (attCur > attOpp)) {
                         // karakter lawan mati
                         opp.getPlayerArena().removeCharCard(info.getIdx());
+                        opp.getPlayerStats().takeDamage(attCur - attOpp);
                         gameManager.addToDiscardPile(charOpp);
                         roundInfo.addCardsAttacked(charCur);
                     }

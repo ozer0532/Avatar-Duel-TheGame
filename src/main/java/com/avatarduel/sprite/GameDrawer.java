@@ -22,6 +22,10 @@ public class GameDrawer {
         drawList.add(s);
     }
 
+    public void removeFromDrawList (Sprite s) {
+        drawList.remove(s);
+    }
+
     public void setHighlightedCard (CardSprite card) {
         highligthtedCard = card;
     }
@@ -157,6 +161,7 @@ public class GameDrawer {
         final double xPos = 1280;
         final double yPos = 360;
 
+    
         for (CardSprite card : cards) {
             card.changePos(xPos, yPos);
             card.changeScale(0.28, 0.28);

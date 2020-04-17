@@ -40,6 +40,16 @@ public class GameManager {
         // Init CurrentPlayer dan oppositePlayer
         currentPlayer = new Player(false);
         oppositePlayer = new Player(true);
+        currentPlayer.getPlayerStats().incrementPower(Element.AIR);
+        currentPlayer.getPlayerStats().incrementPower(Element.AIR);
+        currentPlayer.getPlayerStats().incrementPower(Element.AIR);
+        currentPlayer.getPlayerStats().incrementPower(Element.AIR);
+        currentPlayer.getPlayerStats().incrementPower(Element.AIR);
+        oppositePlayer.getPlayerStats().incrementPower(Element.AIR);
+        oppositePlayer.getPlayerStats().incrementPower(Element.AIR);
+        oppositePlayer.getPlayerStats().incrementPower(Element.AIR);
+        oppositePlayer.getPlayerStats().incrementPower(Element.AIR);
+        oppositePlayer.getPlayerStats().incrementPower(Element.AIR);
         
         // Generate kartu dan masukin ke player yang bersangkutan, dan simpan ke drawListnya GameDrawer
         DataLoader dl = new DataLoader();
@@ -150,7 +160,10 @@ public class GameManager {
     }
 
     public void addToDiscardPile(Card card) {
-        discardPile.add(card.getSprite());
+        CardSprite sprite = card.getSprite();
+        discardPile.add(sprite);
+        gameDrawer.removeFromDrawList(sprite);
+        gameDrawer.addToDrawList(sprite);
     }
     
     // Getter untuk GameManager
