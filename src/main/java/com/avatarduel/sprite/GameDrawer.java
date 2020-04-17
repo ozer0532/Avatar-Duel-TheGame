@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Stack;
 
 import com.avatarduel.card.Card;
+import com.avatarduel.card.Char;
+import com.avatarduel.card.Skill;
 import com.avatarduel.gamemanager.GameManager;
 import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
@@ -40,15 +42,24 @@ public class GameDrawer {
         }
 
         for (int i = 0; i < 8; i++) {
-            if (p.getPlayerArena().getCharCard(i) != null) { 
-                p.getPlayerArena().getCharCard(i).getSprite().changePos(cardXPos + cardXOffset * i, characterYPos);
-                p.getPlayerArena().getCharCard(i).getSprite().changeScale(0.28, 0.28);
+            Char card = p.getPlayerArena().getCharCard(i);
+            if (card != null) { 
+                CardSprite sprite = card.getSprite();
+                sprite.changePos(cardXPos + cardXOffset * i, characterYPos);
+                sprite.changeScale(0.28, 0.28);
+                if (card.getIsDefense()) {
+                    sprite.changeRotation(90);
+                } else {
+                    sprite.changeRotation(0);
+                }
             }
         }
         for (int i = 0; i < 8; i++) {
-            if (p.getPlayerArena().getSkillCard(i) != null) { 
-                p.getPlayerArena().getSkillCard(i).getSprite().changePos(cardXPos + cardXOffset * i, skillYPos);
-                p.getPlayerArena().getSkillCard(i).getSprite().changeScale(0.28, 0.28);
+            Skill card = p.getPlayerArena().getSkillCard(i);
+            if (card != null) { 
+                CardSprite sprite = card.getSprite();
+                sprite.changePos(cardXPos + cardXOffset * i, skillYPos);
+                sprite.changeScale(0.28, 0.28);
             }
         }
     }
