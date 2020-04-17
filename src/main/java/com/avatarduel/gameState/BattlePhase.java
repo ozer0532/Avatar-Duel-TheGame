@@ -86,7 +86,6 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                     if (!charOpp.getIsDefense() && (attCur > attOpp)) {
                         // karakter lawan mati
                         opp.getPlayerArena().removeCharCard(info.getIdx());
-                        opp.getPlayerStats().takeDamage(attCur - attOpp);
                         gameManager.addToDiscardPile(charOpp);
                         roundInfo.addCardsAttacked(charCur);
                     }
@@ -95,6 +94,9 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                         opp.getPlayerArena().removeCharCard(info.getIdx());
                         gameManager.addToDiscardPile(charOpp);
                         roundInfo.addCardsAttacked(charCur);
+                        if (cur.getPlayerArena().getSkillCard(info.getIdx()) instanceof PowerUp) {
+                            opp.getPlayerStats().takeDamage(attCur - attOpp);
+                        }
                     } else {
                         System.out.println("----ATTACK FAILED-----");
                     }

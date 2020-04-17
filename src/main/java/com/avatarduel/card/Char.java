@@ -15,7 +15,6 @@ public class Char extends Card {
     private int atk;
     private int def;
     private boolean isDefense;
-    private boolean isPoweredUp;
 
     public Char(String name, Element elmt, String desc, String image,
          int pow, int atk, int def){
@@ -24,7 +23,6 @@ public class Char extends Card {
         this.def = def;
         this.sprite = this.DrawCardSimple(0, 0, true);
         this.isDefense = false;
-        this.isPoweredUp = false;
     }
 
     // Getter for Character
@@ -53,10 +51,6 @@ public class Char extends Card {
         return this.isDefense;
     }
 
-    public boolean getIsPoweredUp() {
-        return this.isPoweredUp;
-    }
-
 
     // Setter for Character;
     public void setAttack(int atk) {
@@ -69,10 +63,6 @@ public class Char extends Card {
 
     public void setIsDefense(boolean isdef) {
         this.isDefense=isdef;
-    }
-
-    public void setIsPoweredUp(boolean b) {
-        this.isPoweredUp=b;
     }
 
 
