@@ -41,6 +41,8 @@ public class Sprite {
     protected double anchorX;
     protected double anchorY;
 
+    protected double rotation;
+
     /**
      * Pengganda besar gambar
      * Scale (1,1) akan menghasilkan gambar yang besarnya sesuai dengan lebar w dan tinggi h
@@ -55,7 +57,7 @@ public class Sprite {
      */
     protected double targetX, targetY;
     protected double targetScaleX, targetScaleY;
-    protected double targetAnchorX, targetAnchorY;
+    protected double targetRotation;
 
     /**
      * Posisi "absolut" sudut kiri atas gambar
@@ -80,7 +82,6 @@ public class Sprite {
         targetX = targetY = 0;
         targetScaleX = 1;
         targetScaleY = 1;
-        anchorX = anchorY = 0.5;
     }
 
     /**
@@ -104,7 +105,6 @@ public class Sprite {
         targetY = y;
         targetScaleX = 1;
         targetScaleY = 1;
-        anchorX = anchorY = 0.5;
     }
 
     /**
@@ -129,66 +129,31 @@ public class Sprite {
         targetY = y;
         targetScaleX = 1;
         targetScaleY = 1;
-        anchorX = anchorY = 0.5;
     }
-
-    // Getter
-    // public Image getImage () { return image; }
-    // public double getX () { return x; }
-    // public double getY () { return y; }
-    // public double getW () { return w; }
-    // public double getH () { return h; }
-    // public double getPivotX () { return pivotX; }
-    // public double getPivotY () { return pivotY; }
-    // public double getAnchorX () { return anchorX; }
-    // public double getAnchorY () { return anchorY; }
-    // public double getTargetX () { return targetX; }
-    // public double getTargetY () { return targetY; }
-    // public double getTargetScaleX () { return targetScaleX; }
-    // public double getTargetScaleY () { return targetScaleY; }
-    // public double getTargetAnchorX () { return targetAnchorX; }
-    // public double getTargetAnchorY () { return targetAnchorY; }
-    // public double getAbsoluteX () { return absoluteX; }
-    // public double getAbsoluteY () { return absoluteY; }
-    // public double getScaleX () { return scaleX; }
-    // public double getScaleY () { return scaleY; }
-
-    // Setter
-    // public void setImage (String image) { setImage(image, true); }
-    // public void setImage (String image, boolean autoWidth) { setImage(new Image(image), autoWidth); }
-    // public void setImage (Image image) { setImage(image, true); }
-    // public void setImage (Image image, boolean autoWidth) 
-    // {  
-    //     this.image = image;
-    //     if (autoWidth) {
-    //         w = image.getWidth(); 
-    //         h = image.getHeight();
-    //         targetScaleX = w;
-    //         targetScaleY = h;
-    //     }
-    // }
     
     /**
      * Melakukan translasi terhadap gambar secara lancar
      * @param x posisi x yang dituju
      * @param y posisi y yang dituju
      */
-    public void moveToPos (double x, double y) {
-        targetX = x;
-        targetY = y;
+    public void changePos (double x, double y) {
+        changePos(x, y, false);
     }
     
     /**
-     * Melakukan translasi terhadap gambar secara instan
+     * Melakukan translasi terhadap gambar
      * @param x posisi x yang dituju
      * @param y posisi y yang dituju
+     * @param instant jika true, translasi dilakukan secara instan
      */
-    public void jumpToPos (double x, double y) {
-        this.x = x;
-        this.y = y;
-        
+    public void changePos (double x, double y, boolean instant) {
         targetX = x;
         targetY = y;
+        
+        if (instant) {
+            this.x = x;
+            this.y = y;
+        }
     }
     
     /**
@@ -200,31 +165,37 @@ public class Sprite {
         this.w = w;
         this.h = h;
     }
-    
+
     /**
-     * Mengubah titik referensi gambar relatif terhadap layar secara lancar
-     * @param x titik jangkar x yang dituju
-     * @param y titik jangkar y yang dituju
+     * Mengubah rotasi gambar secara lancar
+     * @param r rotasi gambar dalam derajat
      */
-    public void changeAnchor (double x, double y) {
-        changeAnchor(x, y, false);
+    public void changeRotation (double r) {
+        changeRotation(r, false);
+    }
+
+    /**
+     * Mengubah rotasi gambar
+     * @param r rotasi gambar dalam derajat
+     * @param instant jika true, rotasi dilakukan secara instan
+     */
+    public void changeRotation (double r, boolean instant) {
+        targetRotation = r;
+
+        if (instant) {
+            rotation = r;
+        }
     }
     
     /**
      * Mengubah titik referensi gambar relatif terhadap layar
      * @param x titik jangkar x yang dituju
      * @param y titik jangkar y yang dituju
-     * @param instant jika true, perubahan dilakukan secara instan;
      * jika false, perubahan dilakukan secara lancar
      */
-    public void changeAnchor (double x, double y, boolean instant) {
-        targetAnchorX = x;
-        targetAnchorY = y;
-        
-        if (instant) {
-            anchorX = x;
-            anchorY = y;
-        }
+    public void setAnchor (double x, double y) {
+        anchorX = x;
+        anchorY = y;
     }
     
     /**
@@ -295,12 +266,12 @@ public class Sprite {
         final double smoothing = 15;
 
         // Melakukan smoothing dengan "linear interpolation" (a*t + b*(1-t))
-        x = (x * (1 - smoothing * deltaTime)) + (targetX * (smoothing * deltaTime));
-        y = (y * (1 - smoothing * deltaTime)) + (targetY * (smoothing * deltaTime));
-        anchorX = (anchorX * (1 - smoothing * deltaTime)) + (targetAnchorX * (smoothing * deltaTime));
-        anchorY = (anchorY * (1 - smoothing * deltaTime)) + (targetAnchorY * (smoothing * deltaTime));
-        scaleX = (scaleX * (1 - smoothing * deltaTime)) + (targetScaleX * (smoothing * deltaTime));
-        scaleY = (scaleY * (1 - smoothing * deltaTime)) + (targetScaleY * (smoothing * deltaTime));
+        double t = smoothing * deltaTime;
+        x = lerp(x, targetX, t);
+        y = lerp(y, targetY, t);
+        rotation = lerp(rotation, targetRotation, t);
+        scaleX = lerp(scaleX, targetScaleX, t);
+        scaleY = lerp(scaleY, targetScaleY, t);
 
         updateAbsolutePosition(gc);
     }
@@ -314,7 +285,10 @@ public class Sprite {
 
         final Affine a = new Affine();
         a.appendScale(scaleX, scaleY);
-
+        a.appendTranslation(pivotX * w, pivotY * h);
+        a.appendRotation(rotation);
+        a.appendTranslation(-pivotX * w, -pivotY * h);
+        
         a.prependTranslation(absoluteX, absoluteY);
         gc.setTransform(a);
         gc.drawImage(image, 0, 0, w, h);
@@ -330,5 +304,22 @@ public class Sprite {
      */
     public boolean isPointOverlap(double x, double y){
         return (x > absoluteX) && (x < absoluteX + w * scaleX) && (y > absoluteY) && (y < absoluteY + h * scaleY);
+    }
+
+    /**
+     * Melakukan interpolasi linier antara a dan b
+     * @param a Nilai awal interpolasi
+     * @param b Nilai akhir interpolasi
+     * @param t Persentase interpolasi dari a ke b, bernilai 0..1
+     * @return Hasil interpolasi nilai a dan b
+     */
+    protected double lerp(double a, double b, double t) {
+        if (t > 1) {
+            return b;
+        } else if (t < 0) {
+            return a;
+        } else {
+            return (a * (1 - t)) + (b * t);
+        }
     }
 }

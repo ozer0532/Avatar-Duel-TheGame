@@ -10,9 +10,9 @@ public class EndButton implements IMouseClickSub {
 
     public EndButton (GameManager gm) {
         this.gm = gm;
-        spr = new Sprite("com/avatarduel/generic/image/EndTurnButton.png", 200, 300);
+        spr = new Sprite("com/avatarduel/generic/image/EndTurnButton.png");
         spr.setPivot(0, 0.5);
-        spr.jumpToPos(0, 360);
+        spr.changePos(0, 360, true);
         gm.getGameDrawer().addToDrawList(spr);
     }
 

@@ -51,12 +51,12 @@ public class GameManager {
         }
         for (Card card : currentPlayer.getPlayerDeck()) {
             gameDrawer.addToDrawList(card.getSprite());
-            card.getSprite().jumpToPos(55, 656);
+            card.getSprite().changePos(55, 656, true);
             card.getSprite().changeScale(-0.32, 0.32, true);
         }
         for (Card card : oppositePlayer.getPlayerDeck()) {
             gameDrawer.addToDrawList(card.getSprite());
-            card.getSprite().jumpToPos(55, 64);
+            card.getSprite().changePos(55, 64, true);
             card.getSprite().changeScale(-0.32, 0.32, true);
         }
         

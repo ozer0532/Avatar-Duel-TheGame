@@ -144,10 +144,13 @@ public class CardSprite extends Sprite {
         Affine a = new Affine();
         if (scaleX > 1) System.out.println("Test");
         a.appendScale(scaleX, scaleY);
-
-        a.prependTranslation(absoluteX, absoluteY);
-        gc.setTransform(a);
         if (scaleX > 0) {
+            a.appendTranslation(pivotX * w, pivotY * h);
+            a.appendRotation(rotation);
+            a.appendTranslation(-pivotX * w, -pivotY * h);
+    
+            a.prependTranslation(absoluteX, absoluteY);
+            gc.setTransform(a);
             gc.drawImage(image, 0, 0, w, h);
 
             for (CardText text : textList) {
@@ -158,6 +161,12 @@ public class CardSprite extends Sprite {
             gc.drawImage(cardImage, imageXOffset, imageYOffset, imageWidth, imageHeight);
         }
         else {
+            a.appendTranslation(-pivotX * w, pivotY * h);
+            a.appendRotation(rotation);
+            a.appendTranslation(pivotX * w, -pivotY * h);
+    
+            a.prependTranslation(absoluteX, absoluteY);
+            gc.setTransform(a);
             gc.drawImage(backface, 0, 0, -w, h);
         }
 
