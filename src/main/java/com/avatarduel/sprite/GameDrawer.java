@@ -7,9 +7,9 @@ import java.util.Stack;
 import com.avatarduel.card.Card;
 import com.avatarduel.card.Char;
 import com.avatarduel.card.Skill;
-import com.avatarduel.gamemanager.GameManager;
-import com.avatarduel.gamemanager.IMouseMoveSub;
-import com.avatarduel.gamestate.ArenaClickInfo;
+import com.avatarduel.gameManager.GameManager;
+import com.avatarduel.gameManager.IMouseMoveSub;
+import com.avatarduel.gameState.ArenaClickInfo;
 import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
 

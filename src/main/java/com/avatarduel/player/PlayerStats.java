@@ -2,6 +2,10 @@ package com.avatarduel.player;
 
 import com.avatarduel.model.Element;
 
+/**
+ * PlayerStats adalah class yang mengatur
+ * informasi status dari player
+ */
 public class PlayerStats {
     private int health;
     private int airPower;
@@ -17,6 +21,9 @@ public class PlayerStats {
     private boolean playedLandThisRound;
 
     /* CTOR */
+    /**
+     * Membuat PlayerStats dengan nilai default
+     */
     public PlayerStats(){
         this.health = 80;
         this.airPower = 0;
@@ -33,10 +40,20 @@ public class PlayerStats {
     }
 
     /* GETTER */
+    /**
+     * Getter untuk atribut health
+     * @return health
+     */
     public int getHealth(){
         return this.health;
     }
     
+    /**
+     * Getter untuk atribut power berdasarkan parameter element
+     * Jika element tidak valid maka output "Invalid element"
+     * @param element jenis element dari power
+     * @return power dari element
+     */
     public int getPower(Element element){
         int ret = 0;
         switch (element){
@@ -61,6 +78,12 @@ public class PlayerStats {
         return ret;
     }
 
+    /**
+     * Getter untuk atribut remaining power berdasarkan parameter element
+     * Jika element tidak valid maka output "Invalid element"
+     * @param element jenis element dari remaining power
+     * @return remaining power dari element
+     */
     public int getRemainingPower(Element element){
         int ret = 0;
         switch (element){
@@ -85,15 +108,29 @@ public class PlayerStats {
         return ret;
     }
     
+    /**
+     * Getter untukatribut playedLandThisRound
+     * @return true jika telah memainkan Land
+     */
     public boolean getPlayedLandThisRound(){
         return this.playedLandThisRound;
     }
     
     /* SETTER */
+    /**
+     * Setter untuk atribut health
+     * @param val nilai health
+     */
     public void setHealth(int val){
         this.health = val;
     }
 
+    /**
+     * Setter untuk atribut power berdasarkan parameter element
+     * Jika element tidak valid maka output "Invalid element"
+     * @param element jensi element dari power
+     * @param val nilai power
+     */
     public void setPower(Element element, int val){
         switch (element){
             case AIR:
@@ -116,6 +153,12 @@ public class PlayerStats {
         }
     }
 
+    /**
+     * Setter untuk atribut remaining power berdasarkan parameter element
+     * Jika element tidak valid maka output "Invalid element"
+     * @param element jenis element dari power
+     * @param val nilai power
+     */
     public void setRemainingPower(Element element, int val){
         switch (element){
             case AIR:
@@ -138,11 +181,20 @@ public class PlayerStats {
         }
     }
 
+    /**
+     * Setter untuk atribut playedLandThisRound
+     * @param val nilai playedLandThisRound
+     */
     public void setPlayedLandThisRound(boolean val){
         this.playedLandThisRound = val;
     }
 
     /* UTIL */
+    /**
+     * Menambahkan power sebesar 1 berdasarkan parameter element
+     * Jika element tidak valid maka output "Invalid element"
+     * @param element jenis element dari power
+     */
     public void incrementPower(Element element){
         switch (element){
             case AIR:
@@ -170,32 +222,57 @@ public class PlayerStats {
         }
     }
 
+    /**
+     * Menggunakan power sebesar amount
+     * @param element jenis element dari power
+     * @param amount besar power
+     */
     public void usePower(Element element, int amount){
-        if (this.remainingAir-amount>=0 || this.remainingEarth-amount>=0 || this.remainingFire-amount>=0 || this.remainingWater-amount>=0){
-            switch (element){
-                case AIR:
+        switch(element){
+            case AIR:
+                if (this.remainingAir-amount>=0){
                     this.remainingAir -= amount;
-                    break;
-                case EARTH:
+                } else {
+                    System.out.println("Power insufficient");
+                }
+                break;
+            case EARTH:
+                if (this.remainingEarth-amount>=0){
                     this.remainingEarth -= amount;
-                    break;
-                case FIRE:
-                    this.remainingFire -= amount;
-                    break;
-                case WATER:
+                } else {
+                    System.out.println("Power insufficient");
+                }
+                break;
+            case FIRE:
+                if (this.remainingFire-amount>=0){
+                    this.remainingFire -= amount; 
+                } else {
+                    System.out.println("Power insufficient");
+                }
+                break;
+            case WATER:
+                if (this.remainingWater-amount>=0){
                     this.remainingWater -= amount;
-                    break;
-                case ENERGY:
+                } else {
+                    System.out.println("Power insufficient");
+                }
+                break;
+            case ENERGY:
+                if (this.remainingEnergy-amount>=0){
                     this.remainingEnergy -= amount;
-                    break;
-                default:
-                    System.out.println("Invalid element");
-            }
-        } else {
-            System.out.println("Power insufficient");
-        }   
+                } else {
+                    System.out.println("Power insufficient");
+                }
+                break;
+            default:
+                System.out.println("Invalid element");
+        }
     }
     
+    /**
+     * Mengubah nilai dari remaining power menjadi nilai dari power
+     * dan playedLandThisRound menjadi false
+     */
     public void resetStats(){
         this.remainingAir = this.airPower;
         this.remainingEarth = this.earthPower;
@@ -205,10 +282,17 @@ public class PlayerStats {
         this.playedLandThisRound = false; 
     }
     
+    /**
+     * Mengurangi atribut health
+     * @param amount nilai yang akan dikurangi
+     */
     public void takeDamage(int amount){
         this.health -= amount;
     }
 
+    /**
+     * Output status player
+     */
     public void printPlayerStats(){
         System.out.format("health              : %d", this.getHealth());
         System.out.format("airPower            : %d", this.getPower(Element.AIR));
