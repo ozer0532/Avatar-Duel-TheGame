@@ -19,6 +19,10 @@ import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
 import com.avatarduel.util.CSVReader;
 
+/**
+ * DataLoader merupakan class yang bertanggung jawab untuk memuat data-data yang diperlukan dalam
+ * permainan Avatar Duel. DataLoader digunakan dalam GameManager sebagai inisialisasi dari game.
+ */
 public class DataLoader {
     static final String LAND_CSV_FILE_PATH = "/com/avatarduel/card/data/land.csv";
     static final String CHAR_CSV_FILE_PATH = "/com/avatarduel/card/data/character.csv";
@@ -28,6 +32,14 @@ public class DataLoader {
     static final String P1_CSV_FILE_PATH = "/com/avatarduel/card/data/player1.csv";
     static final String P2_CSV_FILE_PATH = "/com/avatarduel/card/data/player2.csv";
     
+    /**
+     * Memuat kartu-kartu yang mau dimuat ke dalam player 1 dan player 2 dalam permainan
+     * @param player1 player 1 sebagai input/output terkait adanya masukan kartu-kartu
+     * @param player2 player 2 sebagai input/output terkait adanya masukan kartu-kartu
+     * @throws IOException melempar IOException ketika path tidak valid
+     * @throws URISyntaxException melempar URISyntaxException ketika ada syntax bermasalah dalam csv
+     * @throws NumberFormatException melempar NumberFormatException ketika jumlah kartu tidak mencukupi
+     */
     public void LoadCards(Player player1, Player player2) throws IOException, URISyntaxException, NumberFormatException {
         
         // List of cards each player have
@@ -73,6 +85,16 @@ public class DataLoader {
         }
     }
 
+    /**
+     * Memasukkan kartu-kartu dari setiap jenis kartu ke dalam daftar kartu berdasarkan masukan string card
+     * @param cardsList daftar kartu dalam permainan
+     * @param card kartu yang ingin dimasukkan
+     * @param landRows daftar kartu berjenis land
+     * @param charRows daftar kartu berjenis character
+     * @param auraRows daftar kartu berjenis aura
+     * @param pwruRows daftar kartu berjenis powerup
+     * @param dstrRows daftar kartu berjenis destroy
+     */
     private void insertCard(List<Card> cardsList, String card, List<String[]> landRows, List<String[]> charRows, 
             List<String[]> auraRows, List<String[]> pwruRows, List<String[]> dstrRows) {
         Random random = new Random();
@@ -112,6 +134,12 @@ public class DataLoader {
         // throw card not found error
     }
     
+    /**
+     * Mengembalikan sebuah informasi kartu berdasarkan index pada list csv yang sudah diload
+     * @param list sebuah list yang berisi kumpulan string dalam sebuah csv
+     * @param index sebuah index penanda kartu dalam list
+     * @return mengembalikan kumpulan string sesuai masukan index
+     */
     private String[] cardsInList (List<String[]> list, String index) {
         Optional<String[]> strings = list.stream()
         .filter(s -> s[0].equals(index))
@@ -124,6 +152,13 @@ public class DataLoader {
         }
     }
 
+    /**
+     * Mengambil data dari CSV berdasarkan path dari file tersebut
+     * @param pathFile berisi path dimana csv akan dimuat
+     * @return sebuah list yang berisi kumpulan string
+     * @throws IOException melemparkan IOException bila path tidak valid
+     * @throws URISyntaxException melemparkan URISyntaxException bila terdapat syntax salah dalam pembacaan
+     */
     private List<String[]> getCSVData(String pathFile) throws IOException, URISyntaxException {
         File csvFile = new File(getClass().getResource(pathFile).toURI());
         CSVReader csvReader = new CSVReader(csvFile, "\t");

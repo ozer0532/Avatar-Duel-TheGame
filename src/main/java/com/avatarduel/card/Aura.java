@@ -9,12 +9,26 @@ import com.avatarduel.gamemanager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
+/**
+ * Aura merupakan class yang inheritance dari skill. Aura bertanggung jawab dalam representasi kartu skill
+ * berjenis aura dalam permainan Avatar Duel.
+ */
 public class Aura extends Skill {
     // Atribut dari Aura
     private int atk;
     private int def;
 
     // Constructor
+    /**
+     * Membuat sebuah Aura baru dengan masukan name, elmt, desc, image, pn, atk, dan def
+     * @param name nama dari skill aura
+     * @param elmt element dari skill aura
+     * @param desc deskripsi dari skill aura
+     * @param image path image dari skill aura
+     * @param pn jumlah power yang dibutuhkan
+     * @param atk nilai atk yang dihasilkan skill aura
+     * @param def nilai def yang dihasilkan skill aura
+     */
     public Aura(String name, Element elmt, String desc, String image,
     int pn,int atk, int def){
         super(name, elmt, desc, image, pn);
@@ -23,25 +37,44 @@ public class Aura extends Skill {
         this.sprite = this.DrawCardSimple(0, 0, true);
     }
 
-    // Setter for Aura
+    /**
+     * Mengganti nilai attack sebelumnya dengan attack yang baru
+     * @param atk nilai attack yang baru
+     */
     public void setAttack(int atk){
         this.atk = atk;
     }
 
+    /**
+     * Mengganti nilai defense sebelumnya dengan defense yang baru
+     * @param def nilai defense yang baru
+     */
     public void setDefense(int def){
         this.def = def;
     }
 
-    // Getter for Aura
+    /**
+     * Mengembalikan nilai attack dari kartu aura
+     * @return nilai attack aura
+     */
     public int getAttack(){
         return this.atk;
     }
 
+    /**
+     * Mengembalikan nilai defense dari kartu aura
+     * @return nilai defense aura
+     */
     public int getDefense(){
         return this.def;
     }
 
-    // Method Implementation
+    /**
+     * Memainkan kartu aura dalam permainan
+     * @param gm GameManager sebagai pengatur permainan
+     * @param idx index kartu dalam arena
+     * @param isPlayedonEnemy true apabila dimainkan ke musuh
+     */
     public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp;
         if (!isPlayedonEnemy) {
@@ -56,6 +89,11 @@ public class Aura extends Skill {
         }
     }
 
+    /**
+     * Mengembalikan true apabila kartu bisa dimainkan dengan kondisi power mencukupi
+     * @param p player yang kartu auranya mau dimainkan
+     * @return true apabile kartu aura bisa dimainkan
+     */
     public boolean CanBePlayed(Player p){
         PlayerStats ps = p.getPlayerStats();
         PlayerArena pa = p.getPlayerArena();
@@ -69,6 +107,13 @@ public class Aura extends Skill {
         return false;
     }
 
+    /**
+     * Mengembalikan informasi sederhana dari sebuah kartu aura
+     * @param x posisi x dari mouse
+     * @param y posisi y dari mouse
+     * @param isFlipped keadaan kartu terbalik atau tidak
+     * @return sebuah sprite berisi informasi detail dari kartu aura
+     */
     public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
         // kamus lokal
         CardSprite cs;
@@ -112,6 +157,11 @@ public class Aura extends Skill {
 
         return cs;
     }
+    
+    /**
+     * Mengembalikan informasi detail dari sebuah kartu aura
+     * @return sebuah sprite berisi informasi detail dari kartu
+     */
     public CardSprite DrawCardDetail() {
         // kamus lokal
         CardSprite cs;
