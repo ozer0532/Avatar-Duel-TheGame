@@ -19,6 +19,8 @@ public class CardSprite extends Sprite {
     private Image backface;
     private List<CardText> textList = new ArrayList<>();
     private Image cardImage;
+    private double imageXOffset = 36;
+    private double imageYOffset = 35;
 
     /**
      * Membuat sebuah card sprite baru pada posisi (0,0) dengan ukuran
@@ -105,6 +107,11 @@ public class CardSprite extends Sprite {
         textList.add(new CardText(text, x, y, fontName, fontSize));
     }
 
+    public void SetImagePos (double x, double y) {
+        imageXOffset = x;
+        imageYOffset = y;
+    }
+
     /**
      * Mengkalkulasi posisi absolut gambar berdasarkan nilai atribut transformasi
      * @param gc Graphics Context canvas sebagai referensi titik jangkar
@@ -134,8 +141,6 @@ public class CardSprite extends Sprite {
      */
     @Override
     public void render(GraphicsContext gc) {
-        final double imageXOffset = 36;
-        final double imageYOffset = 35;
         final double imageWidth = 250;
         final double imageHeight = 250;
 

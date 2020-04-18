@@ -11,30 +11,30 @@ id	name	element	description	imagepath	attack	defense	power
 210	Bato	WATER	Friend of Hakoda since childhood.	com/avatarduel/card/image/character/Bato.png	7	9	3
 211	Due	WATER	Waterbending master from Foggy Swamp Tribe.	com/avatarduel/card/image/character/Due.png	5	8	2
 212	Hahn	WATER	Career-minded soldier from Northern Water Tribe.	com/avatarduel/card/image/character/Hahn.png	8	3	1
-213	Aang	AIR	Avatar Roku's successor. Also learned how to energybending.	com/avatarduel/card/image/character/Aang.png	14	6	5
+213	Aang	AIR	Avatar Roku's successor. Also\nlearned how to energybend.	com/avatarduel/card/image/character/Aang.png	14	6	5
 214	Appa	AIR	Aang's loyal sky bison friend.	com/avatarduel/card/image/character/Appa.png	5	8	2
-215	Momo	AIR	Aang's loyal winged lemur friend.	com/avatarduel/card/image/character/Momo.png	6	5	1
-216	Gyatso	AIR	Aang's guardian, mentor, and father figure.	com/avatarduel/card/image/character/Gyatso.png	5	10	3
-217	Teo	AIR	Paraplegic Earth Kingdom boy who lived in the Northern Air Temple with his father, the mechanist.	com/avatarduel/card/image/character/Teo.png	5	6	1
-218	Yangchen	AIR	Air Nomad Avatar before Aang, predecessor of Kuruk.	com/avatarduel/card/image/character/Yangchen.png	10	8	4
-219	Afiko	AIR	Airbender of Southern Air Temple that revealed the location of his home to the Fire Nation.	com/avatarduel/card/image/character/Afiko.png	7	6	2
-220	Iio	AIR	Air Nomad nun and the Mother Superior of the Eastern Air Temple.	com/avatarduel/card/image/character/Iio.png	5	8	2
-221	Pathik	AIR	A nomadic supercentenarian who possessed great knowledge of the Spirit World.	com/avatarduel/card/image/character/Pathik.png	9	9	4
-222	Tashi	AIR	One of five monks in charge of the Southern Air Temple.	com/avatarduel/card/image/character/Tashi.png	7	9	3
+215	Momo	AIR	Aang's loyal winged lemur\nfriend.	com/avatarduel/card/image/character/Momo.png	6	5	1
+216	Gyatso	AIR	Aang's guardian, mentor,\nand father figure.	com/avatarduel/card/image/character/Gyatso.png	5	10	3
+217	Teo	AIR	Paraplegic Earth Kingdom\nboy who lived in the Northern\nAir Temple with his father,\nthe mechanist.	com/avatarduel/card/image/character/Teo.png	5	6	1
+218	Yangchen	AIR	Air Nomad Avatar before\nAang, predecessor of Kuruk.	com/avatarduel/card/image/character/Yangchen.png	10	8	4
+219	Afiko	AIR	Airbender of Southern Air\nTemple that revealed the\nlocation of his home to the Fire\nNation.	com/avatarduel/card/image/character/Afiko.png	7	6	2
+220	Iio	AIR	Air Nomad nun and the Mother\nSuperior of the Eastern Air Temple.	com/avatarduel/card/image/character/Iio.png	5	8	2
+221	Pathik	AIR	A nomadic supercentenarian\nwho possessed great knowledge\nof the Spirit World.	com/avatarduel/card/image/character/Pathik.png	9	9	4
+222	Tashi	AIR	One of five monks in charge\nof the Southern Air Temple.	com/avatarduel/card/image/character/Tashi.png	7	9	3
 223	Wan	AIR	The first Avatar.	com/avatarduel/card/image/character/Wan.png	10	10	5
-224	Mechanist	AIR	An inventor and engineer from the Earth Kingdom who became a refugee after being displaced by a flood.	com/avatarduel/card/image/character/Mechanist.png	8	8	3
-225	Zuko	FIRE	Prince of the Fire Nation, Fire Lord after Ozai.	com/avatarduel/card/image/character/Zuko.png	12	8	5
-226	Azula	FIRE	Princess of the Fire Nation, daughter of Fire Lord Ozai.	com/avatarduel/card/image/character/Azula.png	11	7	4
-227	Ozai	FIRE	Fire Lord during the final years of the Hundred Year War.	com/avatarduel/card/image/character/Ozai.png	9	9	4
-228	Ty Lee	FIRE	Skilled acrobatic, mastering chi blocking martial arts.	com/avatarduel/card/image/character/Ty Lee.png	9	4	2
-229	Combustion Man	FIRE	Firebending assassin and silent bounty hunter that was hired by Zuko to eliminate Aang.	com/avatarduel/card/image/character/Combustion Man.png	11	4	3
-230	Chit Sang	FIRE	Inmate at the Boiling Rock prison in the Fire Nation.	com/avatarduel/card/image/character/Chit Sang.png	7	4	1
-231	Iroh	FIRE	Retired Fire Nation General and wise mentor to his nephew Zuko.	com/avatarduel/card/image/character/Iroh.png	8	8	3
-232	Zhao	FIRE	Leader of the Fire Nation Navy that is obsessed to capture Aang.	com/avatarduel/card/image/character/Zhao.png	8	5	2
-233	Mai	FIRE	Main ally of Princess Azula, proficient at throwing stilettos.	com/avatarduel/card/image/character/Mai.png	7	6	2
-234	Roku	FIRE	Avatar from Fire Nation, predecessor of Aang.	com/avatarduel/card/image/character/Roku.png	14	6	5
-235	Sozin	FIRE	Instigator of the Hundred Year War.	com/avatarduel/card/image/character/Sozin.png	9	7	3
-236	Great Sage	FIRE	Leader of 5 Fire Sages who resided on Crescent Island.	com/avatarduel/card/image/character/Great Sage.png	8	3	1
+224	Mechanist	AIR	An inventor and engineer from\nthe Earth Kingdom who became\na refugee after being displaced\nby a flood.	com/avatarduel/card/image/character/Mechanist.png	8	8	3
+225	Zuko	FIRE	Prince of the Fire Nation,\nFire Lord after Ozai.	com/avatarduel/card/image/character/Zuko.png	12	8	5
+226	Azula	FIRE	Princess of the Fire Nation,\ndaughter of Fire Lord Ozai.	com/avatarduel/card/image/character/Azula.png	11	7	4
+227	Ozai	FIRE	Fire Lord during the final years\nof the Hundred Year War.	com/avatarduel/card/image/character/Ozai.png	9	9	4
+228	Ty Lee	FIRE	Skilled acrobatic, mastering chi\nblocking martial arts.	com/avatarduel/card/image/character/Ty Lee.png	9	4	2
+229	Combustion Man	FIRE	Firebending assassin and silent\nbounty hunter that was hired\nby Zuko to eliminate Aang.	com/avatarduel/card/image/character/Combustion Man.png	11	4	3
+230	Chit Sang	FIRE	Inmate at the Boiling Rock\nprison in the Fire Nation.	com/avatarduel/card/image/character/Chit Sang.png	7	4	1
+231	Iroh	FIRE	Retired Fire Nation General and\nwise mentor to his nephew Zuko.	com/avatarduel/card/image/character/Iroh.png	8	8	3
+232	Zhao	FIRE	Leader of the Fire Nation Navy\nthat is obsessed to capture Aang.	com/avatarduel/card/image/character/Zhao.png	8	5	2
+233	Mai	FIRE	Main ally of Princess Azula,\nproficient at throwing stilettos.	com/avatarduel/card/image/character/Mai.png	7	6	2
+234	Roku	FIRE	Avatar from Fire Nation,\npredecessor of Aang.	com/avatarduel/card/image/character/Roku.png	14	6	5
+235	Sozin	FIRE	Instigator of the Hundred\nYear War.	com/avatarduel/card/image/character/Sozin.png	9	7	3
+236	Great Sage	FIRE	Leader of 5 Fire Sages who\nresided on Crescent Island.	com/avatarduel/card/image/character/Great Sage.png	8	3	1
 237	Bumi	EARTH	King of Omashu, childhood friend of Aang.	com/avatarduel/card/image/character/Bumi.png	5	12	4
 238	Cabbage Merchant	EARTH	Earth Kingdom businessman and founder of Cabbage Corb.	com/avatarduel/card/image/character/Cabbage Merchant.png	2	8	1
 239	The Boulder	EARTH	Professional earthbending westler who participated in the Earth Rumble tournaments.	com/avatarduel/card/image/character/The Boulder.png	9	9	4

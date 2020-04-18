@@ -138,32 +138,29 @@ public class Aura extends Skill {
         back="com/avatarduel/generic/image/BackSmallCard.png";
 
         cs = new CardSprite(front, back, imagePath);
+        cs.SetImagePos(36, 69);
         
         if (this.atk>=0) {
-            attack="+"+this.atk+" ATK";
+            attack="+"+this.atk;
         }
         else {
-            attack=this.atk+" ATK";
+            attack="" + this.atk;
         }
         
         if (this.def>=0) {
-            defense="+"+this.def+" DEF";
+            defense="+"+this.def;
         }
         else {
-            defense=this.def+" DEF";
+            defense=this.def+"";
         }
 
-        effect="Aura";
-        attr=attack+" "+defense;
-        pow="POW/"+this.powerNeeded;
-        type="[ Skill ]"; 
-
-        cs.InsertText(this.name,0,0); 
-        cs.InsertText(effect,0,0);  
-        cs.InsertText(type,0,0);
-        cs.InsertText(this.description,0,0);
-        cs.InsertText(attr,0,0);
-        cs.InsertText(pow,0,0);
+        attr="ATK/"+attack+" | "+"DEF/"+defense+" | "+"POW/"+this.powerNeeded;
+        type="[ Skill ]";
+        
+        cs.InsertText(this.name,33,35);   
+        cs.InsertText(type,20,353);
+        cs.InsertText(this.description,25,380);
+        cs.InsertText(attr,25,545);
 
         return cs;
     }

@@ -8,15 +8,25 @@ import com.avatarduel.card.Card;
 import com.avatarduel.card.Char;
 import com.avatarduel.card.Skill;
 import com.avatarduel.gamemanager.GameManager;
+import com.avatarduel.gamemanager.IMouseMoveSub;
+import com.avatarduel.gamestate.ArenaClickInfo;
 import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 
-public class GameDrawer {
+public class GameDrawer implements IMouseMoveSub {
     private CardSprite highligthtedCard = null;
+    private Card hoveredCard = null;
     private List<Sprite> drawList = new ArrayList<>();
+    private GameManager gm;
+
+    public GameDrawer(GameManager gm) {
+        this.gm = gm;
+        gm.RegisterMouseMove(this);
+    }
 
     public void addToDrawList (Sprite s) {
         drawList.add(s);
@@ -144,18 +154,19 @@ public class GameDrawer {
     // gc : Penggambar
     // card : Kartu yang ingin ditampilkan
     // isTop : Posisi kartu
-    // private void drawCardInfo (GraphicsContext gc, Card card, bool isTop) {
-    //     double yPos = (isTop) ? yAtas : yBawah
-    //     -------------------------
-    //     CardSprite spr = new CardSprite("Gambar template kartu", "Backface kartu", card.image, x, yPos, w, h);
-    //     spr.InsertText(card...., x, y, w, h);
-    //     ... Add for all card attributes ...
-    //     -------------------------
-    //     CardSprite spr = card.DrawCardDetail();
-    //     spr.jumpToPos(...);
-    //
-    //     spr.render(gc);
-    // }
+    private void drawCardInfo (GraphicsContext gc, Card card) {
+        if (card != null) {
+            final double xPos = 1180;
+            final double yPos = 360;
+            final double scale = 0.63;
+
+            CardSprite spr = card.DrawCardDetail();
+            spr.changePos(xPos, yPos, true);
+            spr.changeScale(scale, scale, true);
+            spr.update(gc, 0);
+            spr.render(gc);
+        }
+    }
 
     private void drawDiscardPile(List<CardSprite> cards) {
         final double xPos = 1280;
@@ -172,7 +183,7 @@ public class GameDrawer {
     // Menjalankan urutan rendering pada game
     // gm : Tempat penyimpanan sentral informasi tentang game
     // deltaTime : Waktu sejak frame terakhir (untuk animasi)
-    public void drawGame (GameManager gm, double deltaTime) {
+    public void drawGame (double deltaTime) {
         
         drawArena(gm.getCurrentPlayer());
         drawArena(gm.getOppositePlayer());
@@ -180,11 +191,29 @@ public class GameDrawer {
         drawHands(gm.getOppositePlayer(), false);
         drawStats(gm.getGraphicsContext(), gm.getCurrentPlayer());
         drawStats(gm.getGraphicsContext(), gm.getOppositePlayer());
-        // drawCardInfo(gm.gc, ..., ...);
         drawDiscardPile(gm.getDiscardPile());
         for (Sprite spr : drawList) {
             spr.update(gm.getGraphicsContext(), deltaTime);
             spr.render(gm.getGraphicsContext());
         }
+        drawCardInfo(gm.getGraphicsContext(), hoveredCard);
+    }
+
+    public void OnMouseMove(MouseEvent e) {
+        List<Card> ph = gm.getCurrentPlayer().getPlayerHands();
+        // Cek kartu di tangan di hover
+        for (int i=0; i < ph.size(); i++) {
+            if (ph.get(i).getSprite().isPointOverlap(e.getX(), e.getY())) {
+                hoveredCard = ph.get(i);
+                return;
+            }
+        }
+        // Cek kartu di arena di hover
+        ArenaClickInfo info = gm.getArenaClickInfo(e.getX(), e.getY());
+        if (info != null && info.getChosenCard() != null) {
+            hoveredCard = info.getChosenCard();
+            return;
+        }
+        hoveredCard = null;
     }
 }

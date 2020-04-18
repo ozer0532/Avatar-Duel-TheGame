@@ -61,6 +61,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                         selectedCard = null;
                     } else {
                         selectedCardIndex = info.getIdx();
+                        gameManager.getGameDrawer().setHighlightedCard(this.selectedCard.getSprite());
                     }
                 }
             } else {
@@ -128,6 +129,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                     }
                 }
                 selectedCard = null;
+                gameManager.getGameDrawer().setHighlightedCard(null);
             }
         }
     }

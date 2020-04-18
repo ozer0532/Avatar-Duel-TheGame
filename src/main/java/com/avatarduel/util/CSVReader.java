@@ -14,7 +14,7 @@ import java.util.List;
  * This implementation only split each line using separator
  * into array of values.
  *
- * @author Laboratorium Programming
+ * @author Laboratorium Programming, modified by K2G10
  */
 public class CSVReader {
     private File csvFile;
@@ -67,6 +67,7 @@ public class CSVReader {
                     if (val.length() >= 2 && val.charAt(0) == '"' && val.charAt(val.length() - 1) == '"') {
                         row[i] = val.substring(1, val.length() - 1);
                     }
+                    row[i] = row[i].replace("\\n", "\n");
                 }
                 list.add(row);
             }

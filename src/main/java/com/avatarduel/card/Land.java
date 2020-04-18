@@ -98,11 +98,14 @@ public class Land extends Card {
         back="com/avatarduel/generic/image/BackSmallCard.png";
         
         cs = new CardSprite(front, back, imagePath);
+        cs.SetImagePos(36, 69);
 
-        type="[ Land ]";     
-        cs.InsertText(this.name,0,0);   
-        cs.InsertText(type,0,0);
-        cs.InsertText(this.description,0,0);
+        type="[ Land ]";
+        attr="POW/+1";
+        cs.InsertText(this.name,33,35);   
+        cs.InsertText(type,20,353);
+        cs.InsertText(this.description,25,380);
+        cs.InsertText(attr,25,545);
 
         return cs;
     }
