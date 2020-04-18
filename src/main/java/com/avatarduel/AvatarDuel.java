@@ -43,6 +43,15 @@ public class AvatarDuel extends Application {
         }
       }
     );
+
+    scene.setOnMouseMoved(
+      new EventHandler<MouseEvent>(){
+        public void handle(MouseEvent e)
+        {
+          gm.sendMouseMoveEvent(e);
+        }
+      }
+    );
     
     new AnimationTimer()
     {

@@ -138,13 +138,14 @@ public class Char extends Card {
         back="com/avatarduel/generic/image/BackSmallCard.png";
         
         cs = new CardSprite(front, back, imagePath);
+        cs.SetImagePos(36, 69);
 
         attr="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
-        type="[ Character ]";     
-        cs.InsertText(this.name,0,0);   
-        cs.InsertText(type,0,0);
-        cs.InsertText(this.description,0,0);
-        cs.InsertText(attr,0,0);
+        type="[ Character ]";
+        cs.InsertText(this.name,33,35);   
+        cs.InsertText(type,20,353);
+        cs.InsertText(this.description,25,380);
+        cs.InsertText(attr,25,545);
 
         return cs;
     }

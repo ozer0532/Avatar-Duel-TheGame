@@ -29,13 +29,14 @@ public class GameManager {
 
     // Constructor
     public GameManager(GraphicsContext gc){
-        // Init gameDrawer
-        graphicsContext = gc;
-        gameDrawer = new GameDrawer();
-
+        
         mouseClickSubs = new ArrayList<>();
         mouseMoveSubs = new ArrayList<>();
         discardPile = new ArrayList<>();
+
+        // Init gameDrawer
+        graphicsContext = gc;
+        gameDrawer = new GameDrawer(this);
         
         // Init CurrentPlayer dan oppositePlayer
         currentPlayer = new Player(false);
@@ -91,7 +92,7 @@ public class GameManager {
     public void gameLoop(double durationSinceLastFrame){
         // Ini dipanggil oleh Avatar Duel pada Animation Timer pada handle()
         // Reference: (1) - Cari bagian animation (bisa dipake buat yang bukan animasi juga)
-        this.gameDrawer.drawGame(this, durationSinceLastFrame);
+        this.gameDrawer.drawGame(durationSinceLastFrame);
     }
 
     public void switchPlayer(){
@@ -137,10 +138,8 @@ public class GameManager {
         Card selectedCard;
         if (isCharacter) {
             selectedCard = selectedPlayer.getPlayerArena().getCharCard(xIndex);
-            System.out.println(selectedPlayer.getPlayerArena().getCharCard(xIndex) == null);
         } else {
             selectedCard = selectedPlayer.getPlayerArena().getSkillCard(xIndex);
-            System.out.println(selectedPlayer.getPlayerArena().getSkillCard(xIndex) == null);
         }
 
         return new ArenaClickInfo(selectedCard, isCharacter, isTopPlayer, xIndex, charSlotOccupied, skillSlotOccupied, !isCurrent);

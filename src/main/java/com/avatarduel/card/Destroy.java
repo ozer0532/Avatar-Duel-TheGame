@@ -89,7 +89,7 @@ public class Destroy extends Skill {
     public CardSprite DrawCardDetail() {
         // kamus lokal
         CardSprite cs;
-        String imagePath, front, back, attr, elmt, desc, type, effect;
+        String imagePath, front, back, attr, elmt, desc, type;
         elmt = "";
         if (this.element==Element.AIR) {
             elmt="Air";
@@ -111,14 +111,14 @@ public class Destroy extends Skill {
         back="com/avatarduel/generic/image/BackSmallCard.png";
         
         cs = new CardSprite(front, back, imagePath);
-        effect="Destroy";
+        cs.SetImagePos(36, 69);
         attr="POW/"+this.powerNeeded;
         type="[ Skill ]";     
-        cs.InsertText(this.name,0,0); 
-        cs.InsertText(effect,0,0);  
-        cs.InsertText(type,0,0);
-        cs.InsertText(this.description,0,0);
-        cs.InsertText(attr,0,0);
+        
+        cs.InsertText(this.name,33,35);   
+        cs.InsertText(type,20,353);
+        cs.InsertText(this.description,25,380);
+        cs.InsertText(attr,25,545);
 
         return cs;
     }

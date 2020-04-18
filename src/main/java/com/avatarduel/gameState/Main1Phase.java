@@ -51,6 +51,7 @@ public class Main1Phase extends GameState implements IMouseClickSub{
         }
         if (cekOverlap) {
             this.selectedCard = this.pemain.getPlayerHands().get(i);
+            gameManager.getGameDrawer().setHighlightedCard(this.selectedCard.getSprite());
             System.out.println(this.selectedCard.getName());
         }
         else {
@@ -104,6 +105,7 @@ public class Main1Phase extends GameState implements IMouseClickSub{
             }
             
             this.selectedCard = null;
+            gameManager.getGameDrawer().setHighlightedCard(null);
         }
     }
 }

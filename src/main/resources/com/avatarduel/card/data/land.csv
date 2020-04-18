@@ -1,8 +1,8 @@
 id	name	element	description	imagepath
-101	Eastern Air Temple	AIR	One of the two temples exclusively housing female airbenders.	com/avatarduel/card/image/land/Eastern Air Temple.png
-102	Western Air Temple	AIR	One of the two temples exclusively housing female airbenders.	com/avatarduel/card/image/land/Western Air Temple.png
-103	Southern Air Temple	AIR	One of the two temples exclusively housing male airbenders. Childhood home of Avatar Aang.	com/avatarduel/card/image/land/Southern Air Temple.png
-104	Northern Air Temple	AIR	One of the two temples exclusively housing male airbenders.	com/avatarduel/card/image/land/Northern Air Temple.png
+101	Eastern Air Temple	AIR	One of the two temples\nexclusively housing female\nairbenders.	com/avatarduel/card/image/land/Eastern Air Temple.png
+102	Western Air Temple	AIR	One of the two temples\nexclusively housing female\nairbenders.	com/avatarduel/card/image/land/Western Air Temple.png
+103	Southern Air Temple	AIR	One of the two temples\nexclusively housing male\nairbenders. Childhood home of\nAvatar Aang.	com/avatarduel/card/image/land/Southern Air Temple.png
+104	Northern Air Temple	AIR	One of the two temples\nexclusively housing male\nairbenders.	com/avatarduel/card/image/land/Northern Air Temple.png
 105	Foggy Swamp	WATER	Place for immigrants of the Southern Water Tribe with an extensive array of fauna and flora.	com/avatarduel/card/image/land/Foggy Swamp.png
 106	Spirit Oasis	WATER	A verdant and lush garden located in a cave in the Northern Water Tribe's capital city at the North Pole.	com/avatarduel/card/image/land/Spirit Oasis.png
 107	Northern Water Tribe	WATER	The largest division of its nation and is located on an island situated near the North Pole.	com/avatarduel/card/image/land/Northern Water Tribe.png
@@ -11,9 +11,9 @@ id	name	element	description	imagepath
 110	Ba Sing Se	EARTH	The monolithic capital of the Earth Kingdom.	com/avatarduel/card/image/land/Ba Sing Se.png
 111	Kyoshi Island	EARTH	"Famous as the birthplace of Avatar Kyoshi and as the home of the elite Kyoshi Warriors."	com/avatarduel/card/image/land/Kyoshi Island.png
 112	Omashu	EARTH	"The second largest city in the Earth Kingdom and the capital of one of its provinces ruled by King Bumi."	com/avatarduel/card/image/land/Omashu.png
-113	Fire Nation Capital	FIRE	The seat of the government for the Fire Nation	com/avatarduel/card/image/land/Fire Nation Capital.png
+113	Fire Nation Capital	FIRE	The seat of the government\nfor the Fire Nation	com/avatarduel/card/image/land/Fire Nation Capital.png
 114	Boiling Rock	FIRE	A massive Fire Nation prison.	com/avatarduel/card/image/land/Boiling Rock.png
-115	Sun Warriors' Ancient City	FIRE	Large, historic settlement located on an island north of the Fire Nation mainland.	com/avatarduel/card/image/land/Sun Warriors' Ancient City.png
-116	Fire Fountain City	FIRE	A large industrial city located in the Fire Nation.	com/avatarduel/card/image/land/Fire Fountain City.png
+115	Sun Warriors' Ancient City	FIRE	Large, historic settlement\nlocated on an island north\nof the Fire Nation mainland.	com/avatarduel/card/image/land/Sun Warriors' Ancient City.png
+116	Fire Fountain City	FIRE	A large industrial city\nlocated in the Fire Nation.	com/avatarduel/card/image/land/Fire Fountain City.png
 117	Lion Turtle	ENERGY	Honorably referred to as Ancient One by the spirits, it is the largest known animal in the world.	com/avatarduel/card/image/land/Lion Turtle.png
 118	Spirit Wilds	ENERGY	Home to spirits in the mortal realm	com/avatarduel/card/image/land/Spirit Wilds.png

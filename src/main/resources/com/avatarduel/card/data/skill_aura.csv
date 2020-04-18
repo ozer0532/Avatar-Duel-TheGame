@@ -1,11 +1,11 @@
 id	name	element	description	imagepath	power	attack	defense
-301	Air Funnel	AIR	Technique to create a cannon for small projectiles.	com/avatarduel/card/image/skill/Air Funnel.png	2	4	0
-302	Air Scooter	AIR	A form of transportation invented by Aang.	com/avatarduel/card/image/skill/Air Scooter.png	2	2	4
-303	Airbender Staff	AIR	A wooden stave used primarily by airbenders to augment their bending.	com/avatarduel/card/image/skill/Airbender Staff.png	2	2	2
-304	Airbender Upgraded Staff	AIR	Upgraded staff made by Mechanist for Aang at the Fire Nation Invasion.	com/avatarduel/card/image/skill/Airbender Upgraded Staff.png	2	3	3
-305	Asphyxiation	AIR	Manipulates the flow of air within a person's respiratory system and prevents any new intake of breath by forming a ball of air around the head.	com/avatarduel/card/image/skill/Asphyxiation.png	3	-3	-3
-306	Glider	AIR	Aerial transportation made by Mechanist, inspired from Air nomad gliders.	com/avatarduel/card/image/skill/Glider.png	1	2	-1
-307	Hot Air Balloon	AIR	Air balloon created by Mechanist, originally developed for the Fire Nation	com/avatarduel/card/image/skill/Hot Air Balloon.png	3	3	2
+301	Air Funnel	AIR	Technique to create a cannon\nfor small projectiles.	com/avatarduel/card/image/skill/Air Funnel.png	2	4	0
+302	Air Scooter	AIR	A form of transportation\ninvented by Aang.	com/avatarduel/card/image/skill/Air Scooter.png	2	2	4
+303	Airbender Staff	AIR	A wooden stave used primarily\nby airbenders to augment their \nbending.	com/avatarduel/card/image/skill/Airbender Staff.png	2	2	2
+304	Airbender Upgraded Staff	AIR	Upgraded staff made by\nMechanist for Aang at the Fire\nNation Invasion.	com/avatarduel/card/image/skill/Airbender Upgraded Staff.png	2	3	3
+305	Asphyxiation	AIR	Manipulates the flow of air\nwithin a person's respiratory\nsystem and prevents any new\nintake of breath by forming a\nball of air around the head.	com/avatarduel/card/image/skill/Asphyxiation.png	3	-3	-3
+306	Glider	AIR	Aerial transportation made by Mechanist,\ninspired from Air nomad gliders.	com/avatarduel/card/image/skill/Glider.png	1	2	-1
+307	Hot Air Balloon	AIR	Air balloon created by\nMechanist, originally developed\nfor the Fire Nation	com/avatarduel/card/image/skill/Hot Air Balloon.png	3	3	2
 308	Crystal Armor	EARTH	Armor made of crystal that makes the person cannot move.	com/avatarduel//res/image/skill/Crystal Armor.png	3	-4	2
 309	Earth Sink	EARTH	Make the person sink to the ground.	com/avatarduel/card/image/skill/Earth Sink.png	2	-4	2
 310	Lavabending	EARTH	Manipulate molten earth.	com/avatarduel/card/image/skill/Lavabending.png	4	4	-2
@@ -13,13 +13,13 @@ id	name	element	description	imagepath	power	attack	defense
 312	Rock Gloves	EARTH	Favored weapons of Ba Sing Se's secret police force, known as the Dai Li.	com/avatarduel/card/image/skill/Rock Gloves.png	1	-2	-2
 313	Slinky Tank	EARTH	Stone vehicles provided both transportation and protection during the invasion of the Fire Nation.	com/avatarduel/card/image/skill/Slinky Tank.png	3	-1	5
 314	Surface Rocks	EARTH	Largse rocks used as projectiles of Royal Earthbender Guards.	com/avatarduel/card/image/skill/Surface Rocks.png	2	3	0
-315	Blue Fire	FIRE	Bend completely blue flames, which are hotter than the orange flames.	com/avatarduel/card/image/skill/Blue Fire.png	3	3	0
-316	Combustionbending	FIRE	Ignite objects with their mind instead of traditional firebending methods.	com/avatarduel/card/image/skill/Combustionbending.png	3	3	0
+315	Blue Fire	FIRE	Bend completely blue flames,\nwhich are hotter than the orange\nflames.	com/avatarduel/card/image/skill/Blue Fire.png	3	3	0
+316	Combustionbending	FIRE	Ignite objects with their\nmind instead of traditional\nfirebending methods.	com/avatarduel/card/image/skill/Combustionbending.png	3	3	0
 317	Fire Armor	FIRE	Fire Nation armor.	com/avatarduel/card/image/skill/Fire Armor.png	1	0	2
-318	Lightningbending	FIRE	Manipulate lightning by separating the yin and yang energies.	com/avatarduel/card/image/skill/Lightningbending.png	4	4	-2
-319	Shozin Comet	FIRE	Formerly known as the Great Comet. A celestial object that passes close to the Earth every one hundred years, just skimming the surface of the upper atmosphere.	com/avatarduel/card/image/skill/Shozin Comet.png	4	4	-1
-320	Trebuchets	FIRE	Large weapons to conduct long-range artilery warfare.	com/avatarduel/card/image/skill/Trebuchets.png	2	2	0
-321	Wall of Flames	FIRE	Wall of concentrated flames acts as a barrier to incoming attacks.	com/avatarduel/card/image/skill/Wall of Flames.png	3	0	3
+318	Lightningbending	FIRE	Manipulate lightning by separating\nthe yin and yang energies.	com/avatarduel/card/image/skill/Lightningbending.png	4	4	-2
+319	Shozin Comet	FIRE	Formerly known as the Great\nComet. A celestial object that\npasses close to the Earth every\none hundred years, just\nskimming the surface of the\nupper atmosphere.	com/avatarduel/card/image/skill/Shozin Comet.png	4	4	-1
+320	Trebuchets	FIRE	Large weapons to conduct\nlong-range artilery warfare.	com/avatarduel/card/image/skill/Trebuchets.png	2	2	0
+321	Wall of Flames	FIRE	Wall of concentrated flames acts\nas a barrier to incoming attacks.	com/avatarduel/card/image/skill/Wall of Flames.png	3	0	3
 322	Bloodbending	WATER	Ability that allows waterbender to manipulate person's movement.	com/avatarduel/card/image/skill/Bloodbending.png	4	4	1
 323	Club	WATER	A blunt force weapon used for striking. Mostly used by Sokka.	com/avatarduel/card/image/skill/Club.png	1	1	1
 324	Full Moon	WATER	Enhance the ability of water bending.	com/avatarduel/card/image/skill/Full Moon.png	4	4	2
