@@ -70,7 +70,6 @@ public class Char extends Card {
     public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addCharacterCard(idx,this);
-        gm.getCurrentPlayer().setPlayerArena(temp);
         gm.getCurrentPlayer().getPlayerHands().remove(this);
         gm.getCurrentPlayer().getPlayerStats().usePower(element, powerNeeded);
     }

@@ -43,10 +43,14 @@ public class Aura extends Skill {
 
     // Method Implementation
     public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
-        PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
+        PlayerArena temp;
+        if (!isPlayedonEnemy) {
+            temp = gm.getCurrentPlayer().getPlayerArena();
+        } else {
+            temp = gm.getOppositePlayer().getPlayerArena();
+        }
         if (temp.getCharCard(idx) != null) {
             temp.addSkillCard(idx,this);
-            gm.getCurrentPlayer().setPlayerArena(temp);
             gm.getCurrentPlayer().getPlayerHands().remove(this);
             gm.getCurrentPlayer().getPlayerStats().usePower(element, powerNeeded);
         }

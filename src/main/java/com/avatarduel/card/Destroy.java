@@ -18,13 +18,30 @@ public class Destroy extends Skill {
     // Method Implementation
     public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         // hapus musuh di sisi berlawanan
-        if (isPlayedonEnemy) {
-            gm.getOppositePlayer().getPlayerArena().removeCharCard(idx);
+        PlayerArena temp;
+        if (!isPlayedonEnemy) {
+            temp = gm.getCurrentPlayer().getPlayerArena();
+        } else {
+            temp = gm.getOppositePlayer().getPlayerArena();
         }
-        else {
-            gm.getCurrentPlayer().getPlayerArena().removeSkillCard(idx);
+        if (!isPlayedonEnemy) {
+            temp = gm.getOppositePlayer().getPlayerArena();
+        } else {
+            temp = gm.getCurrentPlayer().getPlayerArena();
+        }
+        Char card = temp.getCharCard(idx);
+        if (card != null) {
+            gm.getOppositePlayer().getPlayerArena().removeCharCard(idx);
+            gm.addToDiscardPile(card);
+            Skill skill = temp.getSkillCard(idx);
+            if (skill != null) {
+                gm.getOppositePlayer().getPlayerArena().removeSkillCard(idx);
+                gm.addToDiscardPile(skill);
+                
+            }
         }
         gm.getCurrentPlayer().getPlayerHands().remove(this);
+        gm.addToDiscardPile(this);
         gm.getCurrentPlayer().getPlayerStats().usePower(element, powerNeeded);
         
     }
