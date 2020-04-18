@@ -2,7 +2,6 @@ package com.avatarduel.sprite;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 import com.avatarduel.card.Card;
 import com.avatarduel.card.Char;
@@ -14,6 +13,7 @@ import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 
@@ -214,6 +214,19 @@ public class GameDrawer implements IMouseMoveSub {
     }
 
     /**
+     * Menggambarkan highlight kartu yang dipilih
+     * @param gc Graphics Context canvas game
+     */
+    private void drawHighlightedCard(GraphicsContext gc) {
+        if (highligthtedCard != null) {
+            gc.save();
+            gc.setEffect(new Glow(0.5));
+            highligthtedCard.render(gc);
+            gc.restore();
+        }
+    }
+
+    /**
      * Menjalankan urutan sintesis citra pada game
      * @param deltaTime Waktu sejak frame terakhir (untuk animasi)
      */
@@ -230,6 +243,7 @@ public class GameDrawer implements IMouseMoveSub {
             spr.update(gm.getGraphicsContext(), deltaTime);
             spr.render(gm.getGraphicsContext());
         }
+        drawHighlightedCard(gm.getGraphicsContext());
         drawCardInfo(gm.getGraphicsContext(), hoveredCard);
     }
 
