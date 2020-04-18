@@ -1,9 +1,9 @@
-package com.avatarduel.gamestate;
+package com.avatarduel.gameState;
 
 import java.util.List;
 
 import com.avatarduel.card.*;
-import com.avatarduel.gamemanager.*;
+import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.sprite.*;
 

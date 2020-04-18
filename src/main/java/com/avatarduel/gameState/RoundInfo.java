@@ -1,4 +1,4 @@
-package com.avatarduel.gamestate;
+package com.avatarduel.gameState;
 
 import java.util.ArrayList;
 import java.util.List;

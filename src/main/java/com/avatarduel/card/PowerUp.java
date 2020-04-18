@@ -5,7 +5,7 @@ import com.avatarduel.sprite.CardSprite;
 
 import javafx.scene.image.Image;
 
-import com.avatarduel.gamemanager.*;
+import com.avatarduel.gameManager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 

@@ -1,5 +1,5 @@
 // IMouseClickSub.java
-package com.avatarduel.gamemanager;
+package com.avatarduel.gameManager;
 
 import javafx.scene.input.MouseEvent;
 

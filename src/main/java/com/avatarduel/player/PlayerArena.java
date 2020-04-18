@@ -4,13 +4,24 @@ import java.util.Arrays;
 import com.avatarduel.card.Char;
 import com.avatarduel.card.Skill;
 
+/**
+ * PlayerArena adalah class yang mengatur kondisi
+ * arena yang dimiliki player, seperti kartu apa saja
+ * yang berada di arena
+ */
 public class PlayerArena {
-    // Atribut
+    /**
+     * Atribut-atribut dari PlayerArena
+     */
     static int MAX_CARD = 8;
     private Char[] character;
     private Skill[] skills;
 
-    // Constructor
+    /* Constructor */
+    /**
+     * Membuat PlayerArena dengan slot kartu Character 8
+     * dan slot kartu Skill 8
+     */
     public PlayerArena(){
         this.character = new Char[8];
         this.skills = new Skill[8];
@@ -20,6 +31,11 @@ public class PlayerArena {
     }
 
     /* SETTER */
+    /**
+     * Menambahkan kartu Character pada slot kartu Player
+     * Jika slot penuh akan memberikan output "Character slot is full"
+     * @param charCard kartu Character yang akan ditambahkan
+     */
     public void addCharacterCard(Char charCard){
         boolean flag = false;
         for (int i = 0; i < 8; i++){
@@ -34,6 +50,11 @@ public class PlayerArena {
         }
     }
 
+    /**
+     * Menambahkan kartu Skill pada slot kartu Player
+     * Jika slot penuh akan memberikan output "Skill slot is full"
+     * @param skillCard kartu Skill yang akan ditambahkan
+     */
     public void addSkillCard(Skill skillCard){
         boolean flag = false;
         for (int i = 0; i < 8; i++){
@@ -48,39 +69,80 @@ public class PlayerArena {
         }
     }
 
+    /**
+     * Menambahkan kartu Character pada slot kartu Player di index tertentu
+     * @param idx index yang akan ditambahkan
+     * @param charCard kartu Character yang akan ditambahkan
+     */
     public void addCharacterCard(int idx, Char charCard){
         this.character[idx] = charCard;
     }
 
+    /**
+     * Menambahkan kartu Skill pada slot kartu Player di index tertentu
+     * @param idx index yang akan ditambahkan
+     * @param skillCard kartu Skill yang akan ditambahkan
+     */
     public void addSkillCard(int idx, Skill skillCard){
         this.skills[idx] = skillCard;
     }
 
     /* GETTER */
+    /**
+     * Getter untuk slot kartu Character
+     * @return kondisi slot kartu Character
+     */
     public Char[] getCharCard(){
         return this.character;
     }
 
+    /**
+     * Getter untuk slot kartu Skill
+     * @return kondisi slot kartu Skill
+     */
     public Skill[] getSkillCard(){
         return this.skills;
     }
 
+    /**
+     * Getter untuk kartu yang berada di slot kartu Character
+     * @param idx index slot
+     * @return kartu Character di index idx
+     */
     public Char getCharCard(int idx){
         return this.character[idx];
     }
 
+    /**
+     * Getter untuk kartu yang berada di slot kartu Skill
+     * @param idx index slot
+     * @return kartu Skill di index idx
+     */
     public Skill getSkillCard(int idx){
         return this.skills[idx];
     }
 
+    /* Util */
+    /**
+     * Mengubah kartu Character di slot tertentu menjadi null
+     * @param idx index slot
+     */
     public void removeCharCard(int idx){
         this.character[idx] = null;
     }
 
+    /**
+     * Mengubah kartu Skill di slot tertentu menjadi null
+     * @param idx index slot
+     */
     public void removeSkillCard(int idx){
         this.skills[idx] = null;
     }
 
+    /**
+     * Menghitung jumlah kartu Character yang berada di slot kartu
+     * @return jumlah kartu Character
+     */
     public int charCardCount(){
         int count = 0;
         for (int i = 0; i < 8; i++) {
@@ -91,6 +153,10 @@ public class PlayerArena {
         return count;
     }
 
+    /**
+     * Menghitung jumlah kartu Skill yang berada di slot kartu
+     * @return jumlah kartu Skill
+     */
     public int skillCardCount(){
         int count = 0;
         for (int i = 0; i < 8; i++) {
