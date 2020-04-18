@@ -1,5 +1,4 @@
 // BattlePhase.java
-
 package com.avatarduel.gamestate;
 
 import com.avatarduel.card.*;
@@ -8,28 +7,47 @@ import com.avatarduel.player.*;
 import com.avatarduel.sprite.*;
 
 import javafx.scene.input.MouseEvent;
+
 import java.util.List;
 import java.util.Arrays; 
 import java.util.stream.IntStream; 
 
-// BattlePhase.java
+/**
+ * BattlePhase merupakan class yang bertanggung jawab dalam fase menyerang dari pemain dengan giliran 
+ * bermain saat ini.
+ * BattlePhase akan di-generate setiap giliran pemain untuk menyerang lawan.
+ */
+
 public class BattlePhase extends GameState implements IMouseClickSub{
     private Char selectedCard;
     private int selectedCardIndex;
     private Player pemain;
     private RoundInfo roundInfo;
 
+    /**
+     * Membuat BattlePhase baru dengan masukan gameManager dan RoundInfo
+     * @param gameManager gameManager sekarang
+     * @param info informasi untuk ronde ini
+     */
     public BattlePhase(GameManager gameManager, RoundInfo info){
         super(gameManager);
         this.roundInfo = info;
     }
 
+    /**
+     * Memulai BattlePhase dan melakukan subscribe untuk mouse click
+     */
+    @Override
     public void StartTurn(){
         // Subscribe to mouse click subs
         System.out.println(">>>>> BATTLE PHASE START <<<<<");
         gameManager.RegisterMouseClick(this);
     }
 
+    /**
+     * Melakukan unsubscribe untuk mouse click dan mengganti state game ke EndPhase
+     */
+    @Override
     public void EndTurn(){
         // Unsubscribe to mouse click subs
         gameManager.UnregisterMouseClick(this);
@@ -40,6 +58,9 @@ public class BattlePhase extends GameState implements IMouseClickSub{
         gameManager.getGameState().StartTurn();
     }
 
+    /**
+     * Melakukan serangan terhadap lawan
+     */
     public void OnMouseClick (MouseEvent event){
         // Kalau klik kartu currentplayer di arena (dan kartunya gak ada di playedCards), simpen ke selectedcard
         // Kalau engga, Selected Card set null

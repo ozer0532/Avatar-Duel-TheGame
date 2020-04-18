@@ -1,3 +1,4 @@
+// Main1Phase.java
 package com.avatarduel.gamestate;
 
 import java.util.List;
@@ -9,22 +10,41 @@ import com.avatarduel.sprite.*;
 
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Main1Phase merupakan class yang bertanggung jawab untuk melakukan persiapan sebelum BattlePhase.
+ * Persiapan yang dilakukan dapat berupa meletakkan kartu dari tangan ke arena, mengubah posisi kartu
+ * karakter (attack/defense) di arena, dan/atau membuang kartu skill di arena.
+ * Main1Phase akan di-generate setiap giliran pemain untuk melakukan persiapan sebelum battle.
+ */
+
 public class Main1Phase extends GameState implements IMouseClickSub{
     private Player pemain;
     private Card selectedCard;
     private RoundInfo roundInfo;
 
+    /**
+     * Membuat Main1Phase baru dengan masukan gameManager
+     * @param gameManager gameManager sekarang
+     */
     public Main1Phase(GameManager gameManager){
         super(gameManager);
         roundInfo = new RoundInfo();
     }
 
+    /**
+     * Memulai Main1Phase dan melakukan subscribe untuk mouse click
+     */
+    @Override
     public void StartTurn(){
         // Subscribe to mouse click subs
         gameManager.RegisterMouseClick(this);
         System.out.println(">>>>> MAIN PHASE START <<<<<");
     }
 
+    /**
+     * Melakukan unsubscribe untuk mouse click dan mengganti state game ke BattlePhase
+     */
+    @Override
     public void EndTurn(){
         // Unsubscribe to mouse click subs
         gameManager.UnregisterMouseClick(this);
@@ -35,6 +55,10 @@ public class Main1Phase extends GameState implements IMouseClickSub{
         gameManager.getGameState().StartTurn();
     }
 
+    /**
+     * Melakukan persiapan terhadap arena sendiri sebelum battle
+     * @param event input event dari mouse
+     */
     public void OnMouseClick (MouseEvent event){
         // Kalau klik di kartu di hand, simpan kartu ke SelectedCard
         // Kalau engga, SelectedCard set null
