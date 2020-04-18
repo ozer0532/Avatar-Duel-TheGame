@@ -23,25 +23,43 @@ public class GameDrawer implements IMouseMoveSub {
     private List<Sprite> drawList = new ArrayList<>();
     private GameManager gm;
 
+    /**
+     * Pengatur sintesis citra untuk sprite
+     * @param gm Game Manager dari game
+     */
     public GameDrawer(GameManager gm) {
         this.gm = gm;
         gm.RegisterMouseMove(this);
     }
 
+    /**
+     * Menandai sprite untuk digambar oleh Game Drawer
+     * @param s sprite untuk ditandai
+     */
     public void addToDrawList (Sprite s) {
         drawList.add(s);
     }
 
+    /**
+     * Menghentikan penggambaran sprite oleh Game Drawer
+     * @param s sprite yang penggambarannya ingin dihentikan
+     */
     public void removeFromDrawList (Sprite s) {
         drawList.remove(s);
     }
 
+    /**
+     * Menandakan kartu yang diseleksi
+     * @param card sprite kartu yang diseleksi
+     */
     public void setHighlightedCard (CardSprite card) {
         highligthtedCard = card;
     }
 
-    // Menggambar kartu-kartu yang berada pada arena
-    // p : Player yang kartunya akan digambar
+    /**
+     * Menggambarkan arena untuk salah satu pemain
+     * @param p pemain yang digambarkan
+     */
     private void drawArena (Player p) {
         double characterYPos;
         double skillYPos;
@@ -79,8 +97,12 @@ public class GameDrawer implements IMouseMoveSub {
         }
     }
 
-    // Menggambar kartu-kartu yang berada pada tangan pemain
-    // p : Player yang kartunya akan digambar
+    /**
+     * Menggambarkan kartu di tangan pemain
+     * @param p pemain yang digambar
+     * @param isCurrentPlayer jika true, kartu digambar terbuka
+     * jika false, kartu digambar tertutup
+     */
     private void drawHands (Player p, boolean isCurrentPlayer) {
         double yPos;
         final double xCenterPos = 738;
@@ -104,9 +126,11 @@ public class GameDrawer implements IMouseMoveSub {
         }
     }
 
-    // Menggambar stats pemain pada layar
-    // gc : Penggambar
-    // p : Player yang kartunya akan digambar
+    /**
+     * Menggambarkan nilai stat pemain
+     * @param gc Graphics Context kanvas game
+     * @param p pemain yang digambar
+     */
     private void drawStats (GraphicsContext gc, Player p) {
         final double yPos;
         final double xPos = 28;
@@ -154,6 +178,11 @@ public class GameDrawer implements IMouseMoveSub {
     // gc : Penggambar
     // card : Kartu yang ingin ditampilkan
     // isTop : Posisi kartu
+    /**
+     * Menggambar versi penuh kartu yang memiliki semua info tentang kartu
+     * @param gc Graphics Context kanvas game
+     * @param card Kartu yang versi penuhnya digambar
+     */
     private void drawCardInfo (GraphicsContext gc, Card card) {
         if (card != null) {
             final double xPos = 1180;
@@ -168,6 +197,10 @@ public class GameDrawer implements IMouseMoveSub {
         }
     }
 
+    /**
+     * Menggambar tumpukan kartu yang dibuang
+     * @param cards Daftar kartu yang dibuang
+     */
     private void drawDiscardPile(List<CardSprite> cards) {
         final double xPos = 1280;
         final double yPos = 360;
@@ -180,9 +213,10 @@ public class GameDrawer implements IMouseMoveSub {
         }
     }
 
-    // Menjalankan urutan rendering pada game
-    // gm : Tempat penyimpanan sentral informasi tentang game
-    // deltaTime : Waktu sejak frame terakhir (untuk animasi)
+    /**
+     * Menjalankan urutan sintesis citra pada game
+     * @param deltaTime Waktu sejak frame terakhir (untuk animasi)
+     */
     public void drawGame (double deltaTime) {
         
         drawArena(gm.getCurrentPlayer());
