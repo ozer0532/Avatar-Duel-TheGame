@@ -9,13 +9,31 @@ import com.avatarduel.gamemanager.*;
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
 
+/**
+ * Destroy merupakan class yang inheritance dari skill. Destroy bertanggung jawab dalam representasi kartu skill
+ * berjenis Destroy dalam permainan Avatar Duel.
+ */
 public class Destroy extends Skill {
     // Constructor
+    /**
+     * Membuat sebuah Destroy baru dengan masukan name, elmt, desc, image, dan pn
+     * @param name nama dari skill Destroy
+     * @param elmt element dari skill Destroy
+     * @param desc deskripsi dari skill Destroy
+     * @param image path image dari skill Destroy
+     * @param pn jumlah power yang dibutuhkan
+     */
     public Destroy(String name, Element elmt, String desc, String image, int pn){
         super(name, elmt, desc, image, pn);
     }
 
     // Method Implementation
+    /**
+     * Memainkan kartu Destroy dalam permainan, menghapus musuh di sisi berlawanan
+     * @param gm GameManager sebagai pengatur permainan
+     * @param idx index kartu dalam arena
+     * @param isPlayedonEnemy true apabila dimainkan ke musuh
+     */
     public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         // hapus musuh di sisi berlawanan
         PlayerArena temp;
@@ -46,6 +64,11 @@ public class Destroy extends Skill {
         
     }
 
+    /**
+     * Mengembalikan true apabila kartu bisa dimainkan dengan kondisi power mencukupi
+     * @param p player yang kartu Destroy nya mau dimainkan
+     * @return true apabile kartu Destroy bisa dimainkan
+     */
     public boolean CanBePlayed(Player p){
         PlayerStats ps = p.getPlayerStats();
         PlayerArena pa = p.getPlayerArena();
@@ -57,6 +80,13 @@ public class Destroy extends Skill {
         return false;
     }
 
+    /**
+     * Mengembalikan informasi sederhana dari sebuah kartu Destroy
+     * @param x posisi x dari mouse
+     * @param y posisi y dari mouse
+     * @param isFlipped keadaan kartu terbalik atau tidak
+     * @return sebuah sprite berisi informasi detail dari kartu Destroy
+     */
     public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
         // kamus lokal
         CardSprite cs;
@@ -86,6 +116,11 @@ public class Destroy extends Skill {
         cs.InsertText(attr,25,354,"Arial Bold",32);
         return cs;
     }
+
+    /**
+     * Mengembalikan informasi detail dari sebuah kartu Destroy
+     * @return sebuah sprite berisi informasi detail dari kartu
+     */
     public CardSprite DrawCardDetail() {
         // kamus lokal
         CardSprite cs;

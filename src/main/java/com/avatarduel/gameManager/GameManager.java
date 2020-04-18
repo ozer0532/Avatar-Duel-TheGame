@@ -22,7 +22,7 @@ import javafx.scene.input.MouseEvent;
  * hingga pergantian state di dalam suatu game.
  * GameManager ini akan digenerate di awal aplikasi dan hanya diinstansiasi
  * sebanyak satu kali.
- * @author Laboratorium Programming
+ * @author 13518056 / Michael Hans
  */
 
 public class GameManager {
