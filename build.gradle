@@ -34,3 +34,7 @@ eclipse {
         }
     }
 }
+
+task avatarDocs(type: Javadoc) {
+  source = sourceSets.main.allJava
+}
