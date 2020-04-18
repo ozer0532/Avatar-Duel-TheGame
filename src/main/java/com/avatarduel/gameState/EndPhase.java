@@ -2,6 +2,9 @@
 package com.avatarduel.gamestate;
 
 import com.avatarduel.gamemanager.GameManager;
+import com.avatarduel.gamemanager.IMouseClickSub;
+
+import javafx.scene.input.MouseEvent;
 
 /**
  * EndPhase merupakan class yang bertanggung jawab dalam mengakhiri giliran dari pemain sekarang
@@ -9,7 +12,7 @@ import com.avatarduel.gamemanager.GameManager;
  * EndPhase akan di-generate setiap giliran pemain untuk mengganti giliran bermain.
  */
 
-public class EndPhase extends GameState{
+public class EndPhase extends GameState implements IMouseClickSub{
     
     /**
      * Membuat EndPhase baru dengan masukan gameManager
@@ -28,9 +31,6 @@ public class EndPhase extends GameState{
         System.out.println(">>>>> END PHASE START <<<<<");
         gameManager.getCurrentPlayer().getPlayerStats().resetStats();
         gameManager.switchPlayer();
-
-        // Panggil endturn
-        this.EndTurn();
     }
 
     /**
@@ -40,5 +40,10 @@ public class EndPhase extends GameState{
     public void EndTurn(){
         gameManager.setGameState(new DrawPhase(gameManager));
         gameManager.getGameState().StartTurn();
+    }
+
+    @Override
+    public void OnMouseClick(MouseEvent event) {
+        EndTurn();
     }
 }

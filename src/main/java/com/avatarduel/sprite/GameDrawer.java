@@ -9,6 +9,11 @@ import com.avatarduel.card.Skill;
 import com.avatarduel.gamemanager.GameManager;
 import com.avatarduel.gamemanager.IMouseMoveSub;
 import com.avatarduel.gamestate.ArenaClickInfo;
+import com.avatarduel.gamestate.BattlePhase;
+import com.avatarduel.gamestate.DrawPhase;
+import com.avatarduel.gamestate.EndPhase;
+import com.avatarduel.gamestate.GameState;
+import com.avatarduel.gamestate.Main1Phase;
 import com.avatarduel.model.Element;
 import com.avatarduel.player.Player;
 
@@ -242,6 +247,29 @@ public class GameDrawer implements IMouseMoveSub {
         gc.restore();
     }
 
+    private void drawGameState(GameManager gm) {
+        final double xPos = 120;
+        final double yPos = 372;
+        GraphicsContext gc = gm.getGraphicsContext();
+        GameState gs = gm.getGameState();
+        String text = "";
+
+        if (gs instanceof DrawPhase) {
+            text = "DRAW";
+        } else if (gs instanceof Main1Phase) {
+            text = "MAIN";
+        } else if (gs instanceof BattlePhase) {
+            text = "BATTLE";
+        } else if (gs instanceof EndPhase) {
+            text = "END";
+        }
+
+        gc.save();
+        gc.setFont(new Font("Arial", 30));
+        gc.fillText(text, xPos, yPos);
+        gc.restore();
+    }
+
     /**
      * Menjalankan urutan sintesis citra pada game
      * @param deltaTime Waktu sejak frame terakhir (untuk animasi)
@@ -250,7 +278,7 @@ public class GameDrawer implements IMouseMoveSub {
         
         drawArena(gm.getCurrentPlayer());
         drawArena(gm.getOppositePlayer());
-        drawHands(gm.getCurrentPlayer(), true);
+        drawHands(gm.getCurrentPlayer(), !(gm.getGameState() instanceof EndPhase));
         drawHands(gm.getOppositePlayer(), false);
         drawStats(gm.getGraphicsContext(), gm.getCurrentPlayer());
         drawStats(gm.getGraphicsContext(), gm.getOppositePlayer());
@@ -259,7 +287,10 @@ public class GameDrawer implements IMouseMoveSub {
             spr.update(gm.getGraphicsContext(), deltaTime);
             spr.render(gm.getGraphicsContext());
         }
-        drawHighlightedCard(gm.getGraphicsContext());
+        if (!(gm.getGameState() instanceof EndPhase)) {
+            drawHighlightedCard(gm.getGraphicsContext());
+        }
+        drawGameState(gm);
         drawCardInfo(gm.getGraphicsContext(), hoveredCard);
         if (gm.hasGameEnded()) {
             drawGameWin(gm.getGraphicsContext(), gm.topPlayerWon());
