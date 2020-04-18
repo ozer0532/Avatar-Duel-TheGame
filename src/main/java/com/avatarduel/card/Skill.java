@@ -1,4 +1,4 @@
-// Aura.java
+// Skill.java
 
 package com.avatarduel.card;
 
@@ -39,7 +39,7 @@ public abstract class Skill extends Card {
     /**
      * Mengembalikan true apabila kartu bisa dimainkan dengan kondisi power mencukupi
      * @param ps player yang kartu skillnya mau dimainkan
-     * @return true apabile kartu skill bisa dimainkan
+     * @return true apabila kartu skill bisa dimainkan
      */
     public abstract boolean CanBePlayed(Player ps);
 
