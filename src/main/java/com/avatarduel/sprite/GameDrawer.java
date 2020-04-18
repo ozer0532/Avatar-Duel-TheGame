@@ -16,6 +16,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 public class GameDrawer implements IMouseMoveSub {
     private CardSprite highligthtedCard = null;
@@ -226,6 +227,21 @@ public class GameDrawer implements IMouseMoveSub {
         }
     }
 
+    private void drawGameWin(GraphicsContext gc, boolean isTopPlayer) {
+        final double xPos = 690;
+        final double yPos;
+        if (isTopPlayer) {
+            yPos = 230;
+        } else {
+            yPos = 470;
+        }
+        gc.save();
+        gc.setFont(new Font("Arial Bold", 50));
+        gc.setTextAlign(TextAlignment.CENTER);
+        gc.fillText("WINNER WINNER\nCHICKEN DINNER", xPos, yPos);
+        gc.restore();
+    }
+
     /**
      * Menjalankan urutan sintesis citra pada game
      * @param deltaTime Waktu sejak frame terakhir (untuk animasi)
@@ -245,6 +261,9 @@ public class GameDrawer implements IMouseMoveSub {
         }
         drawHighlightedCard(gm.getGraphicsContext());
         drawCardInfo(gm.getGraphicsContext(), hoveredCard);
+        if (gm.hasGameEnded()) {
+            drawGameWin(gm.getGraphicsContext(), gm.topPlayerWon());
+        }
     }
 
     public void OnMouseMove(MouseEvent e) {

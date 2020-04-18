@@ -37,6 +37,7 @@ public class GameManager {
     private List<IMouseMoveSub> mouseMoveSubs;
     private GameDrawer gameDrawer;
     private GraphicsContext graphicsContext;
+    private int winner;
 
     /**
      * Membuat GameManager baru berdasarkan masukan input graphics context
@@ -47,6 +48,7 @@ public class GameManager {
         mouseClickSubs = new ArrayList<>();
         mouseMoveSubs = new ArrayList<>();
         discardPile = new ArrayList<>();
+        winner = 0;
 
         // Init gameDrawer
         graphicsContext = gc;
@@ -176,6 +178,18 @@ public class GameManager {
         }
 
         return new ArenaClickInfo(selectedCard, isCharacter, isTopPlayer, xIndex, charSlotOccupied, skillSlotOccupied, !isCurrent);
+    }
+
+    public boolean hasGameEnded() {
+        return winner != 0;
+    }
+
+    public boolean topPlayerWon() {
+        return winner == 2;
+    }
+
+    public void setWinner(boolean isTopWinner) {
+        winner = isTopWinner ? 2 : 1;
     }
 
     /**

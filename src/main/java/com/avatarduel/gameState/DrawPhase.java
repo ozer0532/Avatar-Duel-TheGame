@@ -32,9 +32,13 @@ public class DrawPhase extends GameState {
         // Masukin kartu ke hand
         System.out.println(">>>>> DRAW PHASE START <<<<<");
         this.pemain = gameManager.getCurrentPlayer();
-        this.kartu = this.pemain.getCardFromDeck();
-        this.pemain.addPlayerHands(this.kartu);
-        EndTurn();
+        if (!this.pemain.getPlayerDeck().empty()) {
+            this.kartu = this.pemain.getCardFromDeck();
+            this.pemain.addPlayerHands(this.kartu);
+            EndTurn();
+        } else {
+            gameManager.setWinner(!this.pemain.getIsTopPlayer());
+        }
     }
 
     /**
