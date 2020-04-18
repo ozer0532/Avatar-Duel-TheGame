@@ -16,7 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import com.avatarduel.gameManager.GameManager;
+import com.avatarduel.gamemanager.GameManager;
 import com.avatarduel.util.LongValue;
 
 public class AvatarDuel extends Application {

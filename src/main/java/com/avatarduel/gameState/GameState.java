@@ -1,8 +1,8 @@
 // GameState.java
 
-package com.avatarduel.gameState;
+package com.avatarduel.gamestate;
 
-import com.avatarduel.gameManager.*;
+import com.avatarduel.gamemanager.*;
 
 public abstract class GameState {
     protected GameManager gameManager;
