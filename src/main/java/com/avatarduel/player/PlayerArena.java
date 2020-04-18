@@ -81,8 +81,25 @@ public class PlayerArena {
         this.skills[idx] = null;
     }
 
-    /* DEBUG */
-    public static void main(String[] args){
-        
+    public int charCardCount(){
+        int count = 0;
+        for (int i = 0; i < 8; i++) {
+            if (character[i] != null) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int skillCardCount(){
+        int count = 0;
+        for (int i = 0; i < 8; i++) {
+            if (skills[i] != null) {
+                count++;
+                System.out.println(skills[i].getName());
+                System.out.println(i);
+            }
+        }
+        return count;
     }
 }

@@ -60,7 +60,7 @@ public class Main1Phase extends GameState implements IMouseClickSub{
             ArenaClickInfo info = gameManager.getArenaClickInfo(X, Y);
             if (info != null) {
 
-                if ((this.selectedCard != null) && (this.selectedCard.CanBePlayed(this.pemain.getPlayerStats()))) {
+                if ((this.selectedCard != null) && (this.selectedCard.CanBePlayed(this.pemain))) {
                     System.out.println("----PLAYING CARD-----");
                     if (this.selectedCard instanceof Char) {
                         System.out.println("----CHAR-----");
@@ -73,7 +73,6 @@ public class Main1Phase extends GameState implements IMouseClickSub{
                         System.out.println("----SKILL-----");
                         if (!info.getSkillSlotOccupied()) {
                             this.selectedCard.OnCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
-                            this.pemain.getPlayerArena().addSkillCard((Skill) this.selectedCard);
                         }
                     } else {
                         System.out.println("----LAND-----");

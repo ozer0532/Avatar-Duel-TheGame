@@ -92,6 +92,11 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                             opp.getPlayerStats().takeDamage(attCur - attOpp);
                             gameManager.addToDiscardPile(charOpp);
                             roundInfo.addCardsAttacked(charCur);
+                            if (info.getSkillSlotOccupied()) {
+                                Skill skillOpp = opp.getPlayerArena().getSkillCard(info.getIdx());
+                                gameManager.addToDiscardPile(skillOpp);
+                                opp.getPlayerArena().removeSkillCard(info.getIdx());
+                            }
                         }
                         else if (charOpp.getIsDefense() && (attCur > defOpp)) {
                             // karakter lawan mati
@@ -101,22 +106,24 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                             if (cur.getPlayerArena().getSkillCard(info.getIdx()) instanceof PowerUp) {
                                 opp.getPlayerStats().takeDamage(attCur - attOpp);
                             }
+                            if (info.getSkillSlotOccupied()) {
+                                Skill skillOpp = opp.getPlayerArena().getSkillCard(info.getIdx());
+                                gameManager.addToDiscardPile(skillOpp);
+                                opp.getPlayerArena().removeSkillCard(info.getIdx());
+                            }
                         } else {
                             System.out.println("----ATTACK FAILED-----");
                         }
                     } else {
                         // Cek karakter lawan kosong
-                        boolean kosong = true;
-                        for (Char c : opp.getPlayerArena().getCharCard()) {
-                            if (c != null) {
-                                kosong = false;
-                                break;
-                            }
-                        }
+                        System.out.println("----ATTACKING PLAYER-----");
+                        boolean kosong = opp.getPlayerArena().charCardCount() == 0;
                         if (kosong) {
                             int attCur = charCur.getAttack() + (auraCur != null ? auraCur.getAttack() : 0);
                             opp.getPlayerStats().takeDamage(attCur);
                             roundInfo.addCardsAttacked(charCur);
+                        } else {
+                            System.out.println("----ATTACK FAILED-----");
                         }
                     }
                 }

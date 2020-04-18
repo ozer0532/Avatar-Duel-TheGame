@@ -33,7 +33,8 @@ public class Land extends Card {
         }
     }
 
-    public boolean CanBePlayed(PlayerStats ps){
+    public boolean CanBePlayed(Player p){
+        PlayerStats ps = p.getPlayerStats();
         if (!ps.getPlayedLandThisRound()){
             ps.setPlayedLandThisRound(true);
             return true;

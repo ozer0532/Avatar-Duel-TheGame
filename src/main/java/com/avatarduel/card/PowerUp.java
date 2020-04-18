@@ -18,20 +18,24 @@ public class PowerUp extends Skill {
     // Method Implementation
     public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp=gm.getCurrentPlayer().getPlayerArena();
-        temp.addSkillCard(idx,this);
-        gm.getCurrentPlayer().setPlayerArena(temp);
-        gm.getCurrentPlayer().getPlayerHands().remove(this);
-        gm.getCurrentPlayer().getPlayerStats().usePower(element, powerNeeded);
+        if (temp.getCharCard(idx) != null) {
+            temp.addSkillCard(idx,this);
+            gm.getCurrentPlayer().setPlayerArena(temp);
+            gm.getCurrentPlayer().getPlayerHands().remove(this);
+            gm.getCurrentPlayer().getPlayerStats().usePower(element, powerNeeded);
+        }
     }
 
-    public boolean CanBePlayed(PlayerStats ps){
+    public boolean CanBePlayed(Player p){
         // return true kalo power mencukupi
-        if (ps.getRemainingPower(super.getElmt()) >= this.powerNeeded){
-            return true;
+        PlayerStats ps = p.getPlayerStats();
+        PlayerArena pa = p.getPlayerArena();
+        if (ps.getRemainingPower(this.element) >= this.powerNeeded) {
+            if (pa.charCardCount() + pa.skillCardCount() < 6) {
+                return true;
+            }
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {

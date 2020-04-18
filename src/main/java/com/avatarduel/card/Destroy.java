@@ -29,13 +29,15 @@ public class Destroy extends Skill {
         
     }
 
-    public boolean CanBePlayed(PlayerStats ps){
-        if (ps.getRemainingPower(super.getElmt()) >= this.powerNeeded){
-            return true;
+    public boolean CanBePlayed(Player p){
+        PlayerStats ps = p.getPlayerStats();
+        PlayerArena pa = p.getPlayerArena();
+        if (ps.getRemainingPower(this.element) >= this.powerNeeded) {
+            if (pa.charCardCount() + pa.skillCardCount() < 6) {
+                return true;
+            }
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {

@@ -69,7 +69,7 @@ public abstract class Card {
 
     // Abstract Methods
     public abstract void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy);
-    public abstract boolean CanBePlayed(PlayerStats ps);
+    public abstract boolean CanBePlayed(Player p);
     public abstract CardSprite DrawCardSimple(float x, float y, boolean isFlipped);
     public abstract CardSprite DrawCardDetail();
 }

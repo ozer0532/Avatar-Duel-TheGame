@@ -75,14 +75,15 @@ public class Char extends Card {
         gm.getCurrentPlayer().getPlayerStats().usePower(element, powerNeeded);
     }
 
-    public boolean CanBePlayed(PlayerStats ps){
+    public boolean CanBePlayed(Player p){
+        PlayerStats ps = p.getPlayerStats();
+        PlayerArena pa = p.getPlayerArena();
         if (ps.getRemainingPower(this.element) >= this.powerNeeded) {
-            //ps.usePower(super.getElmt(), 1);
-            return true;
+            if (pa.charCardCount() + pa.skillCardCount() < 6) {
+                return true;
+            }
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {

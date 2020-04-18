@@ -165,6 +165,7 @@ public class GameDrawer {
         for (CardSprite card : cards) {
             card.changePos(xPos, yPos);
             card.changeScale(0.28, 0.28);
+            card.changeRotation(0);
         }
     }
 
