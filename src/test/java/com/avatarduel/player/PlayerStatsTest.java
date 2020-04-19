@@ -1,3 +1,4 @@
+package com.avatarduel.player;
 
 import com.avatarduel.player.*;
 import com.avatarduel.model.*;
