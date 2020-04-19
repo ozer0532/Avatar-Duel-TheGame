@@ -1,6 +1,6 @@
 # Avatar Duel - The Game
 ## Overview
-![overview](assets/screenshot1.jpg)
+![overview](assets/aanglaper.jpg)
 
 Avatar Duel merupakan aplikasi trading card game yang pada dasarnya mirip dengan Yu Gi Oh! Dan Magic: The Gathering. Game ini dapat dimainkan oleh 2 pemain secara bersamaan. Pemain dapat meletakkan kartu yang dimiliki olehnya ke arena untuk bertarung dengan pemain lainnya. Kartu terbagi menjadi kartu Karakter, Land, dan Skill. Permainan sendiri juga terbagi menjadi beberapa fase, yaitu Draw Phase, Main Phase, Battle Phase, dan End Phase. Setiap giliran pemain dalam permainan akan menjalani fase-fase tersebut sehingga bila sudah melewati End Phase, pemain lawan akan menjadi giliran selanjutnya dalam permainan ini. Pemain dinyatakan menang jika HP lawan mencapai 0 atau kurang atau deck lawan kosong ketika Draw Phase.
 
@@ -25,11 +25,18 @@ Berikut ini adalah environment yang dibutuhkan.
 
 ### Cara Compile Program
 Untuk mengcompile program, ketik command ini dalam directory dimana terdapat gradlew.
-```./gradlew build```
+```
+./gradlew build
+```
 
 ### Cara Menjalankan Program
 Untuk menjalankan program, ketik command ini dalam directory dimana terdapat gradlew.
-```./gradlew run```
+```
+./gradlew run
+```
+## Screenshot Aplikasi
+Berikut ini adalah screenshot dari aplikasi kami.
+![overview](assets/aanglaper.jpg)
 
 ## Project Structure
 Berikut ini adalah struktur folder dari Avatar Duel.
