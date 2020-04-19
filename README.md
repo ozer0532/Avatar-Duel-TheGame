@@ -100,16 +100,24 @@ Berikut ini adalah struktur folder dari Avatar Duel.
                     +---gamestate
                     +---model
                     +---player
-    |               |      PlayerStatsTest.java
+                    |      PlayerStatsTest.java
                     +---sprite
                     \---util
 ```
 ## Unit Testing
 Untuk menjalankan unit testing, Anda dapat menjalankan command ini dalam terminal.
-```./gradle test --tests <NamaTest>```
+```
+./gradle test --tests <NamaTest>
+```
 Sebagai contoh
-```./gradle test --tests PlayerStatsTest```
+```
+./gradle test --tests PlayerStatsTest
+```
 Akan menjalankan test pada PlayerStatsTest.java, jika build successful, maka testing berhasil.
+Untuk melihat dokumentasi test, dapat membuka file berikut ini.
+```
+./build/docs/javadoc/index.html
+```
 
 ## Documentation
 Untuk mengakses dokumentasi, Anda dapat membuka file berikut ini.
