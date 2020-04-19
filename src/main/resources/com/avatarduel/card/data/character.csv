@@ -1,16 +1,16 @@
 id	name	element	description	imagepath	attack	defense	power
-201	Katara	WATER	Waterbending master from \nSouthern Water Tribe, sister \nof Sokka, and friend of Aang.	com/avatarduel/card/image/character/Katara.png	13	7	5
-202	Sokka	WATER	Water Tribe warrior of the \nSouthern Water Tribe.	com/avatarduel/card/image/character/Sokka.png	6	10	3
-203	Yue	WATER	Princess of the Northern Water \nTribe.	com/avatarduel/card/image/character/Yue.png	4	9	2
-204	Hakoda	WATER	Father of Sokka and Katara, \nleading the Invasion of the \nFire Nation.	com/avatarduel/card/image/character/Hakoda.png	7	11	4
-205	Huu	WATER	Waterbending master from Foggy \nSwamp Tribe.	com/avatarduel/card/image/character/Huu.png	8	5	2
+201	Katara	WATER	Waterbending master from\nSouthern Water Tribe, sister\nof Sokka, and friend of Aang.	com/avatarduel/card/image/character/Katara.png	13	7	5
+202	Sokka	WATER	Water Tribe warrior of the\nSouthern Water Tribe.	com/avatarduel/card/image/character/Sokka.png	6	10	3
+203	Yue	WATER	Princess of the Northern Water\nTribe.	com/avatarduel/card/image/character/Yue.png	4	9	2
+204	Hakoda	WATER	Father of Sokka and Katara,\nleading the Invasion of the\nFire Nation.	com/avatarduel/card/image/character/Hakoda.png	7	11	4
+205	Huu	WATER	Waterbending master from Foggy\nSwamp Tribe.	com/avatarduel/card/image/character/Huu.png	8	5	2
 206	Hama	WATER	Developer of bloodbending.	com/avatarduel/card/image/character/Hama.png	12	6	4
-207	Pakku	WATER	Aang's teacher for waterbending\n at Northern Water Tribe.	com/avatarduel/card/image/character/Pakku.png	10	6	3
-208	Arnook	WATER	Chief of the Northern Water \nTribe.	com/avatarduel/card/image/character/Arnook.png	4	7	1
-209	Kuruk	WATER	Water Tribe Avatar, predecessor\n of Avatar Kyoshi.	com/avatarduel/card/image/character/Kuruk.png	6	14	5
-210	Bato	WATER	Friend of Hakoda since \nchildhood.	com/avatarduel/card/image/character/Bato.png	7	9	3
-211	Due	WATER	Waterbending master from \nFoggy Swamp Tribe.	com/avatarduel/card/image/character/Due.png	5	8	2
-212	Hahn	WATER	Career-minded soldier from \nNorthern Water Tribe.	com/avatarduel/card/image/character/Hahn.png	8	3	1
+207	Pakku	WATER	Aang's teacher for waterbending\nat Northern Water Tribe.	com/avatarduel/card/image/character/Pakku.png	10	6	3
+208	Arnook	WATER	Chief of the Northern Water\nTribe.	com/avatarduel/card/image/character/Arnook.png	4	7	1
+209	Kuruk	WATER	Water Tribe Avatar, predecessor\nof Avatar Kyoshi.	com/avatarduel/card/image/character/Kuruk.png	6	14	5
+210	Bato	WATER	Friend of Hakoda since\nchildhood.	com/avatarduel/card/image/character/Bato.png	7	9	3
+211	Due	WATER	Waterbending master from\nFoggy Swamp Tribe.	com/avatarduel/card/image/character/Due.png	5	8	2
+212	Hahn	WATER	Career-minded soldier from\nNorthern Water Tribe.	com/avatarduel/card/image/character/Hahn.png	8	3	1
 213	Aang	AIR	Avatar Roku's successor. Also\nlearned how to energybend.	com/avatarduel/card/image/character/Aang.png	14	6	5
 214	Appa	AIR	Aang's loyal sky bison friend.	com/avatarduel/card/image/character/Appa.png	5	8	2
 215	Momo	AIR	Aang's loyal winged lemur\nfriend.	com/avatarduel/card/image/character/Momo.png	6	5	1
@@ -47,5 +47,5 @@ id	name	element	description	imagepath	attack	defense	power
 246	June	EARTH	Bounty hunter with a shirshu as\nher pet.	com/avatarduel/card/image/character/June.png	5	8	2
 247	Suki	EARTH	Leader of Kyoshi Warrior.	com/avatarduel/card/image/character/Suki.png	8	8	3
 248	Pipsqueak	EARTH	Strongest member of Freedom\nFighters.	com/avatarduel/card/image/character/Pipsqueak.png	3	10	2
-249	Aang	ENERGY	One of a select few Avatars, and one of the first in many cycles to learn the ancient art of energybending.	com/avatarduel/card/image/character/Aaang.png	20	20	2
-250	Korra	ENERGY	The current incarnation of the Avatar and immediate successor of Avatar Aang.	com/avatarduel/card/image/character/Korra.png	20	20	2
+249	Aang	ENERGY	One of a select few Avatars,\nand one of the first in many\ncycles to learn the ancient art\nof energybending.	com/avatarduel/card/image/character/Aaang.png	20	20	2
+250	Korra	ENERGY	The current incarnation of the\nAvatar and immediate successor\nof Avatar Aang.	com/avatarduel/card/image/character/Korra.png	20	20	2

@@ -1,7 +1,7 @@
 id	name	element	description	imagepath	power	attack	defense
 301	Air Funnel	AIR	Technique to create a cannon\nfor small projectiles.	com/avatarduel/card/image/skill/Air Funnel.png	2	4	0
 302	Air Scooter	AIR	A form of transportation\ninvented by Aang.	com/avatarduel/card/image/skill/Air Scooter.png	2	2	4
-303	Airbender Staff	AIR	A wooden stave used primarily\nby airbenders to augment their \nbending.	com/avatarduel/card/image/skill/Airbender Staff.png	2	2	2
+303	Airbender Staff	AIR	A wooden stave used primarily\nby airbenders to augment their\nbending.	com/avatarduel/card/image/skill/Airbender Staff.png	2	2	2
 304	Airbender Upgraded Staff	AIR	Upgraded staff made by\nMechanist for Aang at the Fire\nNation Invasion.	com/avatarduel/card/image/skill/Airbender Upgraded Staff.png	2	3	3
 305	Asphyxiation	AIR	Manipulates the flow of air\nwithin a person's respiratory\nsystem and prevents any new\nintake of breath by forming a\nball of air around the head.	com/avatarduel/card/image/skill/Asphyxiation.png	3	-3	-3
 306	Glider	AIR	Aerial transportation made by Mechanist,\ninspired from Air nomad gliders.	com/avatarduel/card/image/skill/Glider.png	1	2	-1
@@ -20,12 +20,12 @@ id	name	element	description	imagepath	power	attack	defense
 319	Shozin Comet	FIRE	Formerly known as the Great\nComet. A celestial object that\npasses close to the Earth every\none hundred years, just\nskimming the surface of the\nupper atmosphere.	com/avatarduel/card/image/skill/Shozin Comet.png	4	4	-1
 320	Trebuchets	FIRE	Large weapons to conduct\nlong-range artilery warfare.	com/avatarduel/card/image/skill/Trebuchets.png	2	2	0
 321	Wall of Flames	FIRE	Wall of concentrated flames acts\nas a barrier to incoming attacks.	com/avatarduel/card/image/skill/Wall of Flames.png	3	0	3
-322	Bloodbending	WATER	Ability that allows \nwaterbender to manipulate \nperson's movement.	com/avatarduel/card/image/skill/Bloodbending.png	4	4	1
-323	Club	WATER	A blunt force weapon used for \nstriking. Mostly used by Sokka.	com/avatarduel/card/image/skill/Club.png	1	1	1
-324	Full Moon	WATER	Enhance the ability of \nwater bending.	com/avatarduel/card/image/skill/Full Moon.png	4	4	2
-325	Ice Claws	WATER	Drawing water around the \nfingers and freezing it.	com/avatarduel/card/image/skill/Ice Claws.png	3	3	0
-326	Ice Prison	WATER	This technique covers an \nopponent in a prison made \nof ice.	com/avatarduel/card/image/skill/Ice Prison.png	3	-4	2
-327	Tangle Mine	WATER	Military weapons invented by \nHakoda to aid the Southern \nWater Tribe's quest to defeat \nthe Fire Nation.	com/avatarduel/card/image/skill/Tangle Mine.png	2	2	-1
-328	Wolf Armor	WATER	Protective battle gear worn by \nthe warriors of the Southern \nWater Tribe.	com/avatarduel/card/image/skill/Wolf Armor.png	2	2	1
-329	Astral Projection	ENERGY	Despite not having been bound by a corporeal form, the projection was able to both inflict and sustain great physical damage.	com/avatarduel/card/image/skill/Astral Projection.png	2	10	10
-330	Spirit Energy Manipulation	ENERGY	The ability to manipulate energy originating from the Spirit World.	com/avatarduel/card/image/skill/Spirit Energy Manipulation.png	2	-10	-10
+322	Bloodbending	WATER	Ability that allows\nwaterbender to manipulate\nperson's movement.	com/avatarduel/card/image/skill/Bloodbending.png	4	4	1
+323	Club	WATER	A blunt force weapon used for\nstriking. Mostly used by Sokka.	com/avatarduel/card/image/skill/Club.png	1	1	1
+324	Full Moon	WATER	Enhance the ability of\nwater bending.	com/avatarduel/card/image/skill/Full Moon.png	4	4	2
+325	Ice Claws	WATER	Drawing water around the\nfingers and freezing it.	com/avatarduel/card/image/skill/Ice Claws.png	3	3	0
+326	Ice Prison	WATER	This technique covers an\nopponent in a prison made\nof ice.	com/avatarduel/card/image/skill/Ice Prison.png	3	-4	2
+327	Tangle Mine	WATER	Military weapons invented by\nHakoda to aid the Southern\nWater Tribe's quest to defeat\nthe Fire Nation.	com/avatarduel/card/image/skill/Tangle Mine.png	2	2	-1
+328	Wolf Armor	WATER	Protective battle gear worn by\nthe warriors of the Southern\nWater Tribe.	com/avatarduel/card/image/skill/Wolf Armor.png	2	2	1
+329	Astral Projection	ENERGY	Despite not having been bound\nby a corporeal form, the\nprojection was able to\nboth inflict and sustain\ngreat physical damage.	com/avatarduel/card/image/skill/Astral Projection.png	2	10	10
+330	Spirit Energy Manipulation	ENERGY	The ability to manipulate\nenergy originating from the\nSpirit World.	com/avatarduel/card/image/skill/Spirit Energy Manipulation.png	2	-10	-10
