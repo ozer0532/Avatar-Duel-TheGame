@@ -180,14 +180,28 @@ public class GameManager {
         return new ArenaClickInfo(selectedCard, isCharacter, isTopPlayer, xIndex, charSlotOccupied, skillSlotOccupied, !isCurrent);
     }
 
+    /**
+     * Fungsi ini mengecek bila game sudah berakhir
+     * @return Mengirimkan true jika game sudah berakhir
+     */
     public boolean hasGameEnded() {
         return winner != 0;
     }
 
+    /**
+     * Fungsi ini mengecek bila pemain yang menang (jika
+     * game sudah berakhir) adalah pemain atas
+     * @return Mengirimkan true jika pemain atas menang
+     */
     public boolean topPlayerWon() {
         return winner == 2;
     }
-
+    
+    /**
+     * Fungsi ini akan mengeset pemain yang menang
+     * @param isTopWinner Jika true, pemain atas diset
+     * menang. Jika false, pemain bawah diset menang
+     */
     public void setWinner(boolean isTopWinner) {
         winner = isTopWinner ? 2 : 1;
     }

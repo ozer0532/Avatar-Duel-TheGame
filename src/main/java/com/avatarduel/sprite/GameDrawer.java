@@ -232,6 +232,12 @@ public class GameDrawer implements IMouseMoveSub {
         }
     }
 
+    /**
+     * Menggambarkan teks menang pada pemain
+     * @param gc Graphics Context canvas game
+     * @param isTopPlayer Jika true, teks menang akan digambarkan pada
+     * pemain atas.
+     */
     private void drawGameWin(GraphicsContext gc, boolean isTopPlayer) {
         final double xPos = 690;
         final double yPos;
@@ -247,6 +253,10 @@ public class GameDrawer implements IMouseMoveSub {
         gc.restore();
     }
 
+    /**
+     * Menggambarkan fase game yang sedang berlangsung
+     * @param gm Game Manager game
+     */
     private void drawGameState(GameManager gm) {
         final double xPos = 120;
         final double yPos = 372;
@@ -297,6 +307,7 @@ public class GameDrawer implements IMouseMoveSub {
         }
     }
 
+    @Override
     public void OnMouseMove(MouseEvent e) {
         List<Card> ph = gm.getCurrentPlayer().getPlayerHands();
         // Cek kartu di tangan di hover
