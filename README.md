@@ -36,7 +36,7 @@ Untuk menjalankan program, ketik command ini dalam directory dimana terdapat gra
 ```
 ## Screenshot Aplikasi
 Berikut ini adalah screenshot dari aplikasi kami.
-![Screenshot Aplikasi](assets/aanglaper.jpg)
+![Screenshot Aplikasi](assets/screenshot1.jpg)
 
 ## Project Structure
 Berikut ini adalah struktur folder dari Avatar Duel.
