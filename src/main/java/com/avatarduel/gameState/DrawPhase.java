@@ -58,6 +58,10 @@ public class DrawPhase extends GameState implements IMouseClickSub {
         gameManager.getGameState().StartTurn();
     }
 
+    /**
+     * Membuang kartu yang ada di tangan lalu mengambil kartu baru dari dek
+     * @param e input event dari mouse
+     */
     public void OnMouseClick(MouseEvent e) {
         for (int i=0; i < this.pemain.getPlayerHands().size(); i++) {
             if (this.pemain.getPlayerHands().get(i).getSprite().isPointOverlap(e.getX(), e.getY())) {

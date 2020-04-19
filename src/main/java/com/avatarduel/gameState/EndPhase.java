@@ -42,7 +42,10 @@ public class EndPhase extends GameState implements IMouseClickSub{
         gameManager.getGameState().StartTurn();
     }
 
-    @Override
+    /**
+     * Berpindah ke EndTurn dengan menggunakan MouseEvent
+     * @param event input event dari mouse
+     */
     public void OnMouseClick(MouseEvent event) {
         EndTurn();
     }

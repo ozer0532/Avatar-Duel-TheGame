@@ -60,6 +60,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
 
     /**
      * Melakukan serangan terhadap lawan
+     * @param event input event dari mouse
      */
     public void OnMouseClick (MouseEvent event){
         if (!gameManager.hasGameEnded()) {
