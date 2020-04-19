@@ -3,10 +3,10 @@ id	name	element	description	imagepath
 102	Western Air Temple	AIR	One of the two temples\nexclusively housing female\nairbenders.	com/avatarduel/card/image/land/Western Air Temple.png
 103	Southern Air Temple	AIR	One of the two temples\nexclusively housing male\nairbenders. Childhood home of\nAvatar Aang.	com/avatarduel/card/image/land/Southern Air Temple.png
 104	Northern Air Temple	AIR	One of the two temples\nexclusively housing male\nairbenders.	com/avatarduel/card/image/land/Northern Air Temple.png
-105	Foggy Swamp	WATER	Place for immigrants of the \nSouthern Water Tribe with an \nextensive array of fauna and flora.	com/avatarduel/card/image/land/Foggy Swamp.png
-106	Spirit Oasis	WATER	A verdant and lush garden\nlocated in a cave in the Northern\n Water Tribe's capital city at the \nNorth Pole.	com/avatarduel/card/image/land/Spirit Oasis.png
-107	Northern Water Tribe	WATER	The largest division of its \nnation and is located on an \nisland situated near the North \nPole.	com/avatarduel/card/image/land/Northern Water Tribe.png
-108	Southern Water Tribe	WATER	Minor division of the Water \nTribe. Its people are scattered in\n tiny villages and settlements \nlocated on an island by the \nSouth Pole.	com/avatarduel/card/image/land/Southern Water Tribe.png
+105	Foggy Swamp	WATER	Place for immigrants of the\nSouthern Water Tribe with an\nextensive array of fauna and flora.	com/avatarduel/card/image/land/Foggy Swamp.png
+106	Spirit Oasis	WATER	A verdant and lush garden\nlocated in a cave in the Northern\nWater Tribe's capital city at the\nNorth Pole.	com/avatarduel/card/image/land/Spirit Oasis.png
+107	Northern Water Tribe	WATER	The largest division of its\nnation and is located on an\nisland situated near the North\nPole.	com/avatarduel/card/image/land/Northern Water Tribe.png
+108	Southern Water Tribe	WATER	Minor division of the Water\nTribe. Its people are scattered in\ntiny villages and settlements\nlocated on an island by the\nSouth Pole.	com/avatarduel/card/image/land/Southern Water Tribe.png
 109	Si Wong Desert	EARTH	The largest desert in the world.	com/avatarduel/card/image/land/Si Wong Desert.png
 110	Ba Sing Se	EARTH	The monolithic capital of the\nEarth Kingdom.	com/avatarduel/card/image/land/Ba Sing Se.png
 111	Kyoshi Island	EARTH	"Famous as the birthplace of\nAvatar Kyoshi and as the home\nof the elite Kyoshi Warriors."	com/avatarduel/card/image/land/Kyoshi Island.png
@@ -15,5 +15,5 @@ id	name	element	description	imagepath
 114	Boiling Rock	FIRE	A massive Fire Nation prison.	com/avatarduel/card/image/land/Boiling Rock.png
 115	Sun Warriors' Ancient City	FIRE	Large, historic settlement\nlocated on an island north\nof the Fire Nation mainland.	com/avatarduel/card/image/land/Sun Warriors' Ancient City.png
 116	Fire Fountain City	FIRE	A large industrial city\nlocated in the Fire Nation.	com/avatarduel/card/image/land/Fire Fountain City.png
-117	Lion Turtle	ENERGY	Honorably referred to as Ancient One by the spirits, it is the largest known animal in the world.	com/avatarduel/card/image/land/Lion Turtle.png
-118	Spirit Wilds	ENERGY	Home to spirits in the mortal realm	com/avatarduel/card/image/land/Spirit Wilds.png
+117	Lion Turtle	ENERGY	Honorably referred to as Ancient\nOne by the spirits, it\nis the largest known animal in\nthe world.	com/avatarduel/card/image/land/Lion Turtle.png
+118	Spirit Wilds	ENERGY	Home to spirits in the mortal\nrealm	com/avatarduel/card/image/land/Spirit Wilds.png

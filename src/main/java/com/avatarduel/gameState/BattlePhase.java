@@ -82,6 +82,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                                 selectedCard.getIsDefense()) {
                             System.out.println("----CANCEL USAGE-----");
                             selectedCard = null;
+                            gameManager.getGameDrawer().setHighlightedCard(null);
                         } else {
                             selectedCardIndex = info.getIdx();
                             gameManager.getGameDrawer().setHighlightedCard(this.selectedCard.getSprite());
@@ -103,7 +104,7 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                             Char charOpp = opp.getPlayerArena().getCharCard(info.getIdx());
                             Aura auraOpp = null;
                             if (opp.getPlayerArena().getSkillCard(info.getIdx()) instanceof Aura) {
-                                auraOpp = (Aura)cur.getPlayerArena().getSkillCard(selectedCardIndex);
+                                auraOpp = (Aura)opp.getPlayerArena().getSkillCard(info.getIdx());
                             }
         
                             int attCur = charCur.getAttack() + (auraCur != null ? auraCur.getAttack() : 0);
@@ -130,8 +131,8 @@ public class BattlePhase extends GameState implements IMouseClickSub{
                                 opp.getPlayerArena().removeCharCard(info.getIdx());
                                 gameManager.addToDiscardPile(charOpp);
                                 roundInfo.addCardsAttacked(charCur);
-                                if (cur.getPlayerArena().getSkillCard(info.getIdx()) instanceof PowerUp) {
-                                    opp.getPlayerStats().takeDamage(attCur - attOpp);
+                                if (cur.getPlayerArena().getSkillCard(selectedCardIndex) instanceof PowerUp) {
+                                    opp.getPlayerStats().takeDamage(attCur - defOpp);
                                     if (opp.getPlayerStats().getHealth() <= 0) {
                                         gameManager.setWinner(this.pemain.getIsTopPlayer());
                                     }
