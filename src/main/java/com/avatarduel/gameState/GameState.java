@@ -23,10 +23,10 @@ public abstract class GameState {
     /**
      * Memulai fase tersebut
      */
-    abstract public void StartTurn();
+    abstract public void startTurn();
 
     /**
      * Mengakhiri fase tersebut
      */
-    abstract public void EndTurn();
+    abstract public void endTurn();
 }

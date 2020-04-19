@@ -38,31 +38,31 @@ public class BattlePhase extends GameState implements IMouseClickSub{
      * Memulai BattlePhase dan melakukan subscribe untuk mouse click
      */
     @Override
-    public void StartTurn(){
+    public void startTurn(){
         // Subscribe to mouse click subs
         System.out.println(">>>>> BATTLE PHASE START <<<<<");
-        gameManager.RegisterMouseClick(this);
+        gameManager.registerMouseClick(this);
     }
 
     /**
      * Melakukan unsubscribe untuk mouse click dan mengganti state game ke EndPhase
      */
     @Override
-    public void EndTurn(){
+    public void endTurn(){
         // Unsubscribe to mouse click subs
-        gameManager.UnregisterMouseClick(this);
+        gameManager.unregisterMouseClick(this);
 
         // Pindah ke main 2 phase, dan kirim round infonya
         GameState gs = new EndPhase(gameManager);
         gameManager.setGameState(gs);
-        gameManager.getGameState().StartTurn();
+        gameManager.getGameState().startTurn();
     }
 
     /**
      * Melakukan serangan terhadap lawan
      * @param event input event dari mouse
      */
-    public void OnMouseClick (MouseEvent event){
+    public void onMouseClick (MouseEvent event){
         if (!gameManager.hasGameEnded()) {
             // Kalau klik kartu currentplayer di arena (dan kartunya gak ada di playedCards), simpen ke selectedcard
             // Kalau engga, Selected Card set null

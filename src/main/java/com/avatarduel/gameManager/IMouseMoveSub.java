@@ -14,5 +14,5 @@ public interface IMouseMoveSub {
      * Melaksanakan suatu aksi tertentu ketika suatu event terjadi akibat pergerakan mouse
      * @param event sebuah kejadian MouseEvent yang mentriggered suatu aksi tertentu
      */
-    public void OnMouseMove(MouseEvent event);
+    public void onMouseMove(MouseEvent event);
 }

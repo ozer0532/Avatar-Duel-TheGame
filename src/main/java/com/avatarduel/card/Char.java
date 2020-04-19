@@ -51,7 +51,7 @@ public class Char extends Card {
         super(name, elmt, desc, image, pow);
         this.atk = atk;
         this.def = def;
-        this.sprite = this.DrawCardSimple(0, 0, true);
+        this.sprite = this.drawCardSimple(0, 0, true);
         this.isDefense = false;
     }
 
@@ -138,7 +138,7 @@ public class Char extends Card {
      * @param idx index posisi target dalam arena
      * @param isPlayedonEnemy true apabila dimainkan ke musuh
      */
-    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
+    public void onCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp = gm.getCurrentPlayer().getPlayerArena();
         temp.addCharacterCard(idx,this);
         gm.getCurrentPlayer().getPlayerHands().remove(this);
@@ -150,7 +150,7 @@ public class Char extends Card {
      * @param p player yang kartunya mau dimainkan
      * @return true apabila kartu dapat dimainkan
      */
-    public boolean CanBePlayed(Player p){
+    public boolean canBePlayed(Player p){
         PlayerStats ps = p.getPlayerStats();
         PlayerArena pa = p.getPlayerArena();
         if (ps.getRemainingPower(this.element) >= this.powerNeeded) {
@@ -168,7 +168,7 @@ public class Char extends Card {
      * @param isFlipped keadaan kartu terbalik atau tidak
      * @return sebuah sprite sederhana berisi gambar dan informasi umum dari kartu karakter
      */
-    public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
+    public CardSprite drawCardSimple(float x, float y, boolean isFlipped) {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt;
@@ -193,7 +193,7 @@ public class Char extends Card {
         back="com/avatarduel/generic/image/BackSmallCard.png";
         attr="A: "+this.atk+" / "+"D: "+this.def+" / "+"P: "+this.powerNeeded;
         cs = new CardSprite(front, back, imagePath, x, y);
-        cs.InsertText(attr,25,354,"Arial Bold",32);
+        cs.insertText(attr,25,354,"Arial Bold",32);
         return cs;
     }
 
@@ -201,7 +201,7 @@ public class Char extends Card {
      * Mengembalikan CardSprite yang lebih detail dari kartu karakter
      * @return sebuah sprite berisi gambar dan informasi lengkap dari kartu karakter
      */
-    public CardSprite DrawCardDetail() {
+    public CardSprite drawCardDetail() {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt, desc, type;
@@ -226,14 +226,14 @@ public class Char extends Card {
         back="com/avatarduel/generic/image/BackSmallCard.png";
         
         cs = new CardSprite(front, back, imagePath);
-        cs.SetImagePos(36, 69);
+        cs.setImagePos(36, 69);
 
         attr="ATK/"+this.atk+" | "+"DEF/"+this.def+" | "+"POW/"+this.powerNeeded;
         type="[ Character ]";
-        cs.InsertText(this.name,33,35);   
-        cs.InsertText(type,20,353);
-        cs.InsertText(this.description,25,380);
-        cs.InsertText(attr,25,545);
+        cs.insertText(this.name,33,35);   
+        cs.insertText(type,20,353);
+        cs.insertText(this.description,25,380);
+        cs.insertText(attr,25,545);
 
         return cs;
     }

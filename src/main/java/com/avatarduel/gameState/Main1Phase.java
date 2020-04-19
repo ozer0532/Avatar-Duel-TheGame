@@ -35,9 +35,9 @@ public class Main1Phase extends GameState implements IMouseClickSub{
      * Memulai Main1Phase dan melakukan subscribe untuk mouse click
      */
     @Override
-    public void StartTurn(){
+    public void startTurn(){
         // Subscribe to mouse click subs
-        gameManager.RegisterMouseClick(this);
+        gameManager.registerMouseClick(this);
         System.out.println(">>>>> MAIN PHASE START <<<<<");
     }
 
@@ -45,21 +45,21 @@ public class Main1Phase extends GameState implements IMouseClickSub{
      * Melakukan unsubscribe untuk mouse click dan mengganti state game ke BattlePhase
      */
     @Override
-    public void EndTurn(){
+    public void endTurn(){
         // Unsubscribe to mouse click subs
-        gameManager.UnregisterMouseClick(this);
+        gameManager.unregisterMouseClick(this);
 
         // Pindah ke main 2 phase, dan kirim round infonya
         GameState gs = new BattlePhase(gameManager, roundInfo);
         gameManager.setGameState(gs);
-        gameManager.getGameState().StartTurn();
+        gameManager.getGameState().startTurn();
     }
 
     /**
      * Melakukan persiapan terhadap arena sendiri sebelum battle
      * @param event input event dari mouse
      */
-    public void OnMouseClick (MouseEvent event){
+    public void onMouseClick (MouseEvent event){
         // Kalau klik di kartu di hand, simpan kartu ke SelectedCard
         // Kalau engga, SelectedCard set null
         double X = event.getX();
@@ -85,24 +85,24 @@ public class Main1Phase extends GameState implements IMouseClickSub{
             ArenaClickInfo info = gameManager.getArenaClickInfo(X, Y);
             if (info != null) {
 
-                if ((this.selectedCard != null) && (this.selectedCard.CanBePlayed(this.pemain))) {
+                if ((this.selectedCard != null) && (this.selectedCard.canBePlayed(this.pemain))) {
                     System.out.println("----PLAYING CARD-----");
                     if (this.selectedCard instanceof Char) {
                         System.out.println("----CHAR-----");
                         if (!info.getCharacterSlotOccupied()) {
-                            this.selectedCard.OnCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
+                            this.selectedCard.onCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
                             roundInfo.addPlayedCards((Char) this.selectedCard);
                         }
                     }
                     else if (this.selectedCard instanceof Skill) {
                         System.out.println("----SKILL-----");
                         if (!info.getSkillSlotOccupied()) {
-                            this.selectedCard.OnCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
+                            this.selectedCard.onCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
                         }
                     } else {
                         System.out.println("----LAND-----");
                         assert this.selectedCard instanceof Land;
-                        this.selectedCard.OnCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
+                        this.selectedCard.onCardPlayed(gameManager, info.getIdx(), info.getIsEnemy());
                     }
                     this.selectedCard = null;
                 }

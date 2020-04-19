@@ -35,7 +35,7 @@ public class GameDrawer implements IMouseMoveSub {
      */
     public GameDrawer(GameManager gm) {
         this.gm = gm;
-        gm.RegisterMouseMove(this);
+        gm.registerMouseMove(this);
     }
 
     /**
@@ -195,7 +195,7 @@ public class GameDrawer implements IMouseMoveSub {
             final double yPos = 360;
             final double scale = 0.63;
 
-            CardSprite spr = card.DrawCardDetail();
+            CardSprite spr = card.drawCardDetail();
             spr.changePos(xPos, yPos, true);
             spr.changeScale(scale, scale, true);
             spr.update(gc, 0);
@@ -308,7 +308,7 @@ public class GameDrawer implements IMouseMoveSub {
     }
 
     @Override
-    public void OnMouseMove(MouseEvent e) {
+    public void onMouseMove(MouseEvent e) {
         List<Card> ph = gm.getCurrentPlayer().getPlayerHands();
         // Cek kartu di tangan di hover
         for (int i=0; i < ph.size(); i++) {

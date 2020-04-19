@@ -61,7 +61,7 @@ public class GameManager {
         // Generate kartu dan masukin ke player yang bersangkutan, dan simpan ke drawListnya GameDrawer
         DataLoader dl = new DataLoader();
         try {
-            dl.LoadCards(currentPlayer, oppositePlayer);
+            dl.loadCards(currentPlayer, oppositePlayer);
         } catch (Exception e) {
             System.out.println(e.toString());
             // Data pada csv tidak valid, perlu restart...
@@ -94,11 +94,11 @@ public class GameManager {
         }
 
         // Init tombol endturn
-        RegisterMouseClick(new EndButton(this));
+        registerMouseClick(new EndButton(this));
 
         // Init state dengan draw phase
         gameState = new DrawPhase(this);
-        gameState.StartTurn();
+        gameState.startTurn();
     }
     
     /**
@@ -293,7 +293,7 @@ public class GameManager {
      * Mendaftarkan IMouseClickSub agar dikirim event nanti
      * @param click sebuah event click yang ingin diregister
      */
-    public void RegisterMouseClick(IMouseClickSub click){
+    public void registerMouseClick(IMouseClickSub click){
         mouseClickSubs.add(click);
     }
 
@@ -301,7 +301,7 @@ public class GameManager {
      * Menghapus sebuah IMouseClickSub dari dafar subscriber
      * @param click sebuah event click yang ingin diunregister
      */
-    public void UnregisterMouseClick(IMouseClickSub click) {
+    public void unregisterMouseClick(IMouseClickSub click) {
         mouseClickSubs.remove(click);
     }
 
@@ -309,7 +309,7 @@ public class GameManager {
      * Mendaftarkan IMouseMoveSub agar dikirim event nanti
      * @param move sebuah event IMouseMoveSub yang ingin diregister
      */
-    public void RegisterMouseMove(IMouseMoveSub move){
+    public void registerMouseMove(IMouseMoveSub move){
         // Mendaftarkan IMouseClickSub agar dikirim event nanti
         mouseMoveSubs.add(move);
     }
@@ -318,7 +318,7 @@ public class GameManager {
      * Menghapus sebuah IMouseMoveSub dari daftar subscriber
      * @param move sebuah event IMouseMoveSub yang ingin diunregister
      */
-    public void UnregisterMouseMove(IMouseMoveSub move) {
+    public void unregisterMouseMove(IMouseMoveSub move) {
         mouseMoveSubs.remove(move);
     }
 
@@ -332,7 +332,7 @@ public class GameManager {
         // Reference: (1) - Cari bagian mouse click
         System.out.println("mouseclick");
         for (int i = 0; i < mouseClickSubs.size(); i++){
-            mouseClickSubs.get(i).OnMouseClick(event);
+            mouseClickSubs.get(i).onMouseClick(event);
         }
     }
 
@@ -345,7 +345,7 @@ public class GameManager {
         // Ini dipanggil oleh Avatar Duel pada setOnMouseClicked pada handle()
         // Reference: (1) - Cari bagian mouse move
         for (int i = 0; i < mouseMoveSubs.size(); i++){
-            mouseMoveSubs.get(i).OnMouseMove(event);
+            mouseMoveSubs.get(i).onMouseMove(event);
         }
     }
 }

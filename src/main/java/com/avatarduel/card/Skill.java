@@ -34,14 +34,14 @@ public abstract class Skill extends Card {
      * @param idx index kartu dalam arena
      * @param isPlayedonEnemy true apabila dimainkan ke musuh
      */
-    public abstract void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy);
+    public abstract void onCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy);
     
     /**
      * Mengembalikan true apabila kartu bisa dimainkan dengan kondisi power mencukupi
      * @param ps player yang kartu skillnya mau dimainkan
      * @return true apabila kartu skill bisa dimainkan
      */
-    public abstract boolean CanBePlayed(Player ps);
+    public abstract boolean canBePlayed(Player ps);
 
     /**
      * Mengembalikan informasi sederhana dari sebuah kartu skill
@@ -50,11 +50,11 @@ public abstract class Skill extends Card {
      * @param isFlipped keadaan kartu terbalik atau tidak
      * @return sebuah sprite berisi informasi detail dari kartu skill
      */
-    public abstract CardSprite DrawCardSimple(float x, float y, boolean isFlipped);
+    public abstract CardSprite drawCardSimple(float x, float y, boolean isFlipped);
 
     /**
      * Mengembalikan informasi detail dari sebuah kartu skill
      * @return sebuah sprite berisi informasi detail dari kartu
      */
-    public abstract CardSprite DrawCardDetail();
+    public abstract CardSprite drawCardDetail();
 }

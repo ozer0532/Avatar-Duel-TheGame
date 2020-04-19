@@ -48,7 +48,7 @@ public class Land extends Card {
      * @param idx index kartu target dalam arena
      * @param isPlayedonEnemy true apabila dimainkan ke musuh
      */
-    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy) {
+    public void onCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy) {
         if (this.isElementValid()) {
             PlayerStats temp = gm.getCurrentPlayer().getPlayerStats();
             temp.incrementPower(this.element);
@@ -64,7 +64,7 @@ public class Land extends Card {
      * @param p player yang kartunya mau dimainkan
      * @return true apabila kartu dapat dimainkan
      */
-    public boolean CanBePlayed(Player p){
+    public boolean canBePlayed(Player p){
         PlayerStats ps = p.getPlayerStats();
         if (!ps.getPlayedLandThisRound()){
             ps.setPlayedLandThisRound(true);
@@ -82,7 +82,7 @@ public class Land extends Card {
      * @param isFlipped keadaan kartu terbalik atau tidak
      * @return sebuah sprite sederhana berisi gambar dan informasi umum dari kartu land
      */
-    public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
+    public CardSprite drawCardSimple(float x, float y, boolean isFlipped) {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt;
@@ -107,7 +107,7 @@ public class Land extends Card {
         back="com/avatarduel/generic/image/BackSmallCard.png";
         attr="LAND";
         cs = new CardSprite(front, back, imagePath, x, y);
-        cs.InsertText(attr,25,354,"Arial Bold",32);
+        cs.insertText(attr,25,354,"Arial Bold",32);
         return cs;
     }
 
@@ -115,7 +115,7 @@ public class Land extends Card {
      * Mengembalikan CardSprite yang lebih detail dari kartu
      * @return sebuah sprite berisi gambar dan informasi lengkap dari kartu land
      */
-    public CardSprite DrawCardDetail() {
+    public CardSprite drawCardDetail() {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt, desc, type;
@@ -140,14 +140,14 @@ public class Land extends Card {
         back="com/avatarduel/generic/image/BackSmallCard.png";
         
         cs = new CardSprite(front, back, imagePath);
-        cs.SetImagePos(36, 69);
+        cs.setImagePos(36, 69);
 
         type="[ Land ]";
         attr="POW/+1";
-        cs.InsertText(this.name,33,35);   
-        cs.InsertText(type,20,353);
-        cs.InsertText(this.description,25,380);
-        cs.InsertText(attr,25,545);
+        cs.insertText(this.name,33,35);   
+        cs.insertText(type,20,353);
+        cs.insertText(this.description,25,380);
+        cs.insertText(attr,25,545);
 
         return cs;
     }

@@ -70,7 +70,7 @@ public class CardSprite extends Sprite {
      * Menambahkan sebuah teks untuk digambarkan pada tampak depan kartu
      * @param text objek teks untuk digambar
      */
-    public void InsertText (CardText text) {
+    public void insertText (CardText text) {
         textList.add(text);
     }
 
@@ -80,7 +80,7 @@ public class CardSprite extends Sprite {
      * @param x posisi x teks relatif terhadap pojok kiri atas kartu
      * @param y posisi y teks relatif terhadap pojok kiri atas kartu
      */
-    public void InsertText (String text, double x, double y) {
+    public void insertText (String text, double x, double y) {
         textList.add(new CardText(text, x, y));
     }
     
@@ -91,7 +91,7 @@ public class CardSprite extends Sprite {
      * @param y posisi y teks relatif terhadap pojok kiri atas kartu
      * @param fontName nama fon untuk menggambar teks
      */
-    public void InsertText (String text, double x, double y, String fontName) {
+    public void insertText (String text, double x, double y, String fontName) {
         textList.add(new CardText(text, x, y, fontName));
     }
 
@@ -103,11 +103,11 @@ public class CardSprite extends Sprite {
      * @param fontName nama fon untuk menggambar teks
      * @param fontSize besar fon teks
      */
-    public void InsertText (String text, double x, double y, String fontName, double fontSize) {
+    public void insertText (String text, double x, double y, String fontName, double fontSize) {
         textList.add(new CardText(text, x, y, fontName, fontSize));
     }
 
-    public void SetImagePos (double x, double y) {
+    public void setImagePos (double x, double y) {
         imageXOffset = x;
         imageYOffset = y;
     }

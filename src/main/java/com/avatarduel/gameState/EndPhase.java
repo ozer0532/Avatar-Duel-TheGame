@@ -26,7 +26,7 @@ public class EndPhase extends GameState implements IMouseClickSub{
      * Memulai EndPhase, me-reset stats dari player, dan mengganti giliran bermain
      */
     @Override
-    public void StartTurn(){
+    public void startTurn(){
         // Tuker current player dan opposite player
         System.out.println(">>>>> END PHASE START <<<<<");
         gameManager.getCurrentPlayer().getPlayerStats().resetStats();
@@ -37,16 +37,16 @@ public class EndPhase extends GameState implements IMouseClickSub{
      * Mengganti state game menjadi  DrawPhase
      */
     @Override
-    public void EndTurn(){
+    public void endTurn(){
         gameManager.setGameState(new DrawPhase(gameManager));
-        gameManager.getGameState().StartTurn();
+        gameManager.getGameState().startTurn();
     }
 
     /**
      * Berpindah ke EndTurn dengan menggunakan MouseEvent
      * @param event input event dari mouse
      */
-    public void OnMouseClick(MouseEvent event) {
-        EndTurn();
+    public void onMouseClick(MouseEvent event) {
+        endTurn();
     }
 }

@@ -40,7 +40,7 @@ public class DataLoader {
      * @throws URISyntaxException melempar URISyntaxException ketika ada syntax bermasalah dalam csv
      * @throws NumberFormatException melempar NumberFormatException ketika jumlah kartu tidak mencukupi
      */
-    public void LoadCards(Player player1, Player player2) throws IOException, URISyntaxException, NumberFormatException {
+    public void loadCards(Player player1, Player player2) throws IOException, URISyntaxException, NumberFormatException {
         
         // List of cards each player have
         List<Card> p1Cards = new LinkedList<>();

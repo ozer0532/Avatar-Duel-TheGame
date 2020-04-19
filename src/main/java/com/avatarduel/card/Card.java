@@ -56,7 +56,7 @@ public abstract class Card {
         this.description = desc;
         this.image = image;
         this.powerNeeded = pow;
-        this.sprite = this.DrawCardSimple(0, 0, true);
+        this.sprite = this.drawCardSimple(0, 0, true);
     }
 
     // Setter for Card
@@ -159,14 +159,14 @@ public abstract class Card {
      * @param idx index posisi target dalam arena
      * @param isPlayedonEnemy true apabila dimainkan ke musuh
      */
-    public abstract void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy);
+    public abstract void onCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy);
 
     /**
      * Mengembalikan true apabila kartu bisa dimainkan
      * @param p player yang kartunya mau dimainkan
      * @return true apabila kartu dapat dimainkan
      */
-    public abstract boolean CanBePlayed(Player p);
+    public abstract boolean canBePlayed(Player p);
 
     /**
      * Mengembalikan CardSprite sederhana dari kartu
@@ -175,11 +175,11 @@ public abstract class Card {
      * @param isFlipped keadaan kartu terbalik atau tidak
      * @return sebuah sprite sederhana berisi gambar dan informasi umum dari kartu
      */
-    public abstract CardSprite DrawCardSimple(float x, float y, boolean isFlipped);
+    public abstract CardSprite drawCardSimple(float x, float y, boolean isFlipped);
 
     /**
      * Mengembalikan CardSprite yang lebih detail dari kartu
      * @return sebuah sprite berisi gambar dan informasi lengkap dari kartu
      */
-    public abstract CardSprite DrawCardDetail();
+    public abstract CardSprite drawCardDetail();
 }

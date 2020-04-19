@@ -34,7 +34,7 @@ public class PowerUp extends Skill {
      * @param idx index kartu dalam arena
      * @param isPlayedonEnemy true apabila dimainkan ke musuh
      */
-    public void OnCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
+    public void onCardPlayed(GameManager gm, int idx, boolean isPlayedonEnemy){
         PlayerArena temp=gm.getCurrentPlayer().getPlayerArena();
         if (temp.getCharCard(idx) != null) {
             temp.addSkillCard(idx,this);
@@ -48,7 +48,7 @@ public class PowerUp extends Skill {
      * @param p player yang kartu powerUp nya mau dimainkan
      * @return true apabile kartu powerUp bisa dimainkan
      */
-    public boolean CanBePlayed(Player p){
+    public boolean canBePlayed(Player p){
         // return true kalo power mencukupi
         PlayerStats ps = p.getPlayerStats();
         PlayerArena pa = p.getPlayerArena();
@@ -67,7 +67,7 @@ public class PowerUp extends Skill {
      * @param isFlipped keadaan kartu terbalik atau tidak
      * @return sebuah sprite berisi informasi detail dari kartu PowerUp
      */
-    public CardSprite DrawCardSimple(float x, float y, boolean isFlipped) {
+    public CardSprite drawCardSimple(float x, float y, boolean isFlipped) {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt;
@@ -94,7 +94,7 @@ public class PowerUp extends Skill {
 
         attr="POWER UP / P: " + this.powerNeeded;
         cs = new CardSprite(front, back, imagePath, x, y);
-        cs.InsertText(attr,25,354,"Arial Bold",32);
+        cs.insertText(attr,25,354,"Arial Bold",32);
         return cs;
     }
 
@@ -102,7 +102,7 @@ public class PowerUp extends Skill {
      * Mengembalikan informasi detail dari sebuah kartu PowerUp
      * @return sebuah sprite berisi informasi detail dari kartu
      */
-    public CardSprite DrawCardDetail() {
+    public CardSprite drawCardDetail() {
         // kamus lokal
         CardSprite cs;
         String imagePath, front, back, attr, elmt, desc, type;
@@ -128,15 +128,15 @@ public class PowerUp extends Skill {
         back="com/avatarduel/generic/image/BackSmallCard.png";
 
         cs = new CardSprite(front, back, imagePath);
-        cs.SetImagePos(36, 69);
+        cs.setImagePos(36, 69);
 
         attr="POW/"+this.powerNeeded;
         type="[ Skill ]"; 
 
-        cs.InsertText(this.name,33,35);   
-        cs.InsertText(type,20,353);
-        cs.InsertText(this.description,25,380);
-        cs.InsertText(attr,25,545);
+        cs.insertText(this.name,33,35);   
+        cs.insertText(type,20,353);
+        cs.insertText(this.description,25,380);
+        cs.insertText(attr,25,545);
 
         return cs;
     }

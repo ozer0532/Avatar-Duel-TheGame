@@ -25,9 +25,9 @@ public class EndButton implements IMouseClickSub {
         gm.getGameDrawer().addToDrawList(spr);
     }
 
-    public void OnMouseClick (MouseEvent mouse) {
+    public void onMouseClick (MouseEvent mouse) {
         if (spr.isPointOverlap(mouse.getX(), mouse.getY())) {
-            gm.getGameState().EndTurn();
+            gm.getGameState().endTurn();
         }
     }
 }

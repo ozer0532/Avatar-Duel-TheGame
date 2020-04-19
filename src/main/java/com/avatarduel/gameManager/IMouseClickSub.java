@@ -14,5 +14,5 @@ public interface IMouseClickSub {
      * Melaksanakan suatu aksi tertentu ketika suatu event terjadi akibat klik dari mouse
      * @param event sebuah kejadian MouseEvent yang mentriggered suatu aksi tertentu
      */
-    public void OnMouseClick(MouseEvent event);
+    public void onMouseClick(MouseEvent event);
 }
