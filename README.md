@@ -1,8 +1,8 @@
 # Avatar Duel - The Game
 This is a card dueling game themed around the Avatar franchise
+![overview](assets/aanglaper.jpg)
 
 ## Overview (English)
-![overview](assets/aanglaper.jpg)
 Avatar Duel is a card trading game application which mechanics is based around Yu Gi Oh! and Magic: The Gathering. This game can be played by two players at once (local multiplayer). Each player puts down a card they have into the arena to battle with other players. Cards are divided into characters, lands, and skills. The game is also divided into several phases: draw phase, main phase, battle phase, and end phase. Each turn the players will go through those phases until the end phase before they switch turns. A player wins when the enemy's health reaches 0 or the enemy's deck becomes empty at their draw phase.
 
 Avatar duel is an app run with a GUI using Java, JavaFX, and Gradle. Any assets, images, and information used in this application is taken from the [Avatar Wikia page](https://avatar.fandom.com/wiki/Avatar_Wiki) or is made by ourselves. Below are two screenshots of our application.
